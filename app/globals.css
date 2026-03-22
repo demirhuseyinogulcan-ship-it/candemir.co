@@ -97,8 +97,8 @@ body {
 }
 
 ::selection {
-  background-color: var(--lamp-warm);
-  color: var(--void);
+  background-color: var(--ash);
+  color: var(--snow);
 }
 
 /* Smooth scrollbar — Sokak Lambası Accent */

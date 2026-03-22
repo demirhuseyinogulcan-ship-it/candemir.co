@@ -1,26 +1,196 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ========== %60 — ZEMİN RENKLERİ ========== */
+  --void: #050505;
+  --obsidian: #0A0A0A;
+  --carbon: #111111;
+  --slate: #1A1A1A;
+
+  /* ========== %30 — METİN RENKLERİ ========== */
+  --snow: #F0F0F0;
+  --concrete: #777777;
+  --ash: #444444;
+
+  /* ========== %10 — ACCENT: SOKAK LAMBASI ========== */
+  --lamp-bright: #FFB800;
+  --lamp-warm: #FF9F1C;
+  --lamp-glow: #FFAA00;
+  --lamp-dim: #CC9200;
+  --lamp-reflection: rgba(255, 184, 0, 0.15);
+
+  /* ========== %10 — ACCENT: KAN (İKİNCİL) ========== */
+  --neon-red: #FF2D2D;
+  --dark-maroon: #3A0000;
+  --maroon-warm: #5C1A1A;
+  --maroon-shirt: #722F37;
+
+  /* ========== BUZLU CAM / GLASS ========== */
+  --frost-light: rgba(255, 255, 255, 0.08);
+  --frost-medium: rgba(255, 255, 255, 0.12);
+  --frost-strong: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.03);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Neue Montreal", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--void);
+  color: var(--snow);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--lamp-warm);
+  color: var(--void);
+}
+
+/* Smooth scrollbar — Sokak Lambası Accent */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--lamp-dim);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lamp-bright);
+}
+
+/* CTA editorial line */
+.cta-line {
+  width: 40px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .cta-line {
+  width: 64px;
+}
+
+/* Section divider */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--ash) 50%, transparent 100%);
+  opacity: 0.15;
+  margin: 6rem 0;
+}
+
+/* ========================================
+   BEHANCE-STYLE SECTION BLOCKS
+   Each section is its own full-width stage
+   ======================================== */
+
+.section-block {
+  width: 100%;
+  /* MASSIVE vertical breathing room — Behance standard */
+  padding-top: 10rem;    /* 160px */
+  padding-bottom: 10rem;
+}
+
+.section-container {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(24px, 5vw, 96px);
+  padding-right: clamp(24px, 5vw, 96px);
+}
+
+/* Background color utilities */
+.bg-void { background-color: var(--void); }
+.bg-obsidian { background-color: var(--obsidian); }
+.bg-carbon { background-color: var(--carbon); }
+.bg-slate { background-color: var(--slate); }
+
+@media (min-width: 640px) {
+  .section-block {
+    padding-top: 12rem;  /* 192px */
+    padding-bottom: 12rem;
+  }
+  /* section-container uses clamp() - no override needed */
+}
+
+@media (min-width: 1024px) {
+  .section-block {
+    padding-top: 14rem;  /* 224px */
+    padding-bottom: 14rem;
+  }
+  /* section-container uses clamp() - no override needed */
+}
+
+@media (min-width: 1280px) {
+  .section-block {
+    padding-top: 16rem;  /* 256px — very premium */
+    padding-bottom: 16rem;
+  }
+  /* section-container uses clamp() - no override needed */
+}
+
+@media (max-width: 767px) {
+  .section-divider {
+    margin: 3rem 0;
+  }
+  
+  .section-block {
+    padding-top: 6rem;   /* 96px on mobile */
+    padding-bottom: 6rem;
+  }
 }

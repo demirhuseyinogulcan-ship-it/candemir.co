@@ -1,65 +1,138 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import ColorPalette from "./components/ColorPalette";
+import Typography from "./components/Typography";
+import ButtonSystem from "./components/ButtonSystem";
+import SignatureDesign from "./components/SignatureDesign";
+import Architecture from "./components/Architecture";
+import AnimationShowcase from "./components/AnimationShowcase";
+import BloodPhysics from "./components/BloodPhysics";
+import ChaosProtocol from "./components/ChaosProtocol";
+import HeroHeader from "./components/HeroHeader";
+import SideNav from "./components/SideNav";
+import IntroOverlay from "./components/IntroOverlay";
+import Section from "./components/ui/Section";
+import Container from "./components/ui/Container";
+import Divider from "./components/ui/Divider";
+import { COLORS, SPACING } from "./lib/design-tokens";
+
+export default function DesignBoard() {
+  const [introComplete, setIntroComplete] = useState(false);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="overflow-hidden" style={{ backgroundColor: COLORS.void }}>
+      {/* Intro Overlay — plays once then exits */}
+      {!introComplete && <IntroOverlay onComplete={() => setIntroComplete(true)} />}
+      {/* Side Navigation — scroll sonrasi sag kenarda belirir */}
+      <SideNav />
+
+      {/* Hero — Full viewport */}
+      <HeroHeader />
+
+      {/* Transition space from Hero */}
+      <div style={{ height: SPACING.hero }} />
+
+      {/* Section 01: COLOR PALETTE */}
+      <Section id="renkler" background="void">
+        <Container>
+          <ColorPalette />
+        </Container>
+      </Section>
+
+      <Divider variant="gradient" />
+
+      {/* Section 02: TYPOGRAPHY */}
+      <Section id="tipografi" background="obsidian">
+        <Container>
+          <Typography />
+        </Container>
+      </Section>
+
+      <Divider variant="line" />
+
+      {/* Section 03: BUTTON SYSTEM */}
+      <Section id="butonlar" background="carbon">
+        <Container>
+          <ButtonSystem />
+        </Container>
+      </Section>
+
+      <Divider variant="gradient" />
+
+      {/* Section 04: SIGNATURE DESIGN */}
+      <Section id="imza" background="void">
+        <Container>
+          <SignatureDesign />
+        </Container>
+      </Section>
+
+      <Divider variant="line" />
+
+      {/* Section 05: ARCHITECTURE */}
+      <Section id="mimari" background="obsidian" spacingBottom="block">
+        <Container>
+          <Architecture />
+        </Container>
+      </Section>
+
+      <Divider variant="gradient" />
+
+      {/* Section 06: ANIMATION SHOWCASE */}
+      <Section id="animasyonlar" background="void">
+        <Container>
+          <AnimationShowcase />
+        </Container>
+      </Section>
+
+      <Divider variant="line" />
+
+      {/* Section 07: BLOOD PHYSICS */}
+      <Section id="kan" background="obsidian">
+        <Container>
+          <BloodPhysics />
+        </Container>
+      </Section>
+
+      <Divider variant="gradient" />
+
+      {/* Section 08: CHAOS PROTOCOL */}
+      <Section id="kaos" background="void">
+        <Container>
+          <ChaosProtocol />
+        </Container>
+      </Section>
+
+      {/* Footer */}
+      <footer 
+        style={{ 
+          backgroundColor: COLORS.void,
+          borderTop: `1px solid ${COLORS.glassBorder}`,
+          paddingTop: SPACING.element,
+          paddingBottom: SPACING.element,
+        }}
+      >
+        <Container className="text-center">
+          <p
+            className="tracking-[0.5em] uppercase"
+            style={{ 
+              fontSize: "10px",
+              color: COLORS.ash,
+            }}
+          >
+            Tasarim tahtasi kesinlestikten sonra site insasi baslar
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <p
+            style={{ 
+              fontSize: "13px",
+              color: COLORS.concrete,
+              marginTop: SPACING.heading,
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Can Demir — 2026
+          </p>
+        </Container>
+      </footer>
+    </main>
   );
 }

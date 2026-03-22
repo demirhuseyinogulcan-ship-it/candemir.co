@@ -109,11 +109,11 @@ body {
   background: var(--void);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--lamp-dim);
+  background: var(--ash);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--lamp-bright);
+  background: var(--snow);
 }
 
 /* CTA editorial line */
@@ -192,5 +192,15 @@ body {
   .section-block {
     padding-top: 6rem;   /* 96px on mobile */
     padding-bottom: 6rem;
+  }
+}
+
+/* ─── Nav Panel — Altın Oran genişliği ─── */
+/* Mobilde ters altın oran: panel = 61.8vw (major segment) */
+@media (max-width: 767px) {
+  .nav-panel-golden {
+    width: 78vw !important;
+    min-width: 280px !important;
+    max-width: none !important;
   }
 }

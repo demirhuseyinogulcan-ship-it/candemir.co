@@ -22,7 +22,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     requestAnimationFrame(raf);
 
-    // Tab arka plana gecince durdur, one gelince devam et
     const onVisibility = () => {
       if (document.hidden) {
         lenis.stop();
@@ -39,5 +38,5 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     };
   }, []);
 
-  return <>{children}</>;
+  return <div>{children}</div>;
 }

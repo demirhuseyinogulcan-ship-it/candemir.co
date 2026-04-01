@@ -1,0 +1,173 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { ANIMATION, COLORS } from "@/app/lib/design-tokens";
+import { SOCIAL_LINKS } from "@/app/lib/constants";
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO — Golden Ratio · Bottom-Left Anchor Architecture
+   
+   φ  = 1.618034
+   Container maxWidth = 38.2vw (100/φ²)
+   Line-height: 0.82 → "Can Demir" monolithic block
+   Film grain: 256x256 canvas, rAF loop, mix-blend-mode: overlay
+   ═══════════════════════════════════════════════════════════════ */
+
+export default function HeroSection() {
+  const grainRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = grainRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    const w = 256;
+    const h = 256;
+    canvas.width = w;
+    canvas.height = h;
+
+    function drawGrain() {
+      if (!ctx) { animId = requestAnimationFrame(drawGrain); return; }
+      const imageData = ctx.createImageData(w, h);
+      const d = imageData.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const v = Math.random() * 50;
+        d[i] = v;
+        d[i + 1] = v;
+        d[i + 2] = v;
+        d[i + 3] = 25;
+      }
+      ctx.putImageData(imageData, 0, 0);
+      animId = requestAnimationFrame(drawGrain);
+    }
+    drawGrain();
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  return (
+    <header
+      className="relative overflow-hidden"
+      style={{
+        backgroundColor: COLORS.void,
+        height: "100vh",
+        minHeight: "600px",
+      }}
+    >
+      {/* Background photograph */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/DSCF0390.JPG"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          style={{ opacity: 0.15 }}
+          sizes="100vw"
+        />
+      </div>
+
+      {/* Gradient overlay — vignette */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: [
+            "radial-gradient(ellipse 70% 60% at 35% 60%, rgba(5,5,5,0.2) 0%, rgba(5,5,5,0.92) 100%)",
+            "linear-gradient(to bottom, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0) 40%, rgba(5,5,5,0) 65%, rgba(5,5,5,0.9) 100%)",
+          ].join(", "),
+        }}
+      />
+
+      {/* Film grain canvas */}
+      <canvas
+        ref={grainRef}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{ mixBlendMode: "overlay", opacity: 0.5 }}
+      />
+
+      {/* Content: Bottom-Left Golden Anchor */}
+      <div
+        className="absolute bottom-0 left-0 flex flex-col items-start"
+        style={{
+          paddingLeft: "clamp(24px, 5vw, 96px)",
+          paddingBottom: "clamp(48px, 8.09vw, 156px)",
+          textAlign: "left",
+          maxWidth: "clamp(300px, 38.2vw, 550px)",
+        }}
+      >
+        {/* H1 Name */}
+        <motion.h1
+          style={{
+            fontSize: "clamp(2.5rem, 5.5vw, 5.5rem)",
+            lineHeight: 0.82,
+            letterSpacing: "-0.04em",
+            color: COLORS.chalk,
+            fontWeight: 300,
+            margin: 0,
+            padding: 0,
+          }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.4, ease: ANIMATION.ease }}
+        >
+          Can
+          <span className="block" style={{ color: COLORS.concrete }}>
+            Demir
+          </span>
+        </motion.h1>
+
+        {/* Manifesto */}
+        <motion.p
+          style={{
+            fontSize: "clamp(13px, 1.3vw, 19px)",
+            lineHeight: 1.5,
+            color: COLORS.concrete,
+            fontWeight: 400,
+            margin: 0,
+            marginTop: "clamp(16px, 2.1vw, 32px)",
+          }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.35, ease: ANIMATION.ease }}
+        >
+          I find what{"\u2019"}s missing and build it.
+        </motion.p>
+
+        {/* Social Icons — from constants */}
+        <motion.div
+          className="flex items-center"
+          style={{
+            gap: "clamp(10px, 0.8vw, 14px)",
+            marginTop: "clamp(12px, 1.3vw, 20px)",
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5, ease: ANIMATION.ease }}
+        >
+          {SOCIAL_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+              className="block transition-colors duration-500 hover:!text-[#F0F0F0]"
+              style={{ color: COLORS.ash }}
+            >
+              <svg
+                width="clamp(15px, 1.1vw, 17px)"
+                height="clamp(15px, 1.1vw, 17px)"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                dangerouslySetInnerHTML={{ __html: link.svg }}
+              />
+            </a>
+          ))}
+        </motion.div>
+      </div>
+    </header>
+  );
+}

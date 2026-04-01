@@ -9,14 +9,6 @@ import { COLORS } from "@/app/lib/design-tokens";
    
    Fibonacci-inspired S-curve timing:
    Slow (readable) → Accelerate → Peak burst (subliminal) → Decelerate → Resolve → Brand
-   
-   Human perception thresholds:
-   - >200ms: consciously read
-   - 80-200ms: sensed but not processed
-   - <80ms: subliminal — creates energy without reading
-   
-   Animation: Equal-power crossfade (easeOut enter + easeIn exit)
-   keeps perceived brightness constant. No Y-movement, no blur filters.
    ═══════════════════════════════════════════════════════════════ */
 
 const CROSSFADE_WORDS = [
@@ -65,7 +57,6 @@ export default function IntroOverlay({
   const [visible, setVisible] = useState(true);
   const burstRef = useRef<HTMLHeadingElement>(null);
 
-  // ── Crossfade phase ──
   useEffect(() => {
     if (phase !== "crossfade") return;
     if (idx >= CROSSFADE_WORDS.length) {
@@ -76,7 +67,6 @@ export default function IntroOverlay({
     return () => clearTimeout(t);
   }, [phase, idx]);
 
-  // ── Burst phase — direct DOM, zero overhead ──
   useEffect(() => {
     if (phase !== "burst") return;
     let i = 1;
@@ -98,7 +88,6 @@ export default function IntroOverlay({
     return () => clearTimeout(timer);
   }, [phase]);
 
-  // ── Resolve phase ──
   useEffect(() => {
     if (phase !== "resolve") return;
     if (idx >= RESOLVE_WORDS.length) {
@@ -109,14 +98,12 @@ export default function IntroOverlay({
     return () => clearTimeout(t);
   }, [phase, idx]);
 
-  // ── Brand hold ──
   useEffect(() => {
     if (phase !== "brand") return;
     const t = setTimeout(() => setPhase("exit"), BRAND_HOLD);
     return () => clearTimeout(t);
   }, [phase]);
 
-  // ── Exit ──
   useEffect(() => {
     if (phase !== "exit") return;
     setVisible(false);
@@ -124,7 +111,6 @@ export default function IntroOverlay({
     return () => clearTimeout(t);
   }, [phase, onComplete]);
 
-  // Current crossfade/resolve word
   const crossfadeWord =
     phase === "crossfade" && idx < CROSSFADE_WORDS.length
       ? CROSSFADE_WORDS[idx].word
@@ -167,50 +153,45 @@ export default function IntroOverlay({
               height: "clamp(36px, 5vw, 56px)",
             }}
           >
-            {/* ── Crossfade words (intro + resolve) ── */}
+            {/* Crossfade words (intro + resolve) */}
             <AnimatePresence>
               {crossfadeWord && (
                 <motion.h2
                   key={`${phase}-${idx}`}
                   className="lowercase"
-                  style={textBase}
+                  style={{
+                    ...textBase,
+                    opacity: phase === "resolve" ? resolveOpacity : 0.85,
+                  }}
                   initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: resolveOpacity,
-                    transition: { duration: FADE_MS / 1000, ease: "easeOut" },
-                  }}
-                  exit={{
-                    opacity: 0,
-                    transition: { duration: FADE_MS / 1000, ease: "easeIn" },
-                  }}
+                  animate={{ opacity: phase === "resolve" ? resolveOpacity : 0.85 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: FADE_MS / 1000, ease: "easeOut" }}
                 >
                   {crossfadeWord}
                 </motion.h2>
               )}
             </AnimatePresence>
 
-            {/* ── Burst words (direct DOM swap, no React) ── */}
-            <AnimatePresence>
-              {phase === "burst" && (
-                <motion.h2
-                  ref={burstRef}
-                  className="lowercase"
-                  style={textBase}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.4 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.06 }}
-                >
-                  {BURST_WORDS[0].word}
-                </motion.h2>
-              )}
-            </AnimatePresence>
-
-            {/* ── Brand (same size as other words, stays visible during exit slide) ── */}
-            {(phase === "brand" || phase === "exit") && (
-              <motion.h2
+            {/* Burst phase — direct DOM */}
+            {phase === "burst" && (
+              <h2
+                ref={burstRef}
                 className="lowercase"
-                style={textBase}
+                style={{ ...textBase, opacity: 0.4 }}
+              >
+                {BURST_WORDS[0].word}
+              </h2>
+            )}
+
+            {/* Brand hold */}
+            {phase === "brand" && (
+              <motion.h2
+                className="tracking-[0.3em] lowercase"
+                style={{
+                  ...textBase,
+                  fontSize: "clamp(1.25rem, 3.5vw, 3rem)",
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.15, ease: "easeOut" }}

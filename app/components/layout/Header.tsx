@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { COLORS, ANIMATION } from "@/app/lib/design-tokens";
 import { NAV_ITEMS } from "@/app/lib/constants";
 import GlitchBrand from "@/app/components/brand/GlitchBrand";
-import Navigation from "@/app/components/layout/Navigation";
+import Navigation from "./Navigation";
 
 /* ═══════════════════════════════════════════════════════════════
    Header — Sabit Üst Bar (Layout Seviyesi)
@@ -57,11 +57,15 @@ export default function Header() {
 
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="cursor-pointer flex items-center gap-4 bg-transparent border-none outline-none"
+          className="group cursor-pointer flex items-center gap-4 bg-transparent border-none outline-none"
+          style={{
+            padding: "12px 16px",
+            margin: "-12px -16px",
+          }}
           aria-label={isOpen ? "Menüyü kapat" : "Menüyü aç"}
         >
           <span
-            className="tracking-[0.3em] uppercase"
+            className="tracking-[0.3em] uppercase transition-colors duration-400 group-hover:!text-[#F0F0F0]"
             style={{
               fontSize: "10px",
               color: isOpen ? COLORS.snow : COLORS.ash,

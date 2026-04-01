@@ -53,6 +53,52 @@ export const GLITCH_PROCESS_WORDS = [
 ] as const;
 
 // ============================================
+// PROJECTS
+// ============================================
+export const PROJECTS = [
+  {
+    id: "alya",
+    number: "01",
+    title: "Alya Bıçak / Alya Blade",
+    category: "Strateji · Web · Fotoğrafçılık",
+    year: "2024",
+    description:
+      "GSC verisinden müşteri algısını çözümledim: sektör bizi 'bıçakçı' olarak tanıyordu, firma kendine 'tekstil yedek parça' diyordu. Çift domain stratejisi, 5+ dil, i18n, schema, online katalog, orijinal ürün fotoğrafları — uçtan uca.",
+    image: "/images/projects/alya.jpg",
+  },
+  {
+    id: "airehber",
+    number: "02",
+    title: "AI Rehber",
+    category: "Kişisel Platform · Next.js",
+    year: "2025",
+    description:
+      "Günlük haber otomasyonu, sektör analizleri, AI araştırmaları. Mobil öncelikli kompakt yapı — işe gidip gelirken kullanılabilecek kadar hızlı.",
+    image: "/images/projects/airehber.jpg",
+  },
+  {
+    id: "gamzetango",
+    number: "03",
+    title: "Gamze Tango",
+    category: "Yerel SEO · Kişisel Marka",
+    year: "2024",
+    description:
+      "Tango eğitmeni için lokasyon bazlı SEO stratejisi. Silivri, Beyoğlu, İstanbul — Google Maps ve organik aramalarda görünürlük.",
+    image: "/images/projects/gamzetango.jpg",
+  },
+  {
+    id: "candemir",
+    number: "04",
+    title: "candemir.co",
+    category: "Portfolyo · Tasarım Sistemi",
+    year: "2025",
+    description:
+      "Bu site. Altın oran mimarisi, sinematik geçişler, φ-cascade spacing, sıfırdan tasarım sistemi. Next.js, Framer Motion, zero-dependency.",
+    image: null,
+  },
+] as const;
+
+// ============================================
 // SITE METADATA
 // ============================================
 export const SITE_META = {

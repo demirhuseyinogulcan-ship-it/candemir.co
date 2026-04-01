@@ -10,9 +10,18 @@ import { SOCIAL_LINKS } from "@/app/lib/constants";
    HERO — Golden Ratio · Bottom-Left Anchor Architecture
    
    φ  = 1.618034
-   Container maxWidth = 38.2vw (100/φ²)
-   Line-height: 0.82 → "Can Demir" monolithic block
-   Film grain: 256x256 canvas, rAF loop, mix-blend-mode: overlay
+   
+   Container:
+     paddingLeft   = 5vw
+     paddingBottom = 5vw × φ = 8.09vw
+     maxWidth      = 100/φ²  = 38.2vw
+   
+   Vertical Rhythm (φ-cascade @1440px):
+     H1 font       = 1.8vw   (26px)  — taban
+     gap1 H1→man.  = 1.11vw  (16px)  — taban / φ
+     gap2 man.→ic. = 0.69vw  (10px)  — gap1  / φ
+   
+   Film grain: 256×256 canvas, rAF loop, mix-blend-mode: overlay
    ═══════════════════════════════════════════════════════════════ */
 
 export default function HeroSection() {
@@ -98,25 +107,23 @@ export default function HeroSection() {
           maxWidth: "clamp(300px, 38.2vw, 550px)",
         }}
       >
-        {/* H1 Name */}
+        {/* H1 Name — tek satır, imza ölçeği */}
         <motion.h1
           style={{
-            fontSize: "clamp(2.5rem, 5.5vw, 5.5rem)",
-            lineHeight: 0.82,
-            letterSpacing: "-0.04em",
+            fontSize: "clamp(1.5rem, 1.8vw, 2rem)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
             color: COLORS.chalk,
             fontWeight: 300,
             margin: 0,
             padding: 0,
           }}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, ease: ANIMATION.ease }}
         >
-          Can
-          <span className="block" style={{ color: COLORS.concrete }}>
-            Demir
-          </span>
+          Can{" "}
+          <span style={{ color: COLORS.concrete }}>Demir</span>
         </motion.h1>
 
         {/* Manifesto */}
@@ -127,7 +134,7 @@ export default function HeroSection() {
             color: COLORS.concrete,
             fontWeight: 400,
             margin: 0,
-            marginTop: "clamp(16px, 2.1vw, 32px)",
+            marginTop: "clamp(10px, 1.11vw, 18px)",
           }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -140,8 +147,8 @@ export default function HeroSection() {
         <motion.div
           className="flex items-center"
           style={{
-            gap: "clamp(10px, 0.8vw, 14px)",
-            marginTop: "clamp(12px, 1.3vw, 20px)",
+            gap: "clamp(8px, 0.55vw, 10px)",
+            marginTop: "clamp(7px, 0.69vw, 11px)",
           }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -158,8 +165,8 @@ export default function HeroSection() {
               style={{ color: COLORS.ash }}
             >
               <svg
-                width="clamp(15px, 1.1vw, 17px)"
-                height="clamp(15px, 1.1vw, 17px)"
+                width="clamp(13px, 0.97vw, 15px)"
+                height="clamp(13px, 0.97vw, 15px)"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 dangerouslySetInnerHTML={{ __html: link.svg }}

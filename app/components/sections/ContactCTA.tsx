@@ -69,15 +69,15 @@ export default function ContactCTA() {
           href="mailto:hey@candemir.co"
           style={{
             ...TYPOGRAPHY.body,
-            color: COLORS.lamp.bright,
+            color: COLORS.chalk,
             textDecoration: "none",
             transition: "color 0.4s",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.color = COLORS.lamp.warm;
+            (e.currentTarget as HTMLAnchorElement).style.color = COLORS.mist;
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.color = COLORS.lamp.bright;
+            (e.currentTarget as HTMLAnchorElement).style.color = COLORS.chalk;
           }}
         >
           hey@candemir.co

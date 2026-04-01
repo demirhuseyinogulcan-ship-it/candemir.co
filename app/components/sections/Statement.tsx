@@ -54,15 +54,15 @@ export default function Statement() {
                 margin: 0,
               }}
             >
-              Bir şirket harika ürünler satıp
+              Ürün kaliteli, ama dijitaldeki
               <br />
-              dijitalde{" "}
+              görüntü{" "}
               <span style={{ color: COLORS.concrete }}>
-                nalbur gibi görünüyorsa
+                bunu yansıtmıyor
               </span>
               {" "}—
               <br />
-              orada bir kopukluk var.
+              işte ben o boşluğu bulurum.
             </h2>
           </motion.div>
 

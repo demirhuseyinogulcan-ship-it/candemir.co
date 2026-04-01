@@ -22,7 +22,7 @@ export default function SelectedWork() {
   return (
     <section
       style={{
-        backgroundColor: COLORS.void,
+        backgroundColor: COLORS.obsidian,
         paddingTop: SPACING.section,
         paddingBottom: SPACING.section,
       }}

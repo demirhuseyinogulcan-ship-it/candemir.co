@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { COLORS, TYPOGRAPHY, ANIMATION, SPACING, GLOW, staggerContainer, staggerItem } from "@/app/lib/design-tokens";
+import { COLORS, TYPOGRAPHY, ANIMATION, SPACING, staggerContainer, staggerItem } from "@/app/lib/design-tokens";
 import Container from "@/app/components/ui/Container";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -52,7 +52,7 @@ export default function Expertise() {
   return (
     <section
       style={{
-        backgroundColor: COLORS.void,
+        backgroundColor: COLORS.obsidian,
         paddingTop: SPACING.section,
         paddingBottom: SPACING.section,
       }}
@@ -150,8 +150,8 @@ function ExpertiseCard({
       onMouseEnter={(e) => {
         const el = e.currentTarget;
         el.style.backgroundColor = COLORS.slate;
-        el.style.borderColor = COLORS.lamp.dim;
-        el.style.boxShadow = GLOW.lampSubtle.boxShadow;
+        el.style.borderColor = COLORS.frost.medium;
+        el.style.boxShadow = "0 0 40px rgba(255, 255, 255, 0.05)";
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget;

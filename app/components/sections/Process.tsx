@@ -39,7 +39,7 @@ export default function Process() {
     <section
       ref={containerRef}
       style={{
-        backgroundColor: COLORS.obsidian,
+        backgroundColor: COLORS.void,
         paddingTop: SPACING.block,
         paddingBottom: SPACING.section,
       }}

@@ -11,10 +11,10 @@ import {
 import SectionHeader from "@/app/components/ui/SectionHeader";
 
 // ============================================
-// BUTTON DATA ÔÇö Sinematik + Sokak Lambas─▒ Sistemi
+// BUTTON DATA — Sinematik + Sokak Lambası Sistemi
 // ============================================
 
-// Ana CTA'lar ÔÇö Sokak Lambas─▒ Amber birincil
+// Ana CTA'lar — Sokak Lambası Amber birincil
 const PRIMARY_BUTTONS = [
   {
     label: "Calisalim",
@@ -46,7 +46,7 @@ const PRIMARY_BUTTONS = [
   },
 ];
 
-// ─░kincil butonlar ÔÇö Maroon accent
+// İkincil butonlar — Maroon accent
 const SECONDARY_BUTTONS = [
   {
     label: "Projeler",
@@ -68,7 +68,7 @@ const SECONDARY_BUTTONS = [
   },
 ];
 
-// Text butonlar ÔÇö minimal, hover ile ortaya ├ğ─▒kan
+// Text butonlar — minimal, hover ile ortaya çıkan
 const TEXT_BUTTONS = [
   { label: "Devamini Oku", color: COLORS.lamp.bright, hoverBg: "rgba(255,184,0,0.08)" },
   { label: "Tum Yazilar", color: COLORS.snow, hoverBg: "rgba(255,255,255,0.06)" },
@@ -100,7 +100,7 @@ export default function ButtonSystem() {
               color: COLORS.ash,
             }}
           >
-            Primary ÔÇö Glow Hover
+            Primary — Glow Hover
           </p>
           <p 
             className="leading-relaxed"
@@ -152,7 +152,7 @@ export default function ButtonSystem() {
               color: COLORS.ash,
             }}
           >
-            Secondary ÔÇö Border Glow
+            Secondary — Border Glow
           </p>
           <p 
             className="leading-relaxed"
@@ -204,7 +204,7 @@ export default function ButtonSystem() {
               color: COLORS.ash,
             }}
           >
-            Text ÔÇö Minimal
+            Text — Minimal
           </p>
           <p 
             className="leading-relaxed"
@@ -254,7 +254,7 @@ export default function ButtonSystem() {
               color: COLORS.ash,
             }}
           >
-            Toolbar ÔÇö Grup
+            Toolbar — Grup
           </p>
           <p 
             className="leading-relaxed"

@@ -13,10 +13,10 @@ import {
 import SectionHeader from "@/app/components/ui/SectionHeader";
 
 // ============================================
-// COLOR DATA ÔÇö Sinematik + Gece Sokak Foto─şraf├ğ─▒l─▒─ş─▒
+// COLOR DATA — Sinematik + Gece Sokak Fotoğrafçılığı
 // ============================================
 
-// %60 ÔÇö Zemin Renkleri
+// %60 — Zemin Renkleri
 const GROUNDS = [
   { name: "Void Black", hex: "#050505", usage: "Ana arka plan", ratio: "60%" },
   { name: "Deep Obsidian", hex: "#0A0A0A", usage: "Section arka plan", ratio: "" },
@@ -24,82 +24,82 @@ const GROUNDS = [
   { name: "Slate", hex: "#1A1A1A", usage: "Hover state", ratio: "" },
 ] as const;
 
-// %30 ÔÇö Metin & Beyaz Sistemi
+// %30 — Metin & Beyaz Sistemi
 const TEXT_COLORS = [
-  { name: "Chalk", hex: "#FAFAFA", usage: "Ba┼şl─▒klar, hero text", contrast: "19.3:1" },
+  { name: "Chalk", hex: "#FAFAFA", usage: "Başlıklar, hero text", contrast: "19.3:1" },
   { name: "Snow", hex: "#F0F0F0", usage: "Ana metin, body text", contrast: "17.4:1" },
   { name: "Mist", hex: "#E0E0E0", usage: "Pasif metin, placeholder", contrast: "14.0:1" },
   { name: "Concrete", hex: "#777777", usage: "Ikincil metin", contrast: "6.2:1" },
   { name: "Ash", hex: "#444444", usage: "Tersiyer metin, etiketler", contrast: "3.2:1" },
 ] as const;
 
-// Alt─▒n Kurallar ÔÇö Tasar─▒m Matemati─şi
+// Altın Kurallar — Tasarım Matematiği
 const GOLDEN_RULES = [
   { rule: "Ana metin pozisyonu", value: "Viewport %33 (1/3)", source: "Rule of Thirds" },
-  { rule: "Ba┼şl─▒k / alt yaz─▒ oran─▒", value: "\u03C6\u00B3 \u2248 4.24:1", source: "Alt\u0131n Oran" },
+  { rule: "Başlık / alt yazı oranı", value: "\u03C6\u00B3 \u2248 4.24:1", source: "Alt\u0131n Oran" },
   { rule: "Bo\u015Fluk oran\u0131", value: "%60-70 bo\u015F, %30-40 i\u00E7erik", source: "Swiss Design" },
   { rule: "Overlay opacity", value: "%70-80 karanl\u0131k", source: "Film Grading" },
   { rule: "Tipografi a\u011F\u0131rl\u0131\u011F\u0131", value: "Max 2 weight (300 + 400)", source: "Editorial Design" },
   { rule: "Renk say\u0131s\u0131", value: "Max 2 (beyaz + 1 accent)", source: "Luxury Branding" },
 ] as const;
 
-// %10 ÔÇö Accent: Sokak Lambas─▒ (Birincil)
+// %10 — Accent: Sokak Lambası (Birincil)
 const LAMP_COLORS = [
   { name: "Lamp Bright", hex: "#FFB800", usage: "Ana CTA, kritik vurgular" },
-  { name: "Lamp Warm", hex: "#FF9F1C", usage: "Hover states, s─▒cak ge├ği┼şler" },
+  { name: "Lamp Warm", hex: "#FF9F1C", usage: "Hover states, sıcak geçişler" },
   { name: "Lamp Glow", hex: "#FFAA00", usage: "Glow efektleri" },
   { name: "Lamp Dim", hex: "#CC9200", usage: "Subtle vurgular, scrollbar" },
 ] as const;
 
-// %10 ÔÇö Accent: Kan (─░kincil ÔÇö Dramatik)
+// %10 — Accent: Kan (İkincil — Dramatik)
 const MAROON_COLORS = [
   { name: "Neon Red", hex: "#FF2D2D", usage: "Danger, error states" },
-  { name: "Dark Maroon", hex: "#3A0000", usage: "Gradient base, g├Âlgeler" },
+  { name: "Dark Maroon", hex: "#3A0000", usage: "Gradient base, gölgeler" },
   { name: "Maroon Warm", hex: "#5C1A1A", usage: "Glassmorphism overlay" },
-  { name: "Maroon Shirt", hex: "#722F37", usage: "─░kincil butonlar" },
+  { name: "Maroon Shirt", hex: "#722F37", usage: "İkincil butonlar" },
 ] as const;
 
-// ========== ALTERNAT─░F ACCENT ├ûNER─░LER─░ ==========
+// ========== ALTERNATİF ACCENT ÖNERİLERİ ==========
 const ALTERNATIVE_ACCENTS = [
   { 
     name: "Steel Blue", 
     hex: "#5B8FA8", 
-    usage: "So─şuk kontrast, profesyonel",
-    description: "Amber'in tamamlay─▒c─▒s─▒. Gece sokak foto─şraf├ğ─▒l─▒─ş─▒ndaki 'mavi saat' esteti─şi.",
+    usage: "Soğuk kontrast, profesyonel",
+    description: "Amber'in tamamlayıcısı. Gece sokak fotoğrafçılığındaki 'mavi saat' estetiği.",
     glow: "0 0 30px rgba(91, 143, 168, 0.4)"
   },
   { 
     name: "Copper", 
     hex: "#B87333", 
-    usage: "S─▒cak metal, harmoni",
-    description: "Amber ile ayn─▒ s─▒cak ailede. End├╝striyel, vintage his.",
+    usage: "Sıcak metal, harmoni",
+    description: "Amber ile aynı sıcak ailede. Endüstriyel, vintage his.",
     glow: "0 0 30px rgba(184, 115, 51, 0.4)"
   },
   { 
     name: "Sage", 
     hex: "#9CA88D", 
-    usage: "Do─şal, sakinle┼ştirici",
-    description: "Organik denge. S─▒cak tonlar─▒ dengelemek i├ğin n├Âtr ye┼şil.",
+    usage: "Doğal, sakinleştirici",
+    description: "Organik denge. Sıcak tonları dengelemek için nötr yeşil.",
     glow: "0 0 30px rgba(156, 168, 141, 0.4)"
   },
   { 
     name: "Lavender Gray", 
     hex: "#9A8C98", 
-    usage: "Sofistike, n├Âtr",
-    description: "Elegant ara ton. Hem s─▒cak hem so─şuk ile uyumlu.",
+    usage: "Sofistike, nötr",
+    description: "Elegant ara ton. Hem sıcak hem soğuk ile uyumlu.",
     glow: "0 0 30px rgba(154, 140, 152, 0.4)"
   },
   { 
     name: "Emerald", 
     hex: "#2D6A4F", 
-    usage: "Do─şal derinlik",
-    description: "Koyu ye┼şil. Amber'in z─▒t kontrast partneri.",
+    usage: "Doğal derinlik",
+    description: "Koyu yeşil. Amber'in zıt kontrast partneri.",
     glow: "0 0 30px rgba(45, 106, 79, 0.4)"
   },
   { 
     name: "Dusty Rose", 
     hex: "#D4A5A5", 
-    usage: "Yumu┼şak s─▒cakl─▒k",
+    usage: "Yumuşak sıcaklık",
     description: "Maroon'un sofistike versiyonu. Daha gentle.",
     glow: "0 0 30px rgba(212, 165, 165, 0.4)"
   },
@@ -115,7 +115,7 @@ export default function ColorPalette() {
       <SectionHeader
         number="01"
         title="Renk Paleti"
-        description="Sinematik keskinlik, gece sokak foto─şraf├ğ─▒l─▒─ş─▒n─▒n s─▒cakl─▒─ş─▒. %60-%30-%10 kural─▒."
+        description="Sinematik keskinlik, gece sokak fotoğrafçılığının sıcaklığı. %60-%30-%10 kuralı."
       />
 
       {/* ZEMIN RENKLERI */}
@@ -207,8 +207,8 @@ export default function ColorPalette() {
             maxWidth: "560px",
           }}
         >
-          Tam beyaz (#FFFFFF) asla kullan─▒lmaz ÔÇö #050505 zemininde 21:1 kontrast
-          g├Âz yorar. Kademeli beyaz sistemi okunabilirli─şi korur.
+          Tam beyaz (#FFFFFF) asla kullanılmaz — #050505 zemininde 21:1 kontrast
+          göz yorar. Kademeli beyaz sistemi okunabilirliği korur.
         </motion.p>
 
         <div className="space-y-0">
@@ -290,7 +290,7 @@ export default function ColorPalette() {
               color: COLORS.lamp.bright,
             }}
           >
-            Sokak Lambas─▒ ÔÇö Birincil Accent
+            Sokak Lambası — Birincil Accent
           </p>
           <p 
             className="leading-relaxed"
@@ -301,8 +301,8 @@ export default function ColorPalette() {
               maxWidth: "500px",
             }}
           >
-            Gece sokak foto─şraf├ğ─▒l─▒─ş─▒. Islak asfalta yans─▒yan sodyum buharl─▒ lamba ─▒┼ş─▒─ş─▒.
-            Ana CTA&apos;lar ve kritik vurgular i├ğin.
+            Gece sokak fotoğrafçılığı. Islak asfalta yansıyan sodyum buharlı lamba ışığı.
+            Ana CTA&apos;lar ve kritik vurgular için.
           </p>
         </motion.div>
 
@@ -355,7 +355,7 @@ export default function ColorPalette() {
         </div>
       </div>
 
-      {/* ========== %10 ACCENT: KAN (─░kincil ÔÇö Dramatik) ========== */}
+      {/* ========== %10 ACCENT: KAN (İkincil — Dramatik) ========== */}
       <div style={{ marginBottom: SPACING.block }}>
         <motion.div {...fadeUp} style={{ marginBottom: SPACING.heading }}>
           <p
@@ -365,7 +365,7 @@ export default function ColorPalette() {
               color: COLORS.maroon.shirt,
             }}
           >
-            Kan ÔÇö ─░kincil Accent
+            Kan — İkincil Accent
           </p>
           <p 
             className="leading-relaxed"
@@ -376,7 +376,7 @@ export default function ColorPalette() {
               maxWidth: "500px",
             }}
           >
-            Sinematik derinlik. Tehlike, drama, error states i├ğin.
+            Sinematik derinlik. Tehlike, drama, error states için.
           </p>
         </motion.div>
 
@@ -429,7 +429,7 @@ export default function ColorPalette() {
         </div>
       </div>
 
-      {/* ========== ALTERNAT─░F ACCENT ├ûNER─░LER─░ ========== */}
+      {/* ========== ALTERNATİF ACCENT ÖNERİLERİ ========== */}
       <div style={{ marginBottom: SPACING.block }}>
         <motion.div {...fadeUp} style={{ marginBottom: SPACING.heading }}>
           <p
@@ -439,7 +439,7 @@ export default function ColorPalette() {
               color: "#5B8FA8",
             }}
           >
-            Alternatif Accent ├ûnerileri
+            Alternatif Accent Önerileri
           </p>
           <p 
             className="leading-relaxed"
@@ -450,7 +450,7 @@ export default function ColorPalette() {
               maxWidth: "600px",
             }}
           >
-            Maroon yerine d├╝┼ş├╝n├╝lebilecek alternatifler. Hangisi amber ile daha iyi uyuyor?
+            Maroon yerine düşünülebilecek alternatifler. Hangisi amber ile daha iyi uyuyor?
           </p>
         </motion.div>
 
@@ -519,7 +519,7 @@ export default function ColorPalette() {
         </div>
       </div>
 
-      {/* ========== %60-%30-%10 KURALI V─░ZUAL─░ZASYONU ========== */}
+      {/* ========== %60-%30-%10 KURALI VİZUALİZASYONU ========== */}
       <motion.div {...fadeUp} style={{ marginBottom: SPACING.block }}>
         <p
           className="tracking-[0.5em] uppercase"
@@ -529,7 +529,7 @@ export default function ColorPalette() {
             marginBottom: SPACING.heading,
           }}
         >
-          %60 ÔÇö %30 ÔÇö %10 Kural─▒
+          %60 — %30 — %10 Kuralı
         </p>
 
         <p 
@@ -541,14 +541,14 @@ export default function ColorPalette() {
             maxWidth: "500px",
           }}
         >
-          Ayn─▒ zemin ve y├╝zey, farkl─▒ accent tonlar─▒. Hangisi en iyi ├ğal─▒┼ş─▒yor?
+          Aynı zemin ve yüzey, farklı accent tonları. Hangisi en iyi çalışıyor?
         </p>
 
         <div className="space-y-4">
-          {/* 1. Lamp (Sar─▒) ÔÇö Mevcut */}
+          {/* 1. Lamp (Sarı) — Mevcut */}
           <div>
             <p className="font-mono" style={{ fontSize: "10px", color: COLORS.lamp.bright, marginBottom: "8px" }}>
-              Sokak Lambas─▒ (Mevcut)
+              Sokak Lambası (Mevcut)
             </p>
             <div 
               className="flex rounded-xl overflow-hidden"
@@ -577,7 +577,7 @@ export default function ColorPalette() {
             </div>
           </div>
 
-          {/* 2. Maroon (K─▒rm─▒z─▒) */}
+          {/* 2. Maroon (Kırmızı) */}
           <div>
             <p className="font-mono" style={{ fontSize: "10px", color: "#FF2D2D", marginBottom: "8px" }}>
               Kan / Maroon
@@ -765,7 +765,7 @@ export default function ColorPalette() {
         </div>
       </motion.div>
 
-      {/* ========== GLOW DEMO ÔÇö Sokak Lambas─▒ vs Kan ========== */}
+      {/* ========== GLOW DEMO — Sokak Lambası vs Kan ========== */}
       <motion.div {...fadeUp}>
         <p
           className="tracking-[0.5em] uppercase"
@@ -775,11 +775,11 @@ export default function ColorPalette() {
             marginBottom: SPACING.heading,
           }}
         >
-          Glow Kar┼ş─▒la┼şt─▒rmas─▒
+          Glow Karşılaştırması
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Sokak Lambas─▒ Glow */}
+          {/* Sokak Lambası Glow */}
           <motion.div
             className="rounded-2xl flex flex-col items-center justify-center"
             style={{ 
@@ -798,7 +798,7 @@ export default function ColorPalette() {
                 marginBottom: SPACING.heading,
               }}
             >
-              Sokak Lambas─▒
+              Sokak Lambası
             </p>
             <h3 
               className="font-normal tracking-tight"
@@ -817,7 +817,7 @@ export default function ColorPalette() {
                 marginTop: SPACING.inner,
               }}
             >
-              S─▒cak, davetkar, odak noktas─▒
+              Sıcak, davetkar, odak noktası
             </p>
           </motion.div>
 
@@ -865,7 +865,7 @@ export default function ColorPalette() {
         </div>
       </motion.div>
 
-      {/* ========== ALTIN KURALLAR ÔÇö Tasar─▒m Matemati─şi ========== */}
+      {/* ========== ALTIN KURALLAR — Tasarım Matematiği ========== */}
       <motion.div {...fadeUp} style={{ marginTop: SPACING.section }}>
         <p
           className="tracking-[0.5em] uppercase"
@@ -875,7 +875,7 @@ export default function ColorPalette() {
             marginBottom: "12px",
           }}
         >
-          Alt─▒n Kurallar
+          Altın Kurallar
         </p>
         <p
           className="leading-relaxed"
@@ -886,8 +886,8 @@ export default function ColorPalette() {
             maxWidth: "560px",
           }}
         >
-          Premium tasar─▒m hissetme ile de─şil, matematik ile yap─▒l─▒r. 
-          Bu kurallar her karar─▒n arkas─▒ndaki temeldir.
+          Premium tasarım hissetme ile değil, matematik ile yapılır. 
+          Bu kurallar her kararın arkasındaki temeldir.
         </p>
 
         <div className="space-y-0">

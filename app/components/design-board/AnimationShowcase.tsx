@@ -12,12 +12,12 @@ import {
 import SectionHeader from "@/app/components/ui/SectionHeader";
 
 // ============================================
-// SOKAK F─░Z─░─Ş─░ ÔÇö Animasyon Vitrini
-// Gece sokak foto─şraf├ğ─▒l─▒─ş─▒n─▒n fiziksel fenomenlerini
-// dijital ortama ta┼ş─▒yan ├Âzel animasyonlar.
+// SOKAK FİZİĞİ — Animasyon Vitrini
+// Gece sokak fotoğrafçılığının fiziksel fenomenlerini
+// dijital ortama taşıyan özel animasyonlar.
 // ============================================
 
-// --- 01: NEON FL─░CKER ÔÇö Bozuk Neon Tabela ---
+// --- 01: NEON FLİCKER — Bozuk Neon Tabela ---
 function NeonFlicker() {
   const text = "SOKAK";
   const [flickers, setFlickers] = useState<number[]>(Array(text.length).fill(1));
@@ -85,7 +85,7 @@ function NeonFlicker() {
         <span className="font-mono" style={{ fontSize: "10px", color: COLORS.ash }}>
           Rastgele flicker pattern
         </span>
-        <span style={{ fontSize: "10px", color: COLORS.concrete }}>┬À</span>
+        <span style={{ fontSize: "10px", color: COLORS.concrete }}>·</span>
         <span className="font-mono" style={{ fontSize: "10px", color: COLORS.ash }}>
           Her harf bagimsiz titresim dongusunde
         </span>
@@ -94,7 +94,7 @@ function NeonFlicker() {
   );
 }
 
-// --- 02: PUDDLE R─░PPLE ÔÇö Yagmur Damlasi Su Birikintisi ---
+// --- 02: PUDDLE RİPPLE — Yagmur Damlasi Su Birikintisi ---
 function PuddleRipple() {
   const [turbulence, setTurbulence] = useState(0.000);
   const [isRippling, setIsRippling] = useState(false);
@@ -196,14 +196,14 @@ function PuddleRipple() {
           className="absolute bottom-4 right-5"
           style={{ fontSize: "10px", color: COLORS.ash }}
         >
-          {isRippling ? "Dalga yayiliyor..." : "Tikla ÔåÆ dalga at"}
+          {isRippling ? "Dalga yayiliyor..." : "Tikla → dalga at"}
         </div>
       </div>
     </motion.div>
   );
 }
 
-// --- 03: DEPTH OF FIELD ÔÇö Lens Fokus Efekti ---
+// --- 03: DEPTH OF FIELD — Lens Fokus Efekti ---
 function DepthOfField() {
   const [focusIndex, setFocusIndex] = useState(2);
   const layers = [
@@ -278,8 +278,8 @@ function DepthOfField() {
             transition={{ duration: 0.6, ease: ANIMATION.ease }}
           />
           <div className="flex justify-between mt-2">
-            <span className="font-mono" style={{ fontSize: "9px", color: COLORS.ash }}>f/1.4 ÔÇö Sig</span>
-            <span className="font-mono" style={{ fontSize: "9px", color: COLORS.ash }}>f/16 ÔÇö Derin</span>
+            <span className="font-mono" style={{ fontSize: "9px", color: COLORS.ash }}>f/1.4 — Sig</span>
+            <span className="font-mono" style={{ fontSize: "9px", color: COLORS.ash }}>f/16 — Derin</span>
           </div>
         </div>
       </div>
@@ -287,7 +287,7 @@ function DepthOfField() {
   );
 }
 
-// --- 04: LIGHT PA─░NT─░NG ÔÇö Uzun Pozlama Cizgi Cizimi ---
+// --- 04: LIGHT PAİNTİNG — Uzun Pozlama Cizgi Cizimi ---
 function LightPainting() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
@@ -364,7 +364,7 @@ function LightPainting() {
   );
 }
 
-// --- 05: CHROMAT─░C ABERRAT─░ON ÔÇö Lens Kromatik Sapmasi ---
+// --- 05: CHROMATİC ABERRATİON — Lens Kromatik Sapmasi ---
 function ChromaticAberration() {
   const [split, setSplit] = useState(0);
 
@@ -444,7 +444,7 @@ function ChromaticAberration() {
           transition={{ duration: 0.3 }}
         >
           <span className="font-mono" style={{ fontSize: "10px", color: COLORS.ash }}>
-            {split > 0 ? "RGB fringing ÔÇö kanallar ayrist─▒" : "Hover ÔåÆ sapma tetikle"}
+            {split > 0 ? "RGB fringing — kanallar ayristı" : "Hover → sapma tetikle"}
           </span>
         </motion.div>
       </div>
@@ -452,7 +452,7 @@ function ChromaticAberration() {
   );
 }
 
-// --- 06: GL─░TCH REVEAL ÔÇö Kirik LED Tabela ---
+// --- 06: GLİTCH REVEAL — Kirik LED Tabela ---
 function GlitchReveal() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
@@ -592,7 +592,7 @@ function GlitchReveal() {
   );
 }
 
-// --- 07: C─░NEMAT─░C SHUTTER ÔÇö Panjur Acilisi ---
+// --- 07: CİNEMATİC SHUTTER — Panjur Acilisi ---
 function CinematicShutter() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
@@ -625,7 +625,7 @@ function CinematicShutter() {
               Perdede ne var?
             </p>
             <p className="font-mono mt-4" style={{ fontSize: "10px", color: COLORS.concrete }}>
-              Panjur acildi ÔÇö sahne senindir
+              Panjur acildi — sahne senindir
             </p>
           </div>
 
@@ -654,7 +654,7 @@ function CinematicShutter() {
   );
 }
 
-// --- 08: MAGNET─░C REPULS─░ON ÔÇö Elemanlar Mouse'tan Kacar ---
+// --- 08: MAGNETİC REPULSİON — Elemanlar Mouse'tan Kacar ---
 function MagneticRepulsion() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
@@ -778,7 +778,7 @@ function RepulsionItem({
   );
 }
 
-// --- 09: ELAST─░C MORPH ÔÇö Organik Blob Deformasyon ---
+// --- 09: ELASTİC MORPH — Organik Blob Deformasyon ---
 function ElasticMorph() {
   const shapes = useMemo(() => [
     "30% 70% 70% 30% / 30% 30% 70% 70%",
@@ -844,7 +844,7 @@ function ElasticMorph() {
         <span className="font-mono" style={{ fontSize: "10px", color: COLORS.ash }}>
           border-radius morphing
         </span>
-        <span style={{ fontSize: "10px", color: COLORS.concrete }}>┬À</span>
+        <span style={{ fontSize: "10px", color: COLORS.concrete }}>·</span>
         <span className="font-mono" style={{ fontSize: "10px", color: COLORS.ash }}>
           tikla veya bekle
         </span>
@@ -853,7 +853,7 @@ function ElasticMorph() {
   );
 }
 
-// --- 10: NO─░SE GRA─░N ÔÇö Film Grain Canvas Overlay ---
+// --- 10: NOİSE GRAİN — Film Grain Canvas Overlay ---
 function NoiseGrain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -939,10 +939,10 @@ function NoiseGrain() {
             Film Grain
           </p>
           <p className="font-mono mt-4" style={{ fontSize: "11px", color: COLORS.concrete }}>
-            Kodak Tri-X 400 ┬À Pushed +2
+            Kodak Tri-X 400 · Pushed +2
           </p>
           <p className="font-mono mt-2" style={{ fontSize: "10px", color: COLORS.ash }}>
-            {grainActive ? "Grain aktif ÔÇö tikla ÔåÆ temiz" : "Temiz ÔÇö tikla ÔåÆ grain ekle"}
+            {grainActive ? "Grain aktif — tikla → temiz" : "Temiz — tikla → grain ekle"}
           </p>
         </div>
       </div>
@@ -968,10 +968,10 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          01 ÔÇö Neon Flicker
+          01 — Neon Flicker
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Yari bozuk neon tabela simulasyonu. Her harf bagimsiz bir zamanlayicida titrer ÔÇö rastgele sonme ve ani yanma.
+          Yari bozuk neon tabela simulasyonu. Her harf bagimsiz bir zamanlayicida titrer — rastgele sonme ve ani yanma.
         </p>
         <NeonFlicker />
       </div>
@@ -982,11 +982,11 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          02 ÔÇö Puddle Ripple
+          02 — Puddle Ripple
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Islak asfalta dusen yagmur damlasi. SVG feTurbulence ile sivi yuzey bozulmasi.
-          Tikla ÔÇö dalga yayilsin, sonra kendili─şinden sakinle┼şsin.
+          Tikla — dalga yayilsin, sonra kendiliğinden sakinleşsin.
         </p>
         <PuddleRipple />
       </div>
@@ -997,11 +997,11 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          03 ÔÇö Depth of Field
+          03 — Depth of Field
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Fotograf makinesi derinlik alani. Secili element net, digerleri mesafeye gore bulanik.
-          Herhangi birine tikla ÔåÆ fokus oraya kayar. f/1.4 sig derinlik simulasyonu.
+          Herhangi birine tikla → fokus oraya kayar. f/1.4 sig derinlik simulasyonu.
         </p>
         <DepthOfField />
       </div>
@@ -1012,7 +1012,7 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          04 ÔÇö Light Painting
+          04 — Light Painting
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Uzun pozlama isik boyama. SVG stroke-dashoffset animasyonu ile karanlikta cizilen isik izi.
@@ -1027,11 +1027,11 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          05 ÔÇö Chromatic Aberration
+          05 — Chromatic Aberration
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Ucuz lenslerde gorulen kromatik sapma. RGB kanallari birbirinden kayar.
-          Hover yap ÔÇö kanallar ayrissin. Birak ÔÇö tekrar toplanir.
+          Hover yap — kanallar ayrissin. Birak — tekrar toplanir.
         </p>
         <ChromaticAberration />
       </div>
@@ -1042,11 +1042,11 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          06 ÔÇö Glitch Reveal
+          06 — Glitch Reveal
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Kirik LED tabela efekti. Horizontal slice kayma + kirmizi/mavi kanal bozulmasi.
-          Periyodik glitch patlamalari ÔÇö kontrol edemezsin, o gelir.
+          Periyodik glitch patlamalari — kontrol edemezsin, o gelir.
         </p>
         <GlitchReveal />
       </div>
@@ -1057,7 +1057,7 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          07 ÔÇö Cinematic Shutter
+          07 — Cinematic Shutter
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Fotograf makinesi panjuru. Dikey seritler alternatif yonlerden acilarak arkasindaki sahneyi gosterir.
@@ -1072,10 +1072,10 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          08 ÔÇö Magnetic Repulsion
+          08 — Magnetic Repulsion
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Manyetik itme alani. Mouse yaklastiginda elemanlar kacisir ÔÇö spring fizigi ile.
+          Manyetik itme alani. Mouse yaklastiginda elemanlar kacisir — spring fizigi ile.
           Cursor kaldirinca herkes yerine doner. Mesafe ters orantili kuvvet.
         </p>
         <MagneticRepulsion />
@@ -1087,11 +1087,11 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          09 ÔÇö Elastic Morph
+          09 — Elastic Morph
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Organik blob deformasyon. border-radius morphing ile surekli sekil degistiren canli bir nesne.
-          Tikla ÔåÆ zorla donustur. Ya da bekle ÔÇö kendi dongusunde yuzer.
+          Tikla → zorla donustur. Ya da bekle — kendi dongusunde yuzer.
         </p>
         <ElasticMorph />
       </div>
@@ -1102,11 +1102,11 @@ export default function AnimationShowcase() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.lamp.dim, marginBottom: SPACING.heading }}
         >
-          10 ÔÇö Film Grain
+          10 — Film Grain
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Sinematik film grain. Canvas 2D uzerinde her karede yenilenen noise pattern.
-          Kodak Tri-X 400 pushed +2 estetigi. Tikla ÔåÆ ac/kapat.
+          Kodak Tri-X 400 pushed +2 estetigi. Tikla → ac/kapat.
         </p>
         <NoiseGrain />
       </div>

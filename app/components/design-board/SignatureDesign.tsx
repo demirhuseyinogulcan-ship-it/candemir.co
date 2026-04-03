@@ -34,11 +34,11 @@ const GLOW_VARIANTS = [
 ];
 
 const ASPECT_RATIOS = [
-  { label: "16:9 ÔÇö Standart", ratio: "16/9", value: "1.78:1", isSignature: false },
-  { label: "21:9 ÔÇö Can Imzasi", ratio: "21/9", value: "2.33:1", isSignature: true },
-  { label: "2.39:1 ÔÇö Anamorphic", ratio: "2.39/1", value: "2.39:1", isSignature: false },
-  { label: "4:1 ÔÇö Banner", ratio: "4/1", value: "4.00:1", isSignature: false },
-  { label: "5:1 ÔÇö Slim Banner", ratio: "5/1", value: "5.00:1", isSignature: false },
+  { label: "16:9 — Standart", ratio: "16/9", value: "1.78:1", isSignature: false },
+  { label: "21:9 — Can Imzasi", ratio: "21/9", value: "2.33:1", isSignature: true },
+  { label: "2.39:1 — Anamorphic", ratio: "2.39/1", value: "2.39:1", isSignature: false },
+  { label: "4:1 — Banner", ratio: "4/1", value: "4.00:1", isSignature: false },
+  { label: "5:1 — Slim Banner", ratio: "5/1", value: "5.00:1", isSignature: false },
 ];
 
 const GLASS_CARDS = [
@@ -93,14 +93,14 @@ function SignatureItem({ number, title, description }: SignatureItemProps) {
 }
 
 // ============================================
-// CINEMATIC LETTERBOX ÔÇö Blog style
+// CINEMATIC LETTERBOX — Blog style
 // Her gorsel dikey olarak siralanir, scroll ile
 // viewport'a girince letterbox barlari iner,
 // barlar arkasindaki tarih/mekan yazilari ortaya cikar.
 // ============================================
 const CINEMA_FRAMES = [
   { src: "/images/DSCF0378.JPG", date: "14 Aralik 2024", location: "Kadikoy, Istanbul", caption: "Aksam olunca sokaklar bambaska bir ruha burunuyor. Isiklar yanlisiyla uzanan golgelerin arasinda yurumek, sehrin sessiz tarafini kesfetmek gibi." },
-  { src: "/images/DSCF0749.JPG", date: "22 Ocak 2025", location: "Beyoglu, Istanbul", caption: "Istiklal&apos;in kalabaligini birakip yan sokaklara dalinca bamba┼íka bir dunya aciliyor. Duvarlar konusuyor burada." },
+  { src: "/images/DSCF0749.JPG", date: "22 Ocak 2025", location: "Beyoglu, Istanbul", caption: "Istiklal&apos;in kalabaligini birakip yan sokaklara dalinca bambaška bir dunya aciliyor. Duvarlar konusuyor burada." },
   { src: "/images/DSCF1315.JPG", date: "8 Subat 2025", location: "Moda, Istanbul", caption: "Deniz kenarinda soguk bir aksam. Ruzgar sert esiyordu ama isik o kadar guzeldi ki tripodumu kurmak zorunda kaldim." },
   { src: "/images/DSCF1356.JPG", date: "15 Subat 2025", location: "Uskudar, Istanbul", caption: "Kiz Kulesi&apos;nin arkasindaki gun batimi. Her seferinde farkli bir renk paleti cikartiyor gokyuzu." },
   { src: "/images/DSCF2394.JPG", date: "3 Mart 2025", location: "Balat, Istanbul", caption: "Renkli evlerin arasinda kayboldum. Her kose ayri bir fotograf, her pencere ayri bir hikaye anlatiyor." },
@@ -145,7 +145,7 @@ function CinematicFrame({ frame, index }: { frame: typeof CINEMA_FRAMES[number];
           loading="lazy"
         />
 
-        {/* Ust bar arkasindaki metin ÔÇö bar inmeden once gorunmez, bar inince ortaya cikar */}
+        {/* Ust bar arkasindaki metin — bar inmeden once gorunmez, bar inince ortaya cikar */}
         <div
           className="absolute top-0 left-0 right-0 z-[5] flex items-center justify-between pointer-events-none"
           style={{ height: "12%", padding: "0 clamp(12px, 3vw, 24px)" }}
@@ -161,7 +161,7 @@ function CinematicFrame({ frame, index }: { frame: typeof CINEMA_FRAMES[number];
             animate={{ opacity: barsActive ? 0.85 : 0 }}
             transition={{ duration: 0.6, delay: barsActive ? 0.8 : 0 }}
           >
-            DSCF ÔÇö {String(index + 1).padStart(2, "0")}/{CINEMA_FRAMES.length}
+            DSCF — {String(index + 1).padStart(2, "0")}/{CINEMA_FRAMES.length}
           </motion.span>
           <motion.span
             className="font-mono"
@@ -174,11 +174,11 @@ function CinematicFrame({ frame, index }: { frame: typeof CINEMA_FRAMES[number];
             animate={{ opacity: barsActive ? 0.6 : 0 }}
             transition={{ duration: 0.6, delay: barsActive ? 0.9 : 0 }}
           >
-            2.39:1 ÔÇö Anamorphic
+            2.39:1 — Anamorphic
           </motion.span>
         </div>
 
-        {/* Alt bar arkasindaki metin ÔÇö tarih ve mekan */}
+        {/* Alt bar arkasindaki metin — tarih ve mekan */}
         <div
           className="absolute bottom-0 left-0 right-0 z-[5] flex items-center justify-between pointer-events-none"
           style={{ height: "12%", padding: "0 clamp(12px, 3vw, 24px)" }}
@@ -226,7 +226,7 @@ function CinematicFrame({ frame, index }: { frame: typeof CINEMA_FRAMES[number];
           transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
         />
 
-        {/* Ince cizgi ÔÇö sinematik ayrac */}
+        {/* Ince cizgi — sinematik ayrac */}
         <motion.div
           className="absolute left-0 right-0 z-[6] pointer-events-none"
           style={{
@@ -249,7 +249,7 @@ function CinematicFrame({ frame, index }: { frame: typeof CINEMA_FRAMES[number];
         />
       </div>
 
-      {/* Blog yazisi ÔÇö gorselin altinda */}
+      {/* Blog yazisi — gorselin altinda */}
       <motion.p
         style={{
           fontSize: TYPOGRAPHY.small.size,
@@ -292,12 +292,12 @@ export default function SignatureDesign() {
         description="'Bunu Can yapmis' dedirten 5 imza ozellik. Her biri canli demo olarak asagida."
       />
 
-      {/* 01 ÔÇö NEFES ALAN BOSLUK */}
+      {/* 01 — NEFES ALAN BOSLUK */}
       <div style={{ marginBottom: SPACING.section }}>
         <SignatureItem
           number="01"
           title="Nefes Alan Bosluk"
-          description="Elemanlar arasi cesurca buyuk bosluklar. Cogu tasarimci yapamiyor ÔÇö alan israfi sanarlar."
+          description="Elemanlar arasi cesurca buyuk bosluklar. Cogu tasarimci yapamiyor — alan israfi sanarlar."
         />
 
         <motion.div {...fadeUp}>
@@ -387,7 +387,7 @@ export default function SignatureDesign() {
         </motion.div>
       </div>
 
-      {/* 02 ÔÇö ACCENT PULSE */}
+      {/* 02 — ACCENT PULSE */}
       <div style={{ marginBottom: SPACING.section }}>
         <SignatureItem
           number="02"
@@ -420,7 +420,7 @@ export default function SignatureDesign() {
         </motion.div>
       </div>
 
-      {/* 03 ÔÇö SINEMATIK CROP */}
+      {/* 03 — SINEMATIK CROP */}
       <div style={{ marginBottom: SPACING.section }}>
         <SignatureItem
           number="03"
@@ -431,7 +431,7 @@ export default function SignatureDesign() {
         <CinematicLetterbox />
       </div>
 
-      {/* 04 ÔÇö GLASSMORPHISM */}
+      {/* 04 — GLASSMORPHISM */}
       <div style={{ marginBottom: SPACING.section }}>
         <SignatureItem
           number="04"
@@ -482,7 +482,7 @@ export default function SignatureDesign() {
         </motion.div>
       </div>
 
-      {/* 05 ÔÇö TIPOGRAFI HERO */}
+      {/* 05 — TIPOGRAFI HERO */}
       <div>
         <SignatureItem
           number="05"
@@ -510,7 +510,7 @@ export default function SignatureDesign() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                Portfolyo ÔÇö 2026
+                Portfolyo — 2026
               </motion.p>
 
               <motion.h1

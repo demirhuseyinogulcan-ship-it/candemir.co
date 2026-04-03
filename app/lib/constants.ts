@@ -53,6 +53,106 @@ export const GLITCH_PROCESS_WORDS = [
 ] as const;
 
 // ============================================
+// PROCESS TREE — Metodoloji Dosya Sistemi
+// ============================================
+export interface ProcessNode {
+  name: string;
+  label: string;
+  children: { name: string; type: "file" | "folder" }[];
+}
+
+export const PROCESS_TREE: ProcessNode[] = [
+  {
+    name: "discover",
+    label: "Keşfet",
+    children: [
+      { name: "sektörü-tanı.md", type: "file" },
+      { name: "rakipleri-incele.md", type: "file" },
+      { name: "iş-modelini-anla.md", type: "file" },
+      { name: "mevcut-varlıkları-listele.md", type: "file" },
+    ],
+  },
+  {
+    name: "observe",
+    label: "Gözlemle",
+    children: [
+      { name: "müşteri-ne-diyor/", type: "folder" },
+      { name: "search-console-verileri.md", type: "file" },
+      { name: "sorunları-tespit-et.md", type: "file" },
+      { name: "algı-tutarsızlığı.md", type: "file" },
+      { name: "sahadan-notlar.md", type: "file" },
+    ],
+  },
+  {
+    name: "focus",
+    label: "Odaklan",
+    children: [
+      { name: "asıl-sorun-ne.md", type: "file" },
+      { name: "öncelik-sıralaması.md", type: "file" },
+      { name: "kapsam-belirle.md", type: "file" },
+    ],
+  },
+  {
+    name: "think",
+    label: "Düşün",
+    children: [
+      { name: "strateji-taslağı.md", type: "file" },
+      { name: "müşteri-algısı-haritası.md", type: "file" },
+      { name: "konumlandırma.md", type: "file" },
+      { name: "risk-analizi.md", type: "file" },
+    ],
+  },
+  {
+    name: "frame",
+    label: "Çerçevele",
+    children: [
+      { name: "marka-hikayesi.md", type: "file" },
+      { name: "mesaj-hiyerarşisi.md", type: "file" },
+      { name: "görsel-dil.md", type: "file" },
+    ],
+  },
+  {
+    name: "design",
+    label: "Tasarla",
+    children: [
+      { name: "wireframe/", type: "folder" },
+      { name: "renk-paleti.md", type: "file" },
+      { name: "tipografi.md", type: "file" },
+      { name: "kullanıcı-akışı.md", type: "file" },
+    ],
+  },
+  {
+    name: "code",
+    label: "İnşa Et",
+    children: [
+      { name: "mimari-yapı/", type: "folder" },
+      { name: "seo-altyapısı.md", type: "file" },
+      { name: "i18n-sistemi.md", type: "file" },
+      { name: "performans.md", type: "file" },
+    ],
+  },
+  {
+    name: "launch",
+    label: "Yayınla",
+    children: [
+      { name: "test-kontrol.md", type: "file" },
+      { name: "analytics-kur.md", type: "file" },
+      { name: "ilk-ölçümler.md", type: "file" },
+    ],
+  },
+  {
+    name: "grow",
+    label: "Büyüt",
+    children: [
+      { name: "veri-takibi.md", type: "file" },
+      { name: "otomasyon.md", type: "file" },
+      { name: "yeni-kanallar.md", type: "file" },
+      { name: "ölçeklendir.md", type: "file" },
+    ],
+  },
+];
+
+// ============================================
 // PROJECTS
 // ============================================
 export const PROJECTS = [

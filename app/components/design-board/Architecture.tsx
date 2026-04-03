@@ -127,8 +127,8 @@ function TreeLine({
   index?: number;
 }) {
   const isFolder = node.name.endsWith("/");
-  const connector = depth === 0 ? "" : isLast ? "ÔööÔöÇÔöÇ " : "Ôö£ÔöÇÔöÇ ";
-  const childPrefix = depth === 0 ? "" : prefix + (isLast ? "    " : "Ôöé   ");
+  const connector = depth === 0 ? "" : isLast ? "└── " : "├── ";
+  const childPrefix = depth === 0 ? "" : prefix + (isLast ? "    " : "│   ");
 
   return (
     <>
@@ -149,7 +149,7 @@ function TreeLine({
         </span>
         {node.comment && (
           <span style={{ color: COLORS.ash }}>
-            {"  "}ÔåÉ {node.comment}
+            {"  "}← {node.comment}
           </span>
         )}
       </motion.div>

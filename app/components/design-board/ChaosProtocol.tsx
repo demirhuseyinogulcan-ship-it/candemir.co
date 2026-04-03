@@ -15,10 +15,10 @@ import SectionHeader from "@/app/components/ui/SectionHeader";
 // KAOS PROTOKOLU
 // Duzen icinde kirilma ani. Temiz tasarim dili
 // aniden bozulur, kaosa doner, sonra toparlanir.
-// Jinx estetigi ÔÇö ama isim yok, konsept var.
+// Jinx estetigi — ama isim yok, konsept var.
 // ============================================
 
-// Kaos renk paleti ÔÇö mevcut sistemin antitezi
+// Kaos renk paleti — mevcut sistemin antitezi
 const CHAOS = {
   magenta: "#FF44CC",
   cyan: "#00FFFF",
@@ -45,7 +45,7 @@ function GlitchTypography() {
     "HAYIIIIIIIR",
     "Kac burdan",
     "Birakin beni",
-    // Yalnizlik / ac─▒
+    // Yalnizlik / acı
     "Yalnizim",
     "Canim yaniyor",
     "Kimse duymuyor",
@@ -100,7 +100,7 @@ function GlitchTypography() {
     ">:(",
   ];
 
-  // Odak kelimeleri ÔÇö 2x gosterilecek, daha uzun kalacak
+  // Odak kelimeleri — 2x gosterilecek, daha uzun kalacak
   const focusWords = [
     "Yalnizim",
     "Canim yaniyor",
@@ -111,7 +111,7 @@ function GlitchTypography() {
     "Hissizlik",
   ];
 
-  // Renk paleti ÔÇö surekli degisen, sadece pembe/mavi degil
+  // Renk paleti — surekli degisen, sadece pembe/mavi degil
   const chaosColorPool = [
     "#FF44CC", // magenta
     "#00FFFF", // cyan
@@ -169,7 +169,7 @@ function GlitchTypography() {
     let cancelled = false;
 
     // Dinamik hiz: baslangicta yavas, ortada hizli
-    // 120ms ÔåÆ 100 ÔåÆ 80 ÔåÆ 60 ÔåÆ 50 ÔåÆ 40ms (kaos zirvesi) 
+    // 120ms → 100 → 80 → 60 → 50 → 40ms (kaos zirvesi) 
     const getSpeed = (chaos: number) => {
       if (chaos < 0.15) return 120;
       if (chaos < 0.25) return 100;
@@ -228,20 +228,20 @@ function GlitchTypography() {
         }
       }
 
-      // Zirve sonrasi ÔåÆ toparlanma fazina gec
+      // Zirve sonrasi → toparlanma fazina gec
       if (tick > 35) {
         startRecovery();
         return;
       }
 
-      // Sonraki tick ÔÇö dinamik hizla
+      // Sonraki tick — dinamik hizla
       intervalRef.current = setTimeout(runTick, getSpeed(chaos)) as unknown as ReturnType<typeof setInterval>;
     };
 
     const startRecovery = () => {
       let recovery = 24;
       // Toparlanma: hizli baslar, yavaslar
-      // 40ms ÔåÆ 50 ÔåÆ 60 ÔåÆ 80 ÔåÆ 100 ÔåÆ 120ms
+      // 40ms → 50 → 60 → 80 → 100 → 120ms
       const getRecoverySpeed = (rchaos: number) => {
         if (rchaos > 0.8) return 40;
         if (rchaos > 0.6) return 50;
@@ -279,7 +279,7 @@ function GlitchTypography() {
         }
 
         if (recovery <= 0) {
-          // Goz segirmesi ÔÇö tam bitti derken ufak titresmeler
+          // Goz segirmesi — tam bitti derken ufak titresmeler
           setText(originalText);
           setChaosLevel(0);
           setCurrentColor(COLORS.snow);
@@ -305,7 +305,7 @@ function GlitchTypography() {
               setChaosLevel(0);
               setCurrentColor(COLORS.snow);
 
-              // Artan bekleme ÔÇö segirmeler seyreklesir
+              // Artan bekleme — segirmeler seyreklesir
               const pause = 200 + (4 - count) * 180;
               setTimeout(() => twitch(count - 1), pause);
             }, 60 + Math.random() * 40);
@@ -405,7 +405,7 @@ function GlitchTypography() {
 
 // --- 02: COLOR INVASION ---
 // Amber palette yavasta neon kaos renklerine donusur.
-// Renk cubugu ustunde savas ÔÇö duzen vs kaos.
+// Renk cubugu ustunde savas — duzen vs kaos.
 function ColorInvasion() {
   const [invasionProgress, setInvasionProgress] = useState(0);
   const [isActive, setIsActive] = useState(false);
@@ -452,7 +452,7 @@ function ColorInvasion() {
         }}
         onClick={startInvasion}
       >
-        {/* Renk cubugu ÔÇö sol duzen, sag kaos */}
+        {/* Renk cubugu — sol duzen, sag kaos */}
         <div className="flex h-12 rounded-lg overflow-hidden mb-6">
           {orderColors.map((color, i) => {
             const threshold = (i + 1) / orderColors.length;
@@ -491,7 +491,7 @@ function ColorInvasion() {
                       fontWeight: invaded ? 700 : 400,
                     }}
                   >
-                    {invaded ? "X" : "ÔÇö"}
+                    {invaded ? "X" : "—"}
                   </span>
                 </div>
               </motion.div>
@@ -517,7 +517,7 @@ function ColorInvasion() {
             {invasionProgress > 0.7 ? "Istila: %" + Math.round(invasionProgress * 100) : invasionProgress > 0 ? "Yayiliyor..." : "Duzen"}
           </span>
           <span className="font-mono" style={{ fontSize: "10px", color: COLORS.ash }}>
-            {isActive ? "Mudahale edilemiyor" : "Tikla ÔåÆ istila baslat"}
+            {isActive ? "Mudahale edilemiyor" : "Tikla → istila baslat"}
           </span>
         </div>
       </div>
@@ -526,7 +526,7 @@ function ColorInvasion() {
 }
 
 // --- 03: GRID EXPLOSION ---
-// Duzgun grid ÔåÆ patlama ÔåÆ parcalar dag─▒lir ÔåÆ geri toplanir.
+// Duzgun grid → patlama → parcalar dagılir → geri toplanir.
 // Tikla ile tetiklenir. Spring fizigi ile parcalar ucar.
 function GridExplosion() {
   const [exploded, setExploded] = useState(false);
@@ -537,7 +537,7 @@ function GridExplosion() {
       id: i,
       row: Math.floor(i / 4),
       col: i % 4,
-      // Patlama vektorleri ÔÇö merkezden disari
+      // Patlama vektorleri — merkezden disari
       explosionX: (i % 4 - 1.5) * (40 + Math.random() * 60),
       explosionY: (Math.floor(i / 4) - 1.5) * (40 + Math.random() * 60),
       rotation: (Math.random() - 0.5) * 180,
@@ -645,7 +645,7 @@ function GraffitiOverlay() {
     if (isInView) setKey((k) => k + 1);
   }, [isInView]);
 
-  // Graffiti stroke path'leri ÔÇö agresif, angular
+  // Graffiti stroke path'leri — agresif, angular
   const strokes = useMemo(() => [
     { d: "M 30 120 L 170 30", color: CHAOS.magenta, width: 4, delay: 0 },
     { d: "M 170 120 L 30 30", color: CHAOS.magenta, width: 4, delay: 0.1 },
@@ -724,13 +724,13 @@ function GraffitiOverlay() {
 }
 
 // --- 05: FONT DISTORTION ---
-// Ayni cumle 5 seviyede gosteriliyor: temiz ÔåÆ hafif bozulma ÔåÆ orta ÔåÆ
-// agir ÔåÆ tam kaos. Her seviye CSS transform ile farkli distorsiyon.
+// Ayni cumle 5 seviyede gosteriliyor: temiz → hafif bozulma → orta →
+// agir → tam kaos. Her seviye CSS transform ile farkli distorsiyon.
 function FontDistortion() {
   const phrase = "tasarim kurallari";
   const levels = useMemo(() => [
     {
-      label: "Seviye 0 ÔÇö Duzen",
+      label: "Seviye 0 — Duzen",
       style: {
         fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
         fontWeight: 300,
@@ -740,7 +740,7 @@ function FontDistortion() {
       } as React.CSSProperties,
     },
     {
-      label: "Seviye 1 ÔÇö Titresim",
+      label: "Seviye 1 — Titresim",
       style: {
         fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
         fontWeight: 300,
@@ -751,7 +751,7 @@ function FontDistortion() {
       } as React.CSSProperties,
     },
     {
-      label: "Seviye 2 ÔÇö Bozulma",
+      label: "Seviye 2 — Bozulma",
       style: {
         fontSize: "clamp(1.7rem, 3.5vw, 2.8rem)",
         fontWeight: 500,
@@ -762,7 +762,7 @@ function FontDistortion() {
       } as React.CSSProperties,
     },
     {
-      label: "Seviye 3 ÔÇö Kirilma",
+      label: "Seviye 3 — Kirilma",
       style: {
         fontSize: "clamp(2rem, 4vw, 3.2rem)",
         fontWeight: 700,
@@ -773,7 +773,7 @@ function FontDistortion() {
       } as React.CSSProperties,
     },
     {
-      label: "Seviye 4 ÔÇö Tam Kaos",
+      label: "Seviye 4 — Tam Kaos",
       style: {
         fontSize: "clamp(2.5rem, 5vw, 4rem)",
         fontWeight: 900,
@@ -834,7 +834,7 @@ function FontDistortion() {
 
 // --- 06: RECOVERY SEQUENCE ---
 // Tam kaos durumundan duzene donus.
-// Tikla ÔåÆ kaos parcalari merkezden disari itilir,
+// Tikla → kaos parcalari merkezden disari itilir,
 // temiz yuzey alttan yukari reveal olur.
 function RecoverySequence() {
   const [phase, setPhase] = useState<"chaos" | "recovering" | "clean">("chaos");
@@ -849,7 +849,7 @@ function RecoverySequence() {
     setTimeout(() => setPhase("clean"), 1800);
   }, [phase]);
 
-  // Kaos parcaciklari ÔÇö client-only to avoid hydration mismatch
+  // Kaos parcaciklari — client-only to avoid hydration mismatch
   const [chaosParticles, setChaosParticles] = useState<
     { id: number; x: number; y: number; size: number; color: string; shape: string }[]
   >([]);
@@ -919,7 +919,7 @@ function RecoverySequence() {
           />
         ))}
 
-        {/* Temiz yuzey ÔÇö alttan reveal */}
+        {/* Temiz yuzey — alttan reveal */}
         <motion.div
           className="absolute inset-0 flex flex-col items-center justify-center"
           style={{
@@ -961,10 +961,10 @@ function RecoverySequence() {
             }}
           >
             {phase === "chaos"
-              ? "Tikla ÔåÆ duzeni geri getir"
+              ? "Tikla → duzeni geri getir"
               : phase === "recovering"
               ? "Toparlaniliyor..."
-              : "Tikla ÔåÆ kaosu geri cagir"}
+              : "Tikla → kaosu geri cagir"}
           </span>
         </div>
       </div>
@@ -990,7 +990,7 @@ export default function ChaosProtocol() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: CHAOS.magenta, marginBottom: SPACING.heading }}
         >
-          01 ÔÇö Glitch Typography
+          01 — Glitch Typography
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Temiz baslik hover ile bozulmaya baslar. Harfler rastgele sembollerle yer degistirir, RGB kanallari kayar, font carpilir. Sonra kendi kendine toparlanir.
@@ -1004,7 +1004,7 @@ export default function ChaosProtocol() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: CHAOS.magenta, marginBottom: SPACING.heading }}
         >
-          02 ÔÇö Color Invasion
+          02 — Color Invasion
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Amber duzen paleti neon kaos renkleri tarafindan istila ediliyor. Renk cubugu soldan saga ele geciriliyor. Sonra geri cekilir.
@@ -1018,10 +1018,10 @@ export default function ChaosProtocol() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: CHAOS.magenta, marginBottom: SPACING.heading }}
         >
-          03 ÔÇö Grid Explosion
+          03 — Grid Explosion
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Duzgun grid patlayarak dag─▒l─▒r. Spring fizigi ile parcalar uca, X isaretleri belirir. 2 saniye sonra duzen geri gelir.
+          Duzgun grid patlayarak dagılır. Spring fizigi ile parcalar uca, X isaretleri belirir. 2 saniye sonra duzen geri gelir.
         </p>
         <GridExplosion />
       </div>
@@ -1032,7 +1032,7 @@ export default function ChaosProtocol() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: CHAOS.magenta, marginBottom: SPACING.heading }}
         >
-          04 ÔÇö Graffiti Overlay
+          04 — Graffiti Overlay
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Temiz yuzeye SVG spray paint cizimleri beliriyor. X isareti, capraz cizgiler, kaotik stroke'lar. Scroll ile tetiklenir.
@@ -1046,10 +1046,10 @@ export default function ChaosProtocol() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: CHAOS.magenta, marginBottom: SPACING.heading }}
         >
-          05 ÔÇö Font Distortion
+          05 — Font Distortion
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Ayni cumle 5 seviyede distorsiyon. Temiz ÔåÆ titresim ÔåÆ bozulma ÔåÆ kirilma ÔåÆ tam kaos. Her seviyede font weight, skew, scale ve renk degisiyor.
+          Ayni cumle 5 seviyede distorsiyon. Temiz → titresim → bozulma → kirilma → tam kaos. Her seviyede font weight, skew, scale ve renk degisiyor.
         </p>
         <FontDistortion />
       </div>
@@ -1060,10 +1060,10 @@ export default function ChaosProtocol() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: CHAOS.magenta, marginBottom: SPACING.heading }}
         >
-          06 ÔÇö Recovery Sequence
+          06 — Recovery Sequence
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Tam kaos durumundan duzene donus. Parcaciklar merkezden disari itilir, temiz yuzey alttan reveal olur. Tikla ÔåÆ duzen geri gelir. Tekrar tikla ÔåÆ kaos doner.
+          Tam kaos durumundan duzene donus. Parcaciklar merkezden disari itilir, temiz yuzey alttan reveal olur. Tikla → duzen geri gelir. Tekrar tikla → kaos doner.
         </p>
         <RecoverySequence />
       </div>

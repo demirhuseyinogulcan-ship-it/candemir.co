@@ -67,7 +67,7 @@ const HIERARCHY = [
       fontSize: TYPE.small.size,
       fontWeight: TYPE.small.weight,
     },
-    example: "Portfolyo ÔÇö 2026",
+    example: "Portfolyo — 2026",
   },
   {
     label: "Overline",
@@ -90,7 +90,7 @@ const RULES_FORBIDDEN = [
 
 const RULES_ALLOWED = [
   "Sadece Neue Montreal (Regular, Medium, Bold)",
-  "Ok karakteri: ÔåÆ",
+  "Ok karakteri: →",
   "Nokta vurgusu: Can.",
   "Buyuk bosluklar ile hiyerarsi",
   "Tracking ile vurgu (overline, label)",

@@ -12,15 +12,15 @@ import {
 import SectionHeader from "@/app/components/ui/SectionHeader";
 
 // ============================================
-// KAN F─░Z─░─Ş─░ ÔÇö Blood Physics
-// Kan─▒n, ate┼şin ve k─▒z─▒l├Âtesinin fiziksel
-// fenomenlerini dijital ortama ta┼ş─▒yan animasyonlar.
-// ─░kincil accent: Maroon / Crimson sistemi.
+// KAN FİZİĞİ — Blood Physics
+// Kanın, ateşin ve kızılötesinin fiziksel
+// fenomenlerini dijital ortama taşıyan animasyonlar.
+// İkincil accent: Maroon / Crimson sistemi.
 // ============================================
 
 // --- 01: PULSE / NABIZ ---
-// Kalp at─▒┼ş─▒ ritmine senkronize y├╝z├╝k geni┼şleme/daralma.
-// Ger├ğek EKG ritmi: sistol-diastol asimetrik pattern.
+// Kalp atışı ritmine senkronize yüzük genişleme/daralma.
+// Gerçek EKG ritmi: sistol-diastol asimetrik pattern.
 function Pulse() {
   const [bpm] = useState(72);
   const beatDuration = 60 / bpm;
@@ -35,7 +35,7 @@ function Pulse() {
           padding: "clamp(56px, 10vw, 100px) clamp(24px, 4vw, 48px)",
         }}
       >
-        {/* D─▒┼ş dalga ÔÇö en soluk, en geni┼ş */}
+        {/* Dış dalga — en soluk, en geniş */}
         <motion.div
           className="absolute rounded-full"
           style={{
@@ -75,7 +75,7 @@ function Pulse() {
           }}
         />
 
-        {/* ─░├ğ ├ğekirdek ÔÇö nab─▒z merkezi */}
+        {/* İç çekirdek — nabız merkezi */}
         <motion.div
           className="relative rounded-full flex items-center justify-center"
           style={{
@@ -100,7 +100,7 @@ function Pulse() {
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          {/* EKG mini ├ğizgisi */}
+          {/* EKG mini çizgisi */}
           <svg width="36" height="20" viewBox="0 0 36 20" fill="none">
             <motion.path
               d="M0 10 L8 10 L11 3 L14 17 L17 5 L20 10 L36 10"
@@ -121,7 +121,7 @@ function Pulse() {
           </svg>
         </motion.div>
 
-        {/* BPM g├Âstergesi */}
+        {/* BPM göstergesi */}
         <div className="absolute bottom-5 left-6 flex items-baseline gap-2">
           <motion.span
             className="font-mono"
@@ -140,9 +140,9 @@ function Pulse() {
   );
 }
 
-// --- 02: THERMAL V─░S─░ON ÔÇö K─▒z─▒l├Âtesi Termal Kamera ---
-// Hover ÔåÆ soluk gri elemanlar "─▒s─▒narak" k─▒rm─▒z─▒-turuncu-sar─▒ya d├Âner.
-// Ger├ğek termal kamera renk haritas─▒: mavi ÔåÆ ye┼şil ÔåÆ sar─▒ ÔåÆ k─▒rm─▒z─▒ ÔåÆ beyaz.
+// --- 02: THERMAL VİSİON — Kızılötesi Termal Kamera ---
+// Hover → soluk gri elemanlar "ısınarak" kırmızı-turuncu-sarıya döner.
+// Gerçek termal kamera renk haritası: mavi → yeşil → sarı → kırmızı → beyaz.
 function ThermalVision() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -162,7 +162,7 @@ function ThermalVision() {
     const container = containerRef.current;
     if (!canvas || !container) return;
 
-    // Viewport g├Âzlemcisi ÔÇö ekran d─▒┼ş─▒ndayken RAF ├ğal─▒┼şt─▒rma
+    // Viewport gözlemcisi — ekran dışındayken RAF çalıştırma
     const observer = new IntersectionObserver(
       ([entry]) => { visibleRef.current = entry.isIntersecting; },
       { rootMargin: "100px" }
@@ -189,7 +189,7 @@ function ThermalVision() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Termal renk haritasi ÔÇö daha canli, gercekci
+    // Termal renk haritasi — daha canli, gercekci
     const heatColor = (b: number): [number, number, number] => {
       if (b < 0.15) return [17 + b * 80, 17 + b * 40, 30 + b * 80];        // Koyu mor-mavi
       if (b < 0.3)  return [20 + b * 100, 10 + b * 20, 60 + b * 140];       // Mor
@@ -227,7 +227,7 @@ function ThermalVision() {
             }
           }
 
-          // Hafif titresim ÔÇö canlilik icin
+          // Hafif titresim — canlilik icin
           const noise = mouse.active ? (Math.sin(timeRef.current * 0.15 + idx * 0.7) * 0.03) : 0;
 
           const current = brightness[idx];
@@ -247,7 +247,7 @@ function ThermalVision() {
           ctx.roundRect(col * step, row * step, cellSize, cellSize, 4);
           ctx.fill();
 
-          // Glow ÔÇö sicak bolgelerde
+          // Glow — sicak bolgelerde
           if (b > 0.35) {
             ctx.save();
             const glowAlpha = (b - 0.35) * 0.6;
@@ -307,7 +307,7 @@ function ThermalVision() {
           className="absolute inset-0 w-full h-full"
         />
 
-        {/* Yazi katmani ÔÇö canvas ustunde */}
+        {/* Yazi katmani — canvas ustunde */}
         <div
           className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none"
           style={{ zIndex: 1 }}
@@ -390,7 +390,7 @@ function ElectricShock() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Elektrik renk haritasi ÔÇö mavi/cyan/beyaz
+    // Elektrik renk haritasi — mavi/cyan/beyaz
     const elecColor = (b: number): [number, number, number] => {
       if (b < 0.2) return [10 + b * 60, 15 + b * 100, 40 + b * 300];          // Koyu mavi
       if (b < 0.4) return [20 + b * 80, 80 + b * 250, 180 + b * 180];         // Cyan
@@ -421,7 +421,7 @@ function ElectricShock() {
             lastMouseRow = mRow;
             // Ana carpma noktasi
             trailRef.current.push({ col: mCol, row: mRow, life: 1.0 });
-            // Rastgele yildirim kollari ÔÇö etraftaki hucrelere zipla
+            // Rastgele yildirim kollari — etraftaki hucrelere zipla
             const branches = 2 + Math.floor(Math.random() * 3);
             for (let i = 0; i < branches; i++) {
               const bCol = mCol + Math.round((Math.random() - 0.5) * 6);
@@ -440,7 +440,7 @@ function ElectricShock() {
         return t.life > 0;
       });
 
-      // Brightness guncelle ÔÇö trail'den
+      // Brightness guncelle — trail'den
       // Once hepsini sogut
       for (let i = 0; i < brightness.length; i++) {
         brightness[i] *= 0.88;
@@ -487,7 +487,7 @@ function ElectricShock() {
           ctx.roundRect(col * step, row * step, cellSize, cellSize, 4);
           ctx.fill();
 
-          // Glow ÔÇö elektrik kuvvetli yerlerde
+          // Glow — elektrik kuvvetli yerlerde
           if (bFinal > 0.3) {
             ctx.save();
             const glowAlpha = (bFinal - 0.3) * 0.7;
@@ -580,9 +580,9 @@ function ElectricShock() {
   );
 }
 
-// --- 03: WOUND HEAL / YARA ─░Y─░LE┼ŞME ---
-// Yatay "y─▒rt─▒k" a├ğ─▒l─▒r, k─▒rm─▒z─▒ parlar, sonra kendi kendini onar─▒r.
-// CSS clip-path + height animasyonu ile yara fizi─şi.
+// --- 03: WOUND HEAL / YARA İYİLEŞME ---
+// Yatay "yırtık" açılır, kırmızı parlar, sonra kendi kendini onarır.
+// CSS clip-path + height animasyonu ile yara fiziği.
 function WoundHeal() {
   const [wounded, setWounded] = useState(false);
   const [healing, setHealing] = useState(false);
@@ -590,7 +590,7 @@ function WoundHeal() {
   const triggerWound = useCallback(() => {
     if (wounded || healing) return;
     setWounded(true);
-    // 1.5s sonra iyile┼şme ba┼şlar
+    // 1.5s sonra iyileşme başlar
     setTimeout(() => {
       setHealing(true);
       setTimeout(() => {
@@ -611,7 +611,7 @@ function WoundHeal() {
         }}
         onClick={triggerWound}
       >
-        {/* ├£st yar─▒ */}
+        {/* Üst yarı */}
         <motion.div
           className="text-center"
           animate={{
@@ -634,7 +634,7 @@ function WoundHeal() {
           </p>
         </motion.div>
 
-        {/* Yara ├ğizgisi ÔÇö k─▒rm─▒z─▒ ─▒┼ş─▒k */}
+        {/* Yara çizgisi — kırmızı ışık */}
         <motion.div
           className="relative overflow-hidden mx-auto"
           style={{ maxWidth: "80%" }}
@@ -664,7 +664,7 @@ function WoundHeal() {
           />
         </motion.div>
 
-        {/* Alt yar─▒ */}
+        {/* Alt yarı */}
         <motion.div
           className="text-center"
           animate={{
@@ -694,7 +694,7 @@ function WoundHeal() {
           animate={{ opacity: wounded ? 1 : 0.6 }}
         >
           <span className="font-mono" style={{ fontSize: "10px", color: healing ? "#4a9" : wounded ? COLORS.maroon.neon : COLORS.ash }}>
-            {healing ? "Iyilesiyor..." : wounded ? "Yara acik" : "Tikla ÔåÆ yirt"}
+            {healing ? "Iyilesiyor..." : wounded ? "Yara acik" : "Tikla → yirt"}
           </span>
         </motion.div>
       </div>
@@ -702,8 +702,8 @@ function WoundHeal() {
   );
 }
 
-// --- 04: SUSPENSE ZOOM ÔÇö Hitchcock Dolly Zoom ---
-// Arka plan k├╝├ğ├╝l├╝rken ├Ân plan b├╝y├╝r.
+// --- 04: SUSPENSE ZOOM — Hitchcock Dolly Zoom ---
+// Arka plan küçülürken ön plan büyür.
 // Vertigo / dolly zoom sinematik efekti.
 function SuspenseZoom() {
   const [zoomed, setZoomed] = useState(false);
@@ -719,7 +719,7 @@ function SuspenseZoom() {
         }}
         onClick={() => setZoomed(!zoomed)}
       >
-        {/* Arka plan katman─▒ ÔÇö k├╝├ğ├╝l├╝r */}
+        {/* Arka plan katmanı — küçülür */}
         <motion.div
           className="absolute inset-0 flex items-center justify-center"
           animate={{
@@ -727,7 +727,7 @@ function SuspenseZoom() {
           }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* K─▒rm─▒z─▒ gradient arka plan */}
+          {/* Kırmızı gradient arka plan */}
           <div
             className="w-full h-full"
             style={{
@@ -735,7 +735,7 @@ function SuspenseZoom() {
             }}
           />
 
-          {/* Grid ├ğizgileri ÔÇö perspektif referans─▒ */}
+          {/* Grid çizgileri — perspektif referansı */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="none">
             {Array.from({ length: 9 }).map((_, i) => (
               <line
@@ -764,7 +764,7 @@ function SuspenseZoom() {
           </svg>
         </motion.div>
 
-        {/* ├ûn plan ÔÇö b├╝y├╝r (ters dolly) */}
+        {/* Ön plan — büyür (ters dolly) */}
         <motion.div
           className="relative text-center"
           animate={{
@@ -800,9 +800,9 @@ function SuspenseZoom() {
   );
 }
 
-// --- 05: EMBER TRA─░L / KIVILCIM ─░Z─░ ---
-// Ate┼ş partik├╝l sistemi. Par├ğac─▒klar y├╝kselip s├Âner.
-// T─▒kla ÔåÆ k─▒v─▒lc─▒m patlamas─▒. Yer├ğekimi ile yava┼ş├ğa d├╝┼şer.
+// --- 05: EMBER TRAİL / KIVILCIM İZİ ---
+// Ateş partikül sistemi. Parçacıklar yükselip söner.
+// Tıkla → kıvılcım patlaması. Yerçekimi ile yavaşça düşer.
 function EmberTrail() {
   const [embers, setEmbers] = useState<Array<{ id: number; x: number; delay: number; size: number }>>([]);
   const nextId = useRef(0);
@@ -822,7 +822,7 @@ function EmberTrail() {
     }, 2500);
   }, []);
 
-  // Otomatik ambient k─▒v─▒lc─▒mlar
+  // Otomatik ambient kıvılcımlar
   useEffect(() => {
     const interval = setInterval(() => {
       const ambient = Array.from({ length: 3 }, () => ({
@@ -881,7 +881,7 @@ function EmberTrail() {
           ))}
         </AnimatePresence>
 
-        {/* Kor kaynak noktas─▒ */}
+        {/* Kor kaynak noktası */}
         <div
           className="absolute left-1/2 -translate-x-1/2 bottom-[15%]"
           style={{ width: "60%", height: "2px" }}
@@ -898,7 +898,7 @@ function EmberTrail() {
         {/* Alt bilgi */}
         <div className="absolute bottom-4 left-6">
           <span className="font-mono" style={{ fontSize: "10px", color: COLORS.maroon.shirt }}>
-            Tikla ÔåÆ kivilcim patlamasi
+            Tikla → kivilcim patlamasi
           </span>
         </div>
         <div className="absolute bottom-4 right-6">
@@ -911,9 +911,9 @@ function EmberTrail() {
   );
 }
 
-// --- 06: BLOOD DR─░P / DAMLA ---
-// Yer├ğekimi + viskozite fizi─şi ile akan k─▒rm─▒z─▒ damla.
-// Yava┼ş├ğa b├╝y├╝yen damla ÔåÆ kopu┼ş ÔåÆ d├╝┼ş├╝┼ş ÔåÆ s─▒├ğrama.
+// --- 06: BLOOD DRİP / DAMLA ---
+// Yerçekimi + viskozite fiziği ile akan kırmızı damla.
+// Yavaşça büyüyen damla → kopuş → düşüş → sıçrama.
 function BloodDrip() {
   const [drips, setDrips] = useState<Array<{ id: number; x: number; phase: "growing" | "falling" | "splash" }>>([]);
   const nextId = useRef(0);
@@ -922,13 +922,13 @@ function BloodDrip() {
     const interval = setInterval(() => {
       const x = 15 + Math.random() * 70;
       const id = nextId.current++;
-      // B├╝y├╝me faz─▒
+      // Büyüme fazı
       setDrips((prev) => [...prev, { id, x, phase: "growing" }]);
-      // D├╝┼şme faz─▒
+      // Düşme fazı
       setTimeout(() => {
         setDrips((prev) => prev.map((d) => d.id === id ? { ...d, phase: "falling" } : d));
       }, 1200);
-      // S─▒├ğrama
+      // Sıçrama
       setTimeout(() => {
         setDrips((prev) => prev.map((d) => d.id === id ? { ...d, phase: "splash" } : d));
       }, 2000);
@@ -950,7 +950,7 @@ function BloodDrip() {
           height: "240px",
         }}
       >
-        {/* ├£st kenar ÔÇö damlama kayna─ş─▒ */}
+        {/* Üst kenar — damlama kaynağı */}
         <div
           className="absolute top-0 left-0 right-0 h-1"
           style={{
@@ -990,7 +990,7 @@ function BloodDrip() {
               />
             </motion.div>
 
-            {/* S─▒├ğrama efekti */}
+            {/* Sıçrama efekti */}
             {drip.phase === "splash" && (
               <motion.div
                 className="absolute"
@@ -1026,9 +1026,9 @@ function BloodDrip() {
   );
 }
 
-// --- 07: VE─░N NETWORK / DAMAR AGI ---
-// SVG path'ler organik dallanma ile yay─▒l─▒r.
-// Scroll ile tetiklenir, nab─▒z ile titrer.
+// --- 07: VEİN NETWORK / DAMAR AGI ---
+// SVG path'ler organik dallanma ile yayılır.
+// Scroll ile tetiklenir, nabız ile titrer.
 function VeinNetwork() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
@@ -1038,7 +1038,7 @@ function VeinNetwork() {
     if (isInView) setKey((k) => k + 1);
   }, [isInView]);
 
-  // Damar yollar─▒ ÔÇö organik, dallanmal─▒
+  // Damar yolları — organik, dallanmalı
   const veins = useMemo(() => [
     { d: "M 10 100 Q 60 80, 120 90 T 240 70 Q 300 60, 380 80", width: 3, delay: 0 },
     { d: "M 120 90 Q 150 50, 200 40 T 320 30", width: 1.5, delay: 0.4 },
@@ -1062,7 +1062,7 @@ function VeinNetwork() {
           <svg viewBox="0 0 400 150" className="w-full" style={{ overflow: "visible" }}>
             {veins.map((vein, i) => (
               <g key={i}>
-                {/* Glow katman─▒ */}
+                {/* Glow katmanı */}
                 <motion.path
                   key={`g-${key}-${i}`}
                   d={vein.d}
@@ -1107,7 +1107,7 @@ function VeinNetwork() {
               </g>
             ))}
 
-            {/* Nab─▒z dalgas─▒ ÔÇö ana damar ├╝zerinde akan vurgu */}
+            {/* Nabız dalgası — ana damar üzerinde akan vurgu */}
             {isInView && (
               <motion.circle
                 r="5"
@@ -1134,9 +1134,9 @@ function VeinNetwork() {
   );
 }
 
-// --- 08: CR─░MSON FOG / KIZIL S─░S ---
-// ├çok katmanl─▒ k─▒rm─▒z─▒ sis. Paralaks ile hareket.
-// Mouse hareketi ile sis katmanlar─▒n─▒n h─▒z─▒ de─şi┼şir.
+// --- 08: CRİMSON FOG / KIZIL SİS ---
+// Çok katmanlı kırmızı sis. Paralaks ile hareket.
+// Mouse hareketi ile sis katmanlarının hızı değişir.
 function CrimsonFog() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [mouseX, setMouseX] = useState(0.5);
@@ -1168,7 +1168,7 @@ function CrimsonFog() {
         }}
         onMouseMove={handleMouse}
       >
-        {/* Sis katmanlar─▒ */}
+        {/* Sis katmanları */}
         {layers.map((layer, i) => (
           <motion.div
             key={i}
@@ -1184,7 +1184,7 @@ function CrimsonFog() {
           />
         ))}
 
-        {/* Merkez metin ÔÇö sisin arkas─▒ndan */}
+        {/* Merkez metin — sisin arkasından */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <p
             className="font-light tracking-tighter"
@@ -1224,7 +1224,7 @@ export default function BloodPhysics() {
       <SectionHeader
         number="07"
         title="Kan Fizigi"
-        description="Ikincil accent ÔÇö kizilin fiziksel fenomenleri. Nabiz, isi, yara, vertigo, kivilcim, damla, damar ve sis."
+        description="Ikincil accent — kizilin fiziksel fenomenleri. Nabiz, isi, yara, vertigo, kivilcim, damla, damar ve sis."
       />
 
       <div style={{ marginBottom: SPACING.block }}>
@@ -1233,10 +1233,10 @@ export default function BloodPhysics() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.maroon.shirt, marginBottom: SPACING.heading }}
         >
-          01 ÔÇö Pulse / Nabiz
+          01 — Pulse / Nabiz
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Kalp atisi ritmine senkron genisleme/daralma. EKG cizgisi ile birlikte. Sistol-diastol asimetrik pattern ÔÇö gercek kardiyak ritim.
+          Kalp atisi ritmine senkron genisleme/daralma. EKG cizgisi ile birlikte. Sistol-diastol asimetrik pattern — gercek kardiyak ritim.
         </p>
         <Pulse />
       </div>
@@ -1247,10 +1247,10 @@ export default function BloodPhysics() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.maroon.shirt, marginBottom: SPACING.heading }}
         >
-          02 ÔÇö Thermal Vision
+          02 — Thermal Vision
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Kizilotesi termal kamera simulasyonu. Hover ÔåÆ soguk grid isinarak kirmizi haritaya donusur. Merkez en sicak.
+          Kizilotesi termal kamera simulasyonu. Hover → soguk grid isinarak kirmizi haritaya donusur. Merkez en sicak.
         </p>
         <ThermalVision />
       </div>
@@ -1261,7 +1261,7 @@ export default function BloodPhysics() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: "#4488FF", marginBottom: SPACING.heading }}
         >
-          02b ÔÇö Electric Shock
+          02b — Electric Shock
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Elektrik carpmasi. Fare gectigi yerleri yildirim carpiyor, etraftaki hucrelere zipliyor. Mavi-beyaz ark efekti.
@@ -1275,10 +1275,10 @@ export default function BloodPhysics() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.maroon.shirt, marginBottom: SPACING.heading }}
         >
-          03 ÔÇö Wound Heal
+          03 — Wound Heal
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Yara fizigi. Tikla ÔåÆ yuzey yirtilir, kirmizi isik parlar. 1.5 saniye sonra kendini onarir. clip-path ile organik kirilma.
+          Yara fizigi. Tikla → yuzey yirtilir, kirmizi isik parlar. 1.5 saniye sonra kendini onarir. clip-path ile organik kirilma.
         </p>
         <WoundHeal />
       </div>
@@ -1289,10 +1289,10 @@ export default function BloodPhysics() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.maroon.shirt, marginBottom: SPACING.heading }}
         >
-          04 ÔÇö Suspense Zoom
+          04 — Suspense Zoom
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Hitchcock dolly zoom. Tikla ÔåÆ arka plan kuculurken on plan buyur. Vertigo hissiyati, sinematik gerilim.
+          Hitchcock dolly zoom. Tikla → arka plan kuculurken on plan buyur. Vertigo hissiyati, sinematik gerilim.
         </p>
         <SuspenseZoom />
       </div>
@@ -1303,10 +1303,10 @@ export default function BloodPhysics() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.maroon.shirt, marginBottom: SPACING.heading }}
         >
-          05 ÔÇö Ember Trail
+          05 — Ember Trail
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
-          Ates kivilcim sistemi. Parcaciklar yukselip soner ÔÇö yercekimi + rastgele ruzgar. Tikla ÔåÆ patlama, yoksa ambient koru bekle.
+          Ates kivilcim sistemi. Parcaciklar yukselip soner — yercekimi + rastgele ruzgar. Tikla → patlama, yoksa ambient koru bekle.
         </p>
         <EmberTrail />
       </div>
@@ -1317,7 +1317,7 @@ export default function BloodPhysics() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.maroon.shirt, marginBottom: SPACING.heading }}
         >
-          06 ÔÇö Blood Drip
+          06 — Blood Drip
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Yercekimi + viskozite fizigi. Damla yavasta buyur, kopar, hizlanarak duser, sicrar. Otomatik dongude calisir.
@@ -1331,7 +1331,7 @@ export default function BloodPhysics() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.maroon.shirt, marginBottom: SPACING.heading }}
         >
-          07 ÔÇö Vein Network
+          07 — Vein Network
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Organik damar agi. SVG path'ler dallanarak yayilir, nabiz dalgasi ana damar uzerinde akar. Scroll ile tetiklenir.
@@ -1345,7 +1345,7 @@ export default function BloodPhysics() {
           className="tracking-[0.5em] uppercase"
           style={{ fontSize: TYPOGRAPHY.overline.size, color: COLORS.maroon.shirt, marginBottom: SPACING.heading }}
         >
-          08 ÔÇö Crimson Fog
+          08 — Crimson Fog
         </motion.p>
         <p style={{ fontSize: "12px", color: COLORS.concrete, marginBottom: SPACING.element, maxWidth: "520px" }}>
           Kizil sis. Cok katmanli paralaks gradient, mouse hareketi ile sis yonlenir.

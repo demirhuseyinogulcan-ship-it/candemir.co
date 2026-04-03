@@ -1,8 +1,8 @@
 /**
  * SectionHeader Component
  * 
- * Tutarl─▒ section ba┼şl─▒klar─▒ ÔÇö number, title, description.
- * Behance case study format─▒.
+ * Tutarlı section başlıkları — number, title, description.
+ * Behance case study formatı.
  */
 
 "use client";
@@ -11,13 +11,13 @@ import { motion } from "framer-motion";
 import { SPACING, COLORS, TYPOGRAPHY, fadeUp } from "@/app/lib/design-tokens";
 
 interface SectionHeaderProps {
-  /** Section numaras─▒ (01, 02, vb.) */
+  /** Section numarası (01, 02, vb.) */
   number: string;
-  /** Ana ba┼şl─▒k */
+  /** Ana başlık */
   title: string;
-  /** A├ğ─▒klama metni (opsiyonel) */
+  /** Açıklama metni (opsiyonel) */
   description?: string;
-  /** Alt ba┼şl─▒k aras─▒ bo┼şluk */
+  /** Alt başlık arası boşluk */
   spacing?: keyof typeof SPACING;
 }
 
@@ -32,7 +32,7 @@ export default function SectionHeader({
       {...fadeUp}
       style={{ marginBottom: SPACING[spacing] }}
     >
-      {/* Overline ÔÇö Section Number */}
+      {/* Overline — Section Number */}
       <p
         style={{
           fontSize: TYPOGRAPHY.overline.size,

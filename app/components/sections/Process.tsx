@@ -1,46 +1,34 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { COLORS, TYPOGRAPHY, ANIMATION, SPACING, CONTAINER } from "@/app/lib/design-tokens";
-import { GLITCH_PROCESS_WORDS } from "@/app/lib/constants";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { COLORS, TYPOGRAPHY, ANIMATION, SPACING } from "@/app/lib/design-tokens";
+import { PROCESS_TREE } from "@/app/lib/constants";
+import type { ProcessNode } from "@/app/lib/constants";
 import Container from "@/app/components/ui/Container";
 
 /* ═══════════════════════════════════════════════════════════════
-   Sn. 02 — SÜREÇ (Process Flow)
+   Sn. 01 — SÜREÇ (Process Tree)
    
-   GlitchBrand'daki 9 kelimeyi scroll-driven yatay akışa dönüştürür.
-   Her kelime bir node — aralarında ince çizgi.
-   Scroll ilerledikçe çizgi uzar, kelimeler sırayla aydınlanır.
+   Kişisel metodoloji — dosya sistemi metaforu.
+   Her adım bir klasör, tıklayınca alt dosyalar/sorular açılır.
+   Temiz mimari yapısı gibi görünür.
    
-   Alt metin hover'da veya aktif olduğunda görünür.
+   candemir.co/system — çalışma hayatı boyunca kullanılacak sistem.
    ═══════════════════════════════════════════════════════════════ */
 
-const PROCESS_DESCRIPTIONS: Record<string, string> = {
-  discover: "İşi tanı, sektörü öğren",
-  observe: "Müşteriyi dinle, veriyi oku",
-  focus: "Asıl sorunu bul",
-  think: "Stratejiyi kur",
-  frame: "Hikayeyi çerçevele",
-  design: "Algıyı tasarla",
-  code: "Sistemi inşa et",
-  launch: "Yayınla, ölç",
-  grow: "Büyüt, otomatikleştir",
-};
-
 export default function Process() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 0.8", "end 0.3"],
-  });
+  const [openFolder, setOpenFolder] = useState<string | null>(null);
+
+  function toggle(name: string) {
+    setOpenFolder((prev) => (prev === name ? null : name));
+  }
 
   return (
     <section
-      ref={containerRef}
       style={{
         backgroundColor: COLORS.void,
-        paddingTop: SPACING.block,
+        paddingTop: SPACING.section,
         paddingBottom: SPACING.section,
       }}
     >
@@ -55,138 +43,197 @@ export default function Process() {
           style={{
             ...TYPOGRAPHY.overline,
             color: COLORS.ash,
-            marginBottom: SPACING.element,
+            marginBottom: SPACING.heading,
           }}
         >
-          02 — süreç
+          01 — süreç
         </motion.span>
 
-        {/* Process timeline */}
-        <div className="relative" style={{ paddingTop: "24px", paddingBottom: "24px" }}>
-          {/* Background line (full width, dim) */}
-          <div
-            className="absolute left-0 right-0 hidden md:block"
-            style={{
-              top: "32px",
-              height: "1px",
-              backgroundColor: COLORS.slate,
-            }}
-          />
+        {/* Root path */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: ANIMATION.duration.normal, delay: 0.1 }}
+          style={{
+            ...TYPOGRAPHY.mono,
+            color: COLORS.concrete,
+            marginBottom: SPACING.heading,
+          }}
+        >
+          ~/candemir/system/
+        </motion.p>
 
-          {/* Progress line (scroll-driven) */}
-          <motion.div
-            className="absolute left-0 hidden md:block"
-            style={{
-              top: "32px",
-              height: "1px",
-              backgroundColor: COLORS.ash,
-              scaleX: scrollYProgress,
-              transformOrigin: "left",
-              width: "100%",
-            }}
-          />
-
-          {/* Nodes */}
-          <div
-            className="grid"
-            style={{
-              gridTemplateColumns: `repeat(${GLITCH_PROCESS_WORDS.length}, 1fr)`,
-              gap: "0",
-            }}
-          >
-            {GLITCH_PROCESS_WORDS.map((word, i) => (
-              <ProcessNode
-                key={word}
-                word={word}
-                description={PROCESS_DESCRIPTIONS[word]}
-                index={i}
-                total={GLITCH_PROCESS_WORDS.length}
-                scrollProgress={scrollYProgress}
-              />
-            ))}
-          </div>
+        {/* Tree */}
+        <div
+          className="flex flex-col"
+          style={{ gap: "2px" }}
+        >
+          {PROCESS_TREE.map((node, i) => (
+            <TreeFolder
+              key={node.name}
+              node={node}
+              index={i}
+              isOpen={openFolder === node.name}
+              onToggle={() => toggle(node.name)}
+              isLast={i === PROCESS_TREE.length - 1}
+            />
+          ))}
         </div>
       </Container>
     </section>
   );
 }
 
-/* ─── Process Node ─── */
+/* ─── Tree Folder ─── */
 
-function ProcessNode({
-  word,
-  description,
+function TreeFolder({
+  node,
   index,
-  total,
-  scrollProgress,
+  isOpen,
+  onToggle,
+  isLast,
 }: {
-  word: string;
-  description: string;
+  node: ProcessNode;
   index: number;
-  total: number;
-  scrollProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+  isOpen: boolean;
+  onToggle: () => void;
+  isLast: boolean;
 }) {
-  // Each node activates at its proportional scroll position
-  const threshold = index / (total - 1);
-  const isActive = useTransform(scrollProgress, (v) => v >= threshold - 0.02);
+  const prefix = isLast ? "└──" : "├──";
+  const childPrefix = isLast ? "    " : "│   ";
 
   return (
     <motion.div
-      className="group flex flex-col items-center text-center relative"
-      style={{ paddingTop: "16px" }}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-20px" }}
       transition={{
         duration: ANIMATION.duration.normal,
-        delay: index * 0.08,
+        delay: index * 0.06,
         ease: ANIMATION.ease,
       }}
     >
-      {/* Dot node */}
-      <motion.div
-        className="hidden md:block"
-        style={{
-          width: "5px",
-          height: "5px",
-          borderRadius: "50%",
-          backgroundColor: COLORS.ash,
-          marginBottom: "16px",
-          position: "absolute",
-          top: "-8px",
-          transition: "background-color 0.6s",
-        }}
-      />
-
-      {/* Word */}
-      <span
-        className="block group-hover:!text-[#FAFAFA]"
-        style={{
-          ...TYPOGRAPHY.small,
-          color: COLORS.concrete,
-          letterSpacing: "0.15em",
-          textTransform: "uppercase",
-          transition: "color 0.4s",
-          whiteSpace: "nowrap",
-        }}
+      {/* Folder row */}
+      <button
+        onClick={onToggle}
+        className="cursor-pointer flex items-baseline w-full text-left bg-transparent border-none outline-none group"
+        style={{ padding: "6px 0" }}
       >
-        {word}
-      </span>
+        {/* Tree connector */}
+        <span
+          style={{
+            ...TYPOGRAPHY.mono,
+            color: COLORS.ash,
+            marginRight: "8px",
+            userSelect: "none",
+            flexShrink: 0,
+            whiteSpace: "pre",
+          }}
+        >
+          {prefix}
+        </span>
 
-      {/* Description — hover reveal */}
-      <span
-        className="block opacity-0 group-hover:opacity-100"
-        style={{
-          fontSize: "11px",
-          color: COLORS.ash,
-          marginTop: "8px",
-          transition: "opacity 0.4s",
-          lineHeight: 1.3,
-          maxWidth: "120px",
-        }}
-      >
-        {description}
-      </span>
+        {/* Chevron */}
+        <motion.span
+          animate={{ rotate: isOpen ? 90 : 0 }}
+          transition={{ duration: 0.2 }}
+          style={{
+            ...TYPOGRAPHY.mono,
+            color: COLORS.concrete,
+            marginRight: "6px",
+            display: "inline-block",
+            userSelect: "none",
+            flexShrink: 0,
+          }}
+        >
+          ▸
+        </motion.span>
+
+        {/* Folder name */}
+        <span
+          className="group-hover:!text-[#F0F0F0]"
+          style={{
+            ...TYPOGRAPHY.mono,
+            color: isOpen ? COLORS.snow : COLORS.concrete,
+            transition: "color 0.3s",
+            flexShrink: 0,
+          }}
+        >
+          {node.name}/
+        </span>
+
+        {/* Label */}
+        <span
+          style={{
+            ...TYPOGRAPHY.mono,
+            color: COLORS.ash,
+            marginLeft: "12px",
+            fontStyle: "italic",
+            transition: "color 0.3s",
+          }}
+        >
+          {node.label}
+        </span>
+      </button>
+
+      {/* Children — expand/collapse */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: ANIMATION.ease }}
+            style={{ overflow: "hidden" }}
+          >
+            {node.children.map((child, ci) => {
+              const isChildLast = ci === node.children.length - 1;
+              const connector = isChildLast ? "└──" : "├──";
+              const icon = child.type === "folder" ? "▸ " : "";
+
+              return (
+                <motion.div
+                  key={child.name}
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.2,
+                    delay: ci * 0.04,
+                    ease: ANIMATION.ease,
+                  }}
+                  className="flex items-baseline"
+                  style={{ padding: "3px 0" }}
+                >
+                  {/* Parent connector */}
+                  <span
+                    style={{
+                      ...TYPOGRAPHY.mono,
+                      color: COLORS.ash,
+                      marginRight: "8px",
+                      userSelect: "none",
+                      flexShrink: 0,
+                      whiteSpace: "pre",
+                    }}
+                  >
+                    {childPrefix}{connector}
+                  </span>
+
+                  {/* File/folder name */}
+                  <span
+                    style={{
+                      ...TYPOGRAPHY.mono,
+                      color: child.type === "folder" ? COLORS.concrete : COLORS.ash,
+                    }}
+                  >
+                    {icon}{child.name}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

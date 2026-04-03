@@ -22,7 +22,7 @@ export default function SelectedWork() {
   return (
     <section
       style={{
-        backgroundColor: COLORS.obsidian,
+        backgroundColor: COLORS.void,
         paddingTop: SPACING.section,
         paddingBottom: SPACING.section,
       }}
@@ -93,7 +93,7 @@ function ProjectCard({
           style={{
             flexBasis: "61.8%",
             borderRadius: "2px",
-            backgroundColor: COLORS.carbon,
+            backgroundColor: COLORS.obsidian,
             border: `1px solid ${COLORS.glassBorder}`,
           }}
         >
@@ -123,7 +123,7 @@ function ProjectCard({
               className="flex items-center justify-center"
               style={{
                 height: "clamp(280px, 38.2vh, 520px)",
-                backgroundColor: COLORS.obsidian,
+                backgroundColor: COLORS.carbon,
               }}
             >
               <span
@@ -170,7 +170,7 @@ function ProjectCard({
           <span
             style={{
               ...TYPOGRAPHY.small,
-              color: COLORS.concrete,
+              color: COLORS.snow,
               marginBottom: SPACING.inner,
             }}
           >
@@ -181,7 +181,7 @@ function ProjectCard({
           <p
             style={{
               ...TYPOGRAPHY.body,
-              color: COLORS.concrete,
+              color: COLORS.snow,
               margin: 0,
             }}
           >

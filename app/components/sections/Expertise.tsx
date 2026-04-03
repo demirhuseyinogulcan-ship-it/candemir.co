@@ -52,7 +52,7 @@ export default function Expertise() {
   return (
     <section
       style={{
-        backgroundColor: COLORS.obsidian,
+        backgroundColor: COLORS.void,
         paddingTop: SPACING.section,
         paddingBottom: SPACING.section,
       }}
@@ -140,7 +140,7 @@ function ExpertiseCard({
       className="group relative md:flex-none"
       style={{
         flexBasis,
-        backgroundColor: COLORS.carbon,
+        backgroundColor: COLORS.obsidian,
         border: `1px solid ${COLORS.glassBorder}`,
         borderRadius: "2px",
         padding: SPACING.element,
@@ -186,7 +186,7 @@ function ExpertiseCard({
       <p
         style={{
           ...TYPOGRAPHY.body,
-          color: COLORS.concrete,
+          color: COLORS.snow,
           margin: 0,
         }}
       >

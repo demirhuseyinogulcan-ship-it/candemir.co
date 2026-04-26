@@ -183,33 +183,33 @@ body {
   animation: shimmer 2s ease-in-out infinite;
 }
 
-/* Section divider */
+/* Section divider — kompakt */
 .section-divider {
   width: 100%;
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, var(--ash) 50%, transparent 100%);
   opacity: 0.15;
-  margin: 6rem 0;
+  margin: 2.5rem 0;
 }
 
 /* ========================================
-   BEHANCE-STYLE SECTION BLOCKS
-   Each section is its own full-width stage
+   SECTION BLOCKS — 8pt grid
+   Vercel / Linear yoğunluğu — kompakt ama nefes alan
    ======================================== */
 
 .section-block {
   width: 100%;
-  /* MASSIVE vertical breathing room — Behance standard */
-  padding-top: 10rem;    /* 160px */
-  padding-bottom: 10rem;
+  /* Mobile baseline: 64px */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .section-container {
-  max-width: 1440px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(24px, 5vw, 96px);
-  padding-right: clamp(24px, 5vw, 96px);
+  padding-left: clamp(20px, 4vw, 64px);
+  padding-right: clamp(20px, 4vw, 64px);
 }
 
 /* Background color utilities */
@@ -220,36 +220,28 @@ body {
 
 @media (min-width: 640px) {
   .section-block {
-    padding-top: 12rem;  /* 192px */
-    padding-bottom: 12rem;
+    padding-top: 5rem;   /* 80px */
+    padding-bottom: 5rem;
   }
-  /* section-container uses clamp() - no override needed */
 }
 
 @media (min-width: 1024px) {
   .section-block {
-    padding-top: 14rem;  /* 224px */
-    padding-bottom: 14rem;
+    padding-top: 6rem;   /* 96px */
+    padding-bottom: 6rem;
   }
-  /* section-container uses clamp() - no override needed */
 }
 
 @media (min-width: 1280px) {
   .section-block {
-    padding-top: 16rem;  /* 256px — very premium */
-    padding-bottom: 16rem;
+    padding-top: 7rem;   /* 112px — desktop max */
+    padding-bottom: 7rem;
   }
-  /* section-container uses clamp() - no override needed */
 }
 
 @media (max-width: 767px) {
   .section-divider {
-    margin: 3rem 0;
-  }
-  
-  .section-block {
-    padding-top: 6rem;   /* 96px on mobile */
-    padding-bottom: 6rem;
+    margin: 1.5rem 0;
   }
 }
 

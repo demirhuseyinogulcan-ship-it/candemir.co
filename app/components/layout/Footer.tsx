@@ -1,15 +1,20 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { COLORS, SPACING } from "@/app/lib/design-tokens";
-import { SITE_META } from "@/app/lib/constants";
+import GlitchBrand from "@/app/components/brand/GlitchBrand";
 import Container from "@/app/components/ui/Container";
 
-/* ═══════════════════════════════════════════════════════════════
-   Footer — Minimal Alt Bilgi
-   
-   Tüm sayfalarda layout seviyesinde görünür.
-   Server Component — no "use client" needed.
-   ═══════════════════════════════════════════════════════════════ */
+/*
+   Footer - Minimal Alt Bilgi
+
+   Tum sayfalarda layout seviyesinde gorunur.
+*/
 
 export default function Footer() {
+  const pathname = usePathname();
+  const locale = pathname?.split("/")[1] || "tr";
+
   return (
     <footer
       style={{
@@ -20,14 +25,7 @@ export default function Footer() {
       }}
     >
       <Container className="text-center">
-        <p
-          style={{
-            fontSize: "13px",
-            color: COLORS.concrete,
-          }}
-        >
-          {SITE_META.name}
-        </p>
+        <GlitchBrand href={`/${locale}`} />
       </Container>
     </footer>
   );

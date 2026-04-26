@@ -162,33 +162,21 @@ export default function CinematicProjectCard({
           </motion.span>
         </div>
 
-        {/* ── Bottom bar text ── */}
+        {/* ── Bottom bar text — sadece yıl (stack etiketleri sade tutmak için kaldırıldı) ── */}
         <div
-          className="absolute bottom-0 left-0 right-0 z-[5] flex items-center justify-between pointer-events-none"
+          className="absolute bottom-0 left-0 right-0 z-[5] flex items-center justify-end pointer-events-none"
           style={{ height: `${BAR_HEIGHT}%`, padding: "0 clamp(12px, 3vw, 24px)" }}
         >
           <motion.span
             className="font-mono"
             style={{
               fontSize: "clamp(8px, 1.1vw, 10px)",
-              color: COLORS.lamp.dim,
+              color: COLORS.concrete,
               textShadow: "0 1px 6px rgba(0,0,0,0.9)",
               letterSpacing: "0.08em",
             }}
-            animate={{ opacity: barsActive ? 0.9 : 0 }}
-            transition={{ duration: 0.6, delay: barsActive ? 1.0 : 0 }}
-          >
-            {project.stack.join(" · ")}
-          </motion.span>
-          <motion.span
-            className="font-mono"
-            style={{
-              fontSize: "clamp(7px, 1vw, 9px)",
-              color: COLORS.concrete,
-              textShadow: "0 1px 6px rgba(0,0,0,0.9)",
-            }}
             animate={{ opacity: barsActive ? 0.7 : 0 }}
-            transition={{ duration: 0.6, delay: barsActive ? 1.1 : 0 }}
+            transition={{ duration: 0.6, delay: barsActive ? 1.0 : 0 }}
           >
             {project.year}
           </motion.span>

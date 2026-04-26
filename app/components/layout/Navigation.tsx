@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 import { COLORS, ANIMATION } from "@/app/lib/design-tokens";
 
 /* ═══════════════════════════════════════════════════════════════
-   Navigation — Sağdan Açılan Altın Oran Paneli
+   Navigation — Soldan Açılan Altın Oran Paneli
    
    Panel genişliği = 100vw / φ ≈ 38.2vw (minor golden segment)
    Mobilde: 78vw (φ/(1+φ) ≈ 61.8vw yaklaşık)
@@ -28,14 +29,31 @@ interface NavigationProps {
 }
 
 export default function Navigation({ isOpen, onClose, items }: NavigationProps) {
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop — click to close, transparent */}
+          {/* Backdrop — click to close */}
           <motion.div
             className="fixed inset-0 z-[84]"
-            style={{ backgroundColor: "transparent" }}
+            style={{
+              backgroundColor: "rgba(5, 5, 5, 0.35)",
+              backdropFilter: "blur(2px)",
+              WebkitBackdropFilter: "blur(2px)",
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -45,17 +63,16 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
 
           {/* Panel */}
           <motion.aside
-            className="fixed top-0 right-0 bottom-0 z-[86] flex flex-col"
+            className="fixed top-0 left-0 bottom-0 z-[86] flex flex-col"
             style={{
-              width: `clamp(${PANEL_MIN_WIDTH}, ${PANEL_WIDTH_DESKTOP}, ${PANEL_MAX_WIDTH})`,
+              width: `min(${PANEL_WIDTH_MOBILE}, clamp(${PANEL_MIN_WIDTH}, ${PANEL_WIDTH_DESKTOP}, ${PANEL_MAX_WIDTH}))`,
               backgroundColor: COLORS.void,
-              borderLeft: `1px solid ${COLORS.glassBorder}`,
+              borderRight: `1px solid ${COLORS.glassBorder}`,
             }}
-            initial={{ x: "100%" }}
+            initial={{ x: "-100%" }}
             animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            exit={{ x: "-100%" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            onMouseLeave={onClose}
           >
             <div
               className="flex-1 flex flex-col justify-center overflow-y-auto"
@@ -75,9 +92,9 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
                       borderBottom: `1px solid ${COLORS.glassBorder}`,
                       padding: "clamp(14px, 2.2vh, 28px) 0",
                     }}
-                    initial={{ opacity: 0, x: 40 }}
+                    initial={{ opacity: 0, x: -40 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
+                    exit={{ opacity: 0, x: -20 }}
                     transition={{
                       duration: 0.5,
                       delay: 0.12 + i * 0.06,
@@ -107,6 +124,16 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
                       >
                         {item.label}
                       </span>
+                      <p
+                        style={{
+                          margin: "6px 0 0",
+                          color: COLORS.ash,
+                          fontSize: "clamp(0.78rem, 1vw, 0.9rem)",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {item.description}
+                      </p>
                     </div>
                   </motion.a>
                 ))}
@@ -115,9 +142,9 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
 
             </div>
 
-            {/* Left edge golden ratio line */}
+            {/* Right edge golden ratio line */}
             <motion.div
-              className="absolute left-0 top-0 bottom-0 w-px"
+              className="absolute right-0 top-0 bottom-0 w-px"
               style={{
                 background: `linear-gradient(to bottom, transparent 0%, ${COLORS.ash}40 20%, ${COLORS.ash}40 80%, transparent 100%)`,
               }}

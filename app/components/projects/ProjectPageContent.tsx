@@ -8,6 +8,7 @@ import { COLORS, SPACING, ANIMATION } from "@/app/lib/design-tokens";
 import { PROJECTS } from "@/app/lib/constants";
 import Container from "@/app/components/ui/Container";
 import DeviceMockup from "@/app/components/projects/DeviceMockup";
+import MobileDeviceMockup from "@/app/components/projects/MobileDeviceMockup";
 
 /* ═══════════════════════════════════════════════════════════════
    ProjectPageContent — Sinematik Case Study
@@ -40,6 +41,7 @@ interface ProjectData {
   readonly video: string | null;
   readonly mockupScreenshot?: string | null;
   readonly mockupVideos?: readonly string[];
+  readonly mobileMockupVideos?: readonly string[];
   readonly url: string | null;
   readonly metrics: {
     readonly languages: number;
@@ -236,31 +238,47 @@ export default function ProjectPageContent({
               {project.title}
             </h1>
 
-            {project.story && (
-              <div
-                style={{
-                  marginTop: "clamp(8px, 1.6vw, 16px)",
-                  maxWidth: "64ch",
-                }}
-              >
-                {project.story.split("\n\n").map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    style={{
-                      fontSize: "clamp(0.98rem, 1.3vw, 1.1rem)",
-                      fontWeight: 300,
-                      lineHeight: 1.9,
-                      color: COLORS.snow,
-                      margin: 0,
-                      marginBottom: "clamp(18px, 2.2vw, 24px)",
-                      opacity: 0.8,
-                    }}
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            )}
+            {/* ── Story (sol) + tek Mobile mockup (sağ, sticky) ── */}
+            <div
+              className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] xl:grid-cols-[minmax(0,1fr)_360px]"
+              style={{ gap: "clamp(32px, 4vw, 64px)", alignItems: "start" }}
+            >
+              {/* SOL: Story */}
+              {project.story && (
+                <div style={{ maxWidth: "64ch" }}>
+                  {project.story.split("\n\n").map((paragraph) => (
+                    <p
+                      key={paragraph}
+                      style={{
+                        fontSize: "clamp(0.98rem, 1.3vw, 1.1rem)",
+                        fontWeight: 300,
+                        lineHeight: 1.9,
+                        color: COLORS.snow,
+                        margin: 0,
+                        marginBottom: "clamp(18px, 2.2vw, 24px)",
+                        opacity: 0.8,
+                      }}
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              )}
+
+              {/* SAĞ: Tek mobile mockup — sticky.
+                  2+ video varsa mockup içinde sırayla oynar (A/B crossfade). */}
+              {project.mobileMockupVideos && project.mobileMockupVideos.length > 0 && (
+                <aside
+                  className="justify-self-center md:sticky md:self-start"
+                  style={{ top: "100px", width: "100%", maxWidth: "360px" }}
+                >
+                  <MobileDeviceMockup
+                    videos={project.mobileMockupVideos}
+                    alt={`${project.title} — mobil önizleme`}
+                  />
+                </aside>
+              )}
+            </div>
           </motion.div>
         </Container>
       </section>

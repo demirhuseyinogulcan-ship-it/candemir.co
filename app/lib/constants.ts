@@ -32,6 +32,11 @@ export const NAV_ITEMS = [
 // ============================================
 export const SOCIAL_LINKS = [
   {
+    label: "WhatsApp",
+    href: "https://wa.me/905468897226?text=Merhaba%2C%20candemir.co%27dan%20ula%C5%9F%C4%B1yorum.%20Bilgi%20almak%20istiyorum.",
+    svg: '<path d="M12.04 0C5.407 0 .03 5.376.03 12.01c0 2.118.553 4.187 1.604 6.01L0 24l6.148-1.61A12.01 12.01 0 0 0 12.04 24h.005c6.632 0 12.01-5.376 12.01-12.008C24.055 5.376 18.678 0 12.04 0Zm.005 21.96h-.004a9.97 9.97 0 0 1-5.083-1.392l-.365-.217-3.65.957.974-3.558-.237-.365a9.94 9.94 0 0 1-1.523-5.375c0-5.486 4.464-9.95 9.892-9.95a9.89 9.89 0 0 1 7.034 2.914 9.89 9.89 0 0 1 2.91 7.036c-.004 5.486-4.468 9.95-9.948 9.95Zm5.455-7.456c-.299-.15-1.767-.872-2.04-.971-.273-.1-.472-.15-.67.15-.199.298-.77.97-.944 1.168-.174.199-.348.224-.646.075-.299-.15-1.263-.465-2.405-1.482-.889-.792-1.489-1.771-1.663-2.07-.174-.298-.019-.46.131-.609.134-.133.299-.348.448-.522.149-.174.199-.298.298-.497.1-.199.05-.373-.025-.522-.075-.15-.67-1.617-.919-2.214-.242-.58-.487-.501-.67-.51l-.571-.01c-.199 0-.522.075-.795.373-.273.298-1.043 1.02-1.043 2.488 0 1.468 1.068 2.886 1.217 3.085.15.199 2.103 3.21 5.093 4.5.712.307 1.267.49 1.7.627.714.227 1.365.195 1.88.118.573-.085 1.767-.722 2.016-1.418.249-.696.249-1.293.174-1.418-.075-.124-.273-.199-.572-.348Z" />',
+  },
+  {
     label: "GitHub",
     href: "https://github.com/demirhuseyinogulcan-ship-it",
     svg: '<path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />',
@@ -219,29 +224,34 @@ export const PROJECTS = [
       "Satış destekten yola çıkıp arama verisini okuyarak bıçak tarafı için ayrı bir dijital kimlik kurdum; çift domain, 5 dil, 400+ ürün ve özgün çekimlerle markayı görünür hale getirdim.",
     story:
       "Bu şirkete satış destek olarak başladım, kısa sürede bana Anadolu bölgesi verildi ve bölge satış sorumlusu oldum. Ambalaj, plastik, kağıt, tekstil, gıda, otomotiv gibi sektörlerdeki makinelerin kesici parçalarını yani endüstriyel bıçak ve sanayi jiletlerini satıyordum.\n\nSahada fark ettim ki müşteriye \"bu ürünler İngiltere'den geliyor, Sheffield çeliği, makine duruş sürelerinizi kısaltır\" dediğimde sözlü anlatım yetmiyordu çünkü elimde bunu görsel olarak destekleyecek bir materyal yoktu. Sektörün büyük firmaları numune çalışmalarıyla ürünleri test edip bizden alıyordu ama dışarıdan bakan ya da ihtiyacı olup ürün arayan biri bunu bilemezdi.\n\nGoogle Search Console verilerine baktığımda müşterilerin bizi \"alya bıçak\" olarak aradığını gördüm, fuarlarda da öyle tanınıyorduk ama böyle bir marka, böyle bir domain ya da böyle bir site yoktu. Bıçak tarafının kendi dijital kimliğe ihtiyacı vardı. Bir şey daha fark ettim, firma kendini \"endüstriyel kesici\" olarak konumlandırıyordu ama müşteriler Google'da \"endüstriyel bıçak\" diye arıyordu. Arama verisinden gelen bu farkı içerik diline yansıttığımda tıklamalar arttı.\n\nİlk adımda kamera aldım, Fujifilm X-H2S ile çeliğin dokusunu, jiletlerin keskinliğini ve endüstriyel ölçeği gerçek haliyle çektim. Bu görseller mail kampanyalarında, kataloglarda, fuar panellerinde ve tüm satış ekibinin elinde kullanıldı, artık elimde somut bir şey vardı.\n\nİkinci adımda Next.js ile sıfırdan bir site kurdum. Türkiye pazarı için alyabicak.com ve global pazar için alyablade.com olmak üzere iki ayrı domain aldım. Türkçe, İngilizce, Arapça, Rusça ve Fransızca olmak üzere 5 dilde çeviri altyapısı kurdum, 400'den fazla ürünü katalogladım ve Google'ın bu ürünleri zengin sonuç olarak gösterebilmesi için her birine özel SEO ayarları ile Schema.org işaretlemeleri yazdım. Sadece bugünün arama motorları için değil yapay zeka görünürlük standartlarını da entegre ettim ve e-ticaret eklenebilecek şekilde modüler tuttum.\n\nBıçak markası kendi adıyla kendi sitesiyle ve kendi diliyle ayağa kalktı. Müşteri artık Google'a \"alya bıçak\" yazıp profesyonel bir platformla karşılaşıyor, site 7/24 çalışan uyumayan bir satış altyapısı oldu. Sadece Türkiye'de değil Alya Blade ile global pazarda da erişilebilir oldu.",
-    image: "/images/projects/alya/hero.png",
+    image: "/images/projects/alya/alyablade-kapak.png",
     gallery: [],
     video: null,
     mockupScreenshot: "/images/projects/alya/screenshot.png",
     mockupVideos: ["/videos/alyabicak.mp4", "/videos/alyabicak-2.mp4"],
+    mobileMockupVideos: ["/videos/alya-mobile-1.mp4", "/videos/alya-mobile-2.mp4"],
     url: "https://alyabicak.com",
     metrics: { languages: 5, products: 400, schemas: 8 },
   },
   {
-    id: "airehber",
+    id: "feedeep",
     number: "02",
-    title: "AI Rehber",
-    category: "Kişisel Platform · Next.js",
+    title: "Feedeep",
+    category: "AI Platform · Veri Analizi",
     year: "2025",
-    stack: ["Next.js", "Otomasyon", "RSS", "AI"],
+    stack: ["Next.js", "AI", "Veri Analizi", "Otomasyon"],
     description:
-      "Günlük haber otomasyonu, sektör analizleri, AI araştırmaları. Mobil öncelikli kompakt yapı — işe gidip gelirken kullanılabilecek kadar hızlı.",
-    image: "/images/projects/airehber/screenshot.png",
+      "Yapay zeka destekli araştırma ve veri analizi platformu. Dağınık bilgi akışını sektörel sinyale çeviren, derin okuma yapan kompakt sistem.",
+    // TODO: gerçek hikaye geldiğinde değiştir — şu an placeholder.
+    story:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feedeep, dağınık bilgi akışını sektörel sinyale çeviren bir araştırma platformu olarak doğdu. İlk problem netti: günde yüzlerce yeni kaynak çıkıyor, ama sektörü gerçekten ileri taşıyacak olanı bulmak için saatler harcanıyor.\n\nVivamus lacinia odio vitae vestibulum. Yapay zeka, ham veriden anlam çıkarmak için bir filtre değil, bir okuma katmanı olarak konumlandı. Kullanıcı kendi ilgi alanını tanımlıyor, sistem o alanın diliyle konuşan kaynakları derinlemesine işliyor.\n\nDuis aute irure dolor in reprehenderit. Mobil öncelikli tasarım kararları işin merkezinde durdu — okuyucu masa başında değil, yolda. Bu yüzden kart tabanlı bir okuma deneyimi, sessiz bildirimler ve offline'a hazır içerik tasarlandı.\n\nExcepteur sint occaecat cupidatat non proident. Bugünkü sürüm bir başlangıç — derin okuma katmanı genişliyor, yeni veri kaynakları ekleniyor, yapay zeka modelleri her hafta inceltiliyor.",
+    image: "/images/projects/feedeep/feedeep-og-image.png",
     gallery: [],
     video: null,
     mockupScreenshot: null,
-    mockupVideos: [],
-    url: "https://airehber.com",
+    mockupVideos: ["/videos/feedeep-web.mp4"],
+    mobileMockupVideos: ["/videos/feedeep-mobile-1.mp4", "/videos/feedeep-mobile-2.mp4"],
+    url: "https://feedeep.com",
     metrics: null,
   },
   {
@@ -253,12 +263,15 @@ export const PROJECTS = [
     stack: ["Next.js", "SEO", "Blog", "İçerik Stratejisi"],
     description:
       "Tango eğitmeni için uçtan uca inşa ettiğim platform. Ders sayfaları, blog, lokasyon bazlı SEO, lead toplama — Next.js ile.",
+    // TODO: gerçek hikaye geldiğinde değiştir — şu an placeholder.
+    story:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gamze Tango projesi, deneyimli bir tango eğitmeninin dijital varlığını sıfırdan kurma ihtiyacıyla başladı. Mevcut sosyal medya hesapları öğrenci çekmek için yeterli değildi; arama motorlarında \"İstanbul tango dersi\" yazan biri için doğru cevap olmak gerekiyordu.\n\nVivamus lacinia odio vitae vestibulum. İlk olarak lokasyon bazlı SEO stratejisi kuruldu — Beşiktaş, Kadıköy ve çevre semtler için ayrı landing sayfaları, her birinde okul detayları, Google harita entegrasyonu ve yerel arama varyasyonları.\n\nDuis aute irure dolor in reprehenderit in voluptate. Blog katmanı tango üzerine sürekli içerik üretmek için kuruldu: temel adımlar, dans terimleri, müzik önerileri. Bu içerikler organik trafiğin omurgası oldu.\n\nExcepteur sint occaecat cupidatat non proident. Lead toplama formu bilinçli olarak sade tutuldu: ad, telefon, deneyim seviyesi. Eğitmen müsait olduğu zamanlarda doğrudan WhatsApp'tan dönüş yapabiliyor — site bir randevu botu değil, ilk teması başlatan bir kanal.",
     image: "/images/projects/gamzetango/DSCF4605.JPG",
-    imagePosition: "top left",
     gallery: [],
     video: null,
     mockupScreenshot: null,
-    mockupVideos: [],
+    mockupVideos: ["/videos/gamzetango-web.mp4"],
+    mobileMockupVideos: ["/videos/gamzetango-mobile.mp4"],
     url: "https://gamzetango.com",
     metrics: null,
   },
@@ -271,6 +284,9 @@ export const PROJECTS = [
     stack: ["Next.js", "Framer Motion", "Tasarım Sistemi"],
     description:
       "Bu site. Altın oran mimarisi, sinematik geçişler, φ-cascade spacing, sıfırdan tasarım sistemi — zero-dependency.",
+    // TODO: gerçek hikaye geldiğinde değiştir — şu an placeholder.
+    story:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. candemir.co projesi, kişisel portfolyo ile tasarım sistemi arasında duran deneysel bir dijital alan olarak başladı. Amaç yalnızca yapılan işleri listelemek değil, düşünme biçimini ve üretim ritmini de görünür hale getirmekti.\n\nVivamus lacinia odio vitae vestibulum. İlk karar, klasik ajans sitesi kalıplarından uzak durup daha sinematik ve dosya sistemi hissi veren bir yapı kurmaktı. Bölümler, süreç ve seçili işler aynı dilin parçası gibi davranacak şekilde tasarlandı.\n\nDuis aute irure dolor in reprehenderit. Teknik tarafta Next.js, Framer Motion ve token tabanlı tasarım sistemi kullanıldı. Ama bu yapı yalnızca görsel bir vitrin değil; yeni projeler, servis sayfaları ve içerik katmanı eklenebilecek modüler bir temel olarak kurgulandı.\n\nExcepteur sint occaecat cupidatat non proident. Bu alanın hikayesi henüz tamamlanmadı. Detaylar, gerçek kullanım verisi ve yeni işler geldikçe yeniden yazılacak.",
     image: "/images/projects/candemir.JPG",
     gallery: [],
     video: null,
@@ -288,6 +304,9 @@ export const PROJECTS = [
     stack: ["Next.js", "Konsept Tasar\u0131m", "\u0130\u015f Plan\u0131"],
     description:
       "T\u00fcrkiye'nin ilk modüler kapsül otel konsepti. Teknik çizimlerden AI renderlarına, iş planından web sitesine — henüz gerçekleşmemiş ama hazır.",
+    // TODO: gerçek hikaye geldiğinde değiştir — şu an placeholder.
+    story:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kapsül Otel Konsept projesi, şehir içi konaklamaya daha kompakt, erişilebilir ve modüler bir alternatif üretme fikriyle başladı. Proje henüz gerçekleşmemiş olsa da, fikir aşamasında bile mekansal deneyim, operasyon ve dijital sunum birlikte düşünüldü.\n\nVivamus lacinia odio vitae vestibulum. İlk aşamada kapsül birimlerinin ölçekleri, kullanıcı akışı ve ortak alan senaryoları üzerine çalışıldı. Amaç yalnızca küçük odalar tasarlamak değil, gecelik konaklamayı daha yalın ve sistemli bir hizmet modeline çevirmekti.\n\nDuis aute irure dolor in reprehenderit. Görsel tarafta konsept renderlar, teknik eskizler ve marka hissi birlikte ele alındı. Web sitesi ise yatırımcıya, kullanıcıya ve iş ortaklarına aynı anda fikri anlatabilecek bir sunum zemini olarak kurgulandı.\n\nExcepteur sint occaecat cupidatat non proident. Bu metin şimdilik yer tutucu. Gerçek fizibilite, lokasyon ve operasyon detayları netleştikçe proje hikayesi burada tamamlanacak.",
     image: "/images/projects/kapsulotel/hero.png",
     gallery: [],
     video: null,
@@ -337,3 +356,4 @@ export const SITE_META = {
   locale: "tr_TR",
   email: "demirhuseyinogulcan@gmail.com",
 } as const;
+

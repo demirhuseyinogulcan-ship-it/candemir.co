@@ -18,7 +18,11 @@ import { BRAND, GLITCH_PROCESS_WORDS } from "@/app/lib/constants";
 
 const GLITCH_CHARS = "!@#$%^&*<>{}[]|/\\~";
 
-export default function GlitchBrand() {
+interface GlitchBrandProps {
+  href?: string;
+}
+
+export default function GlitchBrand({ href = "/" }: GlitchBrandProps) {
   const [text, setText] = useState(BRAND);
   const [isHovered, setIsHovered] = useState(false);
   const [chaosLevel, setChaosLevel] = useState(0);
@@ -119,7 +123,7 @@ export default function GlitchBrand() {
 
   return (
     <a
-      href="/"
+      href={href}
       className="tracking-[0.3em] lowercase cursor-pointer select-none relative inline-block"
       style={{
         fontSize: "clamp(10px, 1.2vw, 13px)",

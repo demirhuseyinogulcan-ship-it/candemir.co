@@ -31,7 +31,7 @@ export default function SelectedWork() {
           title="Seçili İşler"
         />
 
-        <div className="flex flex-col" style={{ gap: SPACING.section }}>
+        <div className="flex flex-col" style={{ gap: SPACING.block }}>
           {PROJECTS.map((project, i) => (
             <CinematicProjectCard
               key={project.id}

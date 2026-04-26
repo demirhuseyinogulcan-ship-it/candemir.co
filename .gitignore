@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# original (uncompressed) videos — kept locally as safety backups
+public/videos/*.original.mp4
+
+# loose source folder (assets staged here before being moved into public/)
+/images/

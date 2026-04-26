@@ -7,43 +7,60 @@
  */
 
 // ============================================
-// SPACING SYSTEM — Vertical Rhythm
+// SPACING SYSTEM — 8pt Grid (Vercel/Linear style)
+// Yoğun ama nefes alan kompakt sistem.
+// Tüm değerler 8'in katı (mobilde min, desktopta max).
+// ============================================
+//   step  px    use
+//   ────  ───   ──────────────────────────────
+//   1     8     atom (icon-text gap, micro)
+//   2     16    inner (paragraph gap)
+//   3     24    heading→body
+//   4     32    element (related items)
+//   5     48    block (subsections)
+//   6     64    section (between sections)
+//   7     96    section-lg (max desktop)
+//   8     128   hero/landing only
 // ============================================
 export const SPACING = {
-  /** Hero sonrası mega boşluk */
-  hero: "clamp(120px, 15vw, 200px)",
-  
-  /** Section'lar arası dikey boşluk */
-  section: "clamp(160px, 20vw, 280px)",
-  
-  /** Alt bölümler arası boşluk */
-  block: "clamp(80px, 10vw, 140px)",
-  
+  /** Hero sonrası ana boşluk — kompakt başlangıç */
+  hero: "clamp(56px, 6vw, 96px)",
+
+  /** Section'lar arası dikey ritim — Vercel/Linear yoğunluğu */
+  section: "clamp(64px, 7vw, 112px)",
+
+  /** Alt bölümler arası — section'dan küçük */
+  block: "clamp(40px, 5vw, 72px)",
+
   /** İlişkili elementler arası */
-  element: "clamp(48px, 6vw, 80px)",
-  
+  element: "clamp(24px, 3vw, 40px)",
+
   /** Başlık ile içerik arası */
-  heading: "clamp(24px, 3vw, 40px)",
-  
-  /** Küçük iç boşluklar */
-  inner: "clamp(16px, 2vw, 24px)",
+  heading: "clamp(16px, 2vw, 24px)",
+
+  /** Küçük iç boşluklar (paragraf, gap-y) */
+  inner: "clamp(12px, 1.25vw, 16px)",
+
+  /** Micro — icon/label gaps */
+  atom: "8px",
 } as const;
 
 // ============================================
 // CONTAINER — Centering & Max-Width
+// Linear/Vercel: 1200-1280px standardı
 // ============================================
 export const CONTAINER = {
   /** Maksimum içerik genişliği */
-  maxWidth: "1400px",
-  
+  maxWidth: "1280px",
+
   /** Dar içerik için (metin blokları) */
-  maxWidthNarrow: "720px",
-  
+  maxWidthNarrow: "680px",
+
   /** Geniş içerik için (grid, gallery) */
-  maxWidthWide: "1600px",
-  
+  maxWidthWide: "1440px",
+
   /** Responsive horizontal padding */
-  padding: "clamp(24px, 5vw, 96px)",
+  padding: "clamp(20px, 4vw, 64px)",
 } as const;
 
 // ============================================

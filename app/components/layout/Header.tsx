@@ -1,43 +1,39 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { motion } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { COLORS, ANIMATION } from "@/app/lib/design-tokens";
 import { NAV_ITEMS } from "@/app/lib/constants";
 import GlitchBrand from "@/app/components/brand/GlitchBrand";
 import Navigation from "./Navigation";
 
-/* ═══════════════════════════════════════════════════════════════
-   Header — Sabit Üst Bar (Layout Seviyesi)
-   
-   Tüm sayfalarda görünür.
-   Sol: GlitchBrand (candemir.co)
-   Sağ: Menu butonu + Hamburger → X dönüşümü
-   Scroll sonrası: frosted glass arka plan
-   Arc-style: Fare sağ kenara gelince menü otomatik açılır
-   ═══════════════════════════════════════════════════════════════ */
+/*
+   Header - Sabit Ust Bar
 
-const EDGE_ZONE = 28; // px — sağ kenar tetikleme alanı
-const EDGE_DELAY = 120; // ms — açılma gecikmesi (yanlışlıkla tetiklemeyi önler)
-const SCROLLBAR_DEAD_ZONE = 10; // px — scrollbar'a dokunulduğunda menü açılmasın
+   Tum sayfalarda gorunur.
+   Sol: Menu butonu + GlitchBrand (candemir.co)
+*/
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const edgeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
 
-  // Locale prefix from current path (e.g., "/tr" or "/en")
   const locale = pathname.split("/")[1] || "tr";
+  const nextLocale = locale === "en" ? "tr" : "en";
+  const localizedPath = pathname.startsWith(`/${locale}`)
+    ? pathname.replace(`/${locale}`, `/${nextLocale}`)
+    : `/${nextLocale}`;
 
   const localizedItems = useMemo(
     () =>
       NAV_ITEMS.map((item) => ({
         ...item,
         href: item.href.startsWith("/#")
-          ? `/${locale}${item.href.slice(1)}` // /#process → /tr#process
-          : `/${locale}${item.href}`,         // /about → /tr/about
+          ? `/${locale}${item.href.slice(1)}`
+          : `/${locale}${item.href}`,
       })),
     [locale]
   );
@@ -47,45 +43,6 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  // Scroll kilitleme yok — scrollbar her zaman yerinde = 0 layout shift
-
-  // Arc-style: sağ kenara fare gelince menü açılır
-  const clearEdgeTimer = useCallback(() => {
-    if (edgeTimerRef.current) {
-      clearTimeout(edgeTimerRef.current);
-      edgeTimerRef.current = null;
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const distFromRight = window.innerWidth - e.clientX;
-
-      // Scrollbar dead zone: scrollbar üzerindeyken menüyü tetikleme
-      if (distFromRight <= SCROLLBAR_DEAD_ZONE) {
-        clearEdgeTimer();
-        return;
-      }
-
-      if (distFromRight <= EDGE_ZONE + SCROLLBAR_DEAD_ZONE && !isOpen) {
-        if (!edgeTimerRef.current) {
-          edgeTimerRef.current = setTimeout(() => {
-            setIsOpen(true);
-            edgeTimerRef.current = null;
-          }, EDGE_DELAY);
-        }
-      } else if (distFromRight > EDGE_ZONE + SCROLLBAR_DEAD_ZONE && !isOpen) {
-        clearEdgeTimer();
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      clearEdgeTimer();
-    };
-  }, [isOpen, clearEdgeTimer]);
 
   return (
     <>
@@ -105,51 +62,65 @@ export default function Header() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.3, ease: ANIMATION.ease }}
       >
-        <GlitchBrand />
-
-        <button
-          onClick={() => setIsOpen((prev) => !prev)}
-          className="group cursor-pointer flex items-center gap-4 bg-transparent border-none outline-none"
-          style={{
-            padding: "12px 16px",
-            margin: "-12px -16px",
-          }}
-          aria-label={isOpen ? "Menüyü kapat" : "Menüyü aç"}
-        >
-          <span
-            className="tracking-[0.3em] uppercase transition-colors duration-400 group-hover:!text-[#F0F0F0]"
-            style={{
-              fontSize: "10px",
-              color: isOpen ? COLORS.snow : COLORS.ash,
-              transition: "color 0.4s",
+        <div className="flex items-center" style={{ gap: "clamp(14px, 2vw, 24px)" }}>
+          <button
+            onPointerEnter={() => {
+              if (!isOpen) setIsOpen(true);
             }}
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="group cursor-pointer bg-transparent border-none outline-none"
+            style={{
+              width: "40px",
+              height: "40px",
+              margin: "-10px 0 -10px -10px",
+              padding: "14px 10px",
+            }}
+            aria-label={isOpen ? "Menüyü kapat" : "Menüyü aç"}
+            aria-expanded={isOpen}
           >
-            {isOpen ? "Kapat" : "Menu"}
-          </span>
+            <div className="relative" style={{ width: 20, height: 11 }}>
+              <motion.span
+                className="absolute left-0 top-0 block w-full group-hover:!bg-[#F0F0F0]"
+                style={{ height: "1px", transition: "background-color 0.4s" }}
+                animate={{
+                  y: isOpen ? 5 : 0,
+                  rotate: isOpen ? 45 : 0,
+                  backgroundColor: isOpen ? COLORS.snow : COLORS.ash,
+                }}
+                transition={{ duration: 0.4, ease: ANIMATION.ease }}
+              />
+              <motion.span
+                className="absolute left-0 bottom-0 block w-full group-hover:!bg-[#F0F0F0]"
+                style={{ height: "1px", transition: "background-color 0.4s" }}
+                animate={{
+                  y: isOpen ? -5 : 0,
+                  rotate: isOpen ? -45 : 0,
+                  backgroundColor: isOpen ? COLORS.snow : COLORS.ash,
+                }}
+                transition={{ duration: 0.4, ease: ANIMATION.ease }}
+              />
+            </div>
+          </button>
 
-          <div className="relative transition-colors duration-400" style={{ width: 20, height: 11 }}>
-            <motion.span
-              className="absolute left-0 top-0 block w-full group-hover:!bg-[#F0F0F0]"
-              style={{ height: "1px", transition: "background-color 0.4s" }}
-              animate={{
-                y: isOpen ? 5 : 0,
-                rotate: isOpen ? 45 : 0,
-                backgroundColor: isOpen ? COLORS.snow : COLORS.ash,
-              }}
-              transition={{ duration: 0.4, ease: ANIMATION.ease }}
-            />
-            <motion.span
-              className="absolute left-0 bottom-0 block w-full group-hover:!bg-[#F0F0F0]"
-              style={{ height: "1px", transition: "background-color 0.4s" }}
-              animate={{
-                y: isOpen ? -5 : 0,
-                rotate: isOpen ? -45 : 0,
-                backgroundColor: isOpen ? COLORS.snow : COLORS.ash,
-              }}
-              transition={{ duration: 0.4, ease: ANIMATION.ease }}
-            />
-          </div>
-        </button>
+          <GlitchBrand />
+        </div>
+
+        <div className="flex items-center" style={{ gap: "clamp(10px, 1.4vw, 18px)" }}>
+          <Link
+            href={localizedPath}
+            className="font-mono uppercase"
+            style={{
+              color: COLORS.concrete,
+              fontSize: "clamp(10px, 1.2vw, 13px)",
+              letterSpacing: "0.18em",
+              textDecoration: "none",
+              transition: "color 0.3s",
+            }}
+            aria-label={nextLocale === "en" ? "Switch to English" : "Türkçeye geç"}
+          >
+            {locale.toUpperCase()} / {nextLocale.toUpperCase()}
+          </Link>
+        </div>
       </motion.nav>
 
       <Navigation

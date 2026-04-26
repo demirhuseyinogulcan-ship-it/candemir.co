@@ -32,10 +32,10 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop — click to close, transparent */}
           <motion.div
             className="fixed inset-0 z-[84]"
-            style={{ backgroundColor: "rgba(5, 5, 5, 0.6)" }}
+            style={{ backgroundColor: "transparent" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -55,6 +55,7 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+            onMouseLeave={onClose}
           >
             <div
               className="flex-1 flex flex-col justify-center overflow-y-auto"
@@ -93,14 +94,7 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
                       }}
                     />
 
-                    <div className="flex flex-col gap-1" style={{ paddingLeft: "12px" }}>
-                      <span
-                        className="tracking-[0.5em] font-mono transition-colors duration-500 group-hover:!text-[#777777]"
-                        style={{ fontSize: "10px", color: COLORS.ash }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-
+                    <div style={{ paddingLeft: "12px" }}>
                       <span
                         className="inline-block transition-all duration-500 group-hover:translate-x-1 group-hover:!text-[#F0F0F0]"
                         style={{
@@ -113,43 +107,12 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
                       >
                         {item.label}
                       </span>
-
-                      <span
-                        className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{ fontSize: "12px", color: COLORS.ash }}
-                      >
-                        {item.description}
-                      </span>
                     </div>
                   </motion.a>
                 ))}
               </div>
 
-              {/* Footer info */}
-              <motion.div
-                className="flex flex-col gap-3"
-                style={{
-                  paddingTop: "clamp(32px, 4vh, 56px)",
-                  borderTop: `1px solid ${COLORS.glassBorder}`,
-                  marginTop: "clamp(24px, 3vh, 40px)",
-                }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.55 }}
-              >
-                <p
-                  className="tracking-[0.3em]"
-                  style={{ fontSize: "11px", color: COLORS.ash }}
-                >
-                  Istanbul, Turkey
-                </p>
-                <p
-                  className="tracking-[0.2em]"
-                  style={{ fontSize: "11px", color: COLORS.ash }}
-                >
-                  2026
-                </p>
-              </motion.div>
+
             </div>
 
             {/* Left edge golden ratio line */}

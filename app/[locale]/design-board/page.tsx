@@ -119,16 +119,7 @@ export default function DesignBoardPage() {
             className="tracking-[0.5em] uppercase"
             style={{ fontSize: "10px", color: COLORS.ash }}
           >
-            tasarım tahtası — referans sayfası
-          </p>
-          <p
-            style={{
-              fontSize: "13px",
-              color: COLORS.concrete,
-              marginTop: SPACING.heading,
-            }}
-          >
-            Can Demir — 2026
+            Tasarım tahtası — dahili kullanım
           </p>
         </Container>
       </footer>

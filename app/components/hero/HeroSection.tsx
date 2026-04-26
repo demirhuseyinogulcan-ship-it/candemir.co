@@ -74,18 +74,18 @@ export default function HeroSection() {
           fill
           priority
           className="object-cover"
-          style={{ opacity: 0.15 }}
+          style={{ opacity: 0.4 }}
           sizes="100vw"
+          quality={75}
         />
       </div>
 
-      {/* Gradient overlay — vignette */}
+      {/* Gradient overlay — bottom only for text readability */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: [
-            "radial-gradient(ellipse 70% 60% at 35% 60%, rgba(5,5,5,0.2) 0%, rgba(5,5,5,0.92) 100%)",
-            "linear-gradient(to bottom, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0) 40%, rgba(5,5,5,0) 65%, rgba(5,5,5,0.9) 100%)",
+            "linear-gradient(to bottom, rgba(5,5,5,0) 0%, rgba(5,5,5,0) 50%, rgba(5,5,5,0.7) 80%, rgba(5,5,5,0.95) 100%)",
           ].join(", "),
         }}
       />

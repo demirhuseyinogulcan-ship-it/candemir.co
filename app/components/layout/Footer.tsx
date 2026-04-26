@@ -21,19 +21,12 @@ export default function Footer() {
     >
       <Container className="text-center">
         <p
-          className="tracking-[0.3em]"
-          style={{ fontSize: "11px", color: COLORS.ash }}
-        >
-          Istanbul, Turkey
-        </p>
-        <p
           style={{
             fontSize: "13px",
             color: COLORS.concrete,
-            marginTop: SPACING.heading,
           }}
         >
-          {SITE_META.name} — {new Date().getFullYear()}
+          {SITE_META.name}
         </p>
       </Container>
     </footer>

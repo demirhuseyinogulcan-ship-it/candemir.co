@@ -59,6 +59,30 @@
 
 @theme inline {
   --font-sans: "Neue Montreal", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Colors — CSS variables ile Tailwind bağlantısı */
+  --color-void: #050505;
+  --color-obsidian: #0A0A0A;
+  --color-carbon: #111111;
+  --color-slate: #1A1A1A;
+  --color-chalk: #FAFAFA;
+  --color-snow: #F0F0F0;
+  --color-mist: #E0E0E0;
+  --color-concrete: #777777;
+  --color-ash: #444444;
+  --color-lamp-bright: #FFB800;
+  --color-lamp-warm: #FF9F1C;
+  --color-lamp-dim: #CC9200;
+  --color-neon-red: #FF2D2D;
+  --color-dark-maroon: #3A0000;
+  --color-maroon-warm: #5C1A1A;
+  --color-maroon-shirt: #722F37;
+  --color-glass-border: rgba(255, 255, 255, 0.06);
+  --color-glass-bg: rgba(255, 255, 255, 0.03);
+  --color-frost-light: rgba(255, 255, 255, 0.08);
+  --color-frost-medium: rgba(255, 255, 255, 0.12);
+  --color-frost-strong: rgba(255, 255, 255, 0.18);
 }
 
 * {
@@ -101,16 +125,17 @@ body {
   color: var(--snow);
 }
 
-/* Smooth scrollbar — Sokak Lambası Accent */
+/* Smooth scrollbar — Wider click area, Sokak Lambası Accent */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--void);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--ash);
-  border-radius: 2px;
+  border-radius: 4px;
+  border: 2px solid var(--void);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--snow);
@@ -123,6 +148,39 @@ body {
 }
 .group:hover .cta-line {
   width: 64px;
+}
+
+/* Film Grain — sinematik noise texture */
+.film-grain::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E") repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+}
+
+/* Image shimmer loading state */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.image-shimmer {
+  background: linear-gradient(90deg, var(--carbon) 25%, var(--slate) 50%, var(--carbon) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
 }
 
 /* Section divider */

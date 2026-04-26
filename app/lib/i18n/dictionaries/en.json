@@ -1,0 +1,102 @@
+{
+  "site": {
+    "name": "Can Demir",
+    "title": "Can Demir — I find what's missing and build it.",
+    "description": "A field-born strategist growing the digital presence of industrial businesses. Web design, SEO, e-commerce, and brand photography."
+  },
+  "nav": {
+    "menu": "Menu",
+    "close": "Close",
+    "items": {
+      "about": { "label": "Can Demir", "description": "About" },
+      "work": { "label": "Projects", "description": "Selected work" },
+      "production": { "label": "Production", "description": "Video / Photography" },
+      "notes": { "label": "Notes", "description": "Journal / Blog" },
+      "contact": { "label": "Contact", "description": "Let's work together" }
+    }
+  },
+  "hero": {
+    "greeting": "Can Demir",
+    "manifesto": "I find what's missing and build it.",
+    "subtitle": "Strategy · Web · Photography"
+  },
+  "process": {
+    "path": "~/candemir/process/",
+    "title": "Process"
+  },
+  "work": {
+    "path": "~/candemir/work/",
+    "title": "Selected Work"
+  },
+  "expertise": {
+    "path": "~/candemir/expertise/",
+    "title": "Expertise"
+  },
+  "about": {
+    "path": "~/candemir/about/",
+    "title": "About",
+    "headline": "A field-born system builder.",
+    "origin": {
+      "title": "Origin",
+      "body": "From the streets of Izmir to Istanbul logistics, from the field to the screen. Graduated top of my class in foreign trade. Shipped cargo across Europe. Saw cold calling die in the field — learned that sales without digital infrastructure is wasted ammunition."
+    },
+    "discovery": {
+      "title": "Discovery",
+      "body": "Your sales arguments need digital assets backing them up. I built this system for myself first, and it worked. Now I build the same system for businesses."
+    },
+    "arsenal": {
+      "title": "Arsenal",
+      "body": "Code + Lens + Logistics knowledge. Technical precision with Next.js, cinematic reality with Fujifilm X-H2S, operational depth from field experience."
+    },
+    "vision": {
+      "title": "Vision",
+      "body": "You have a physical factory. I build its digital twin — one that runs 24/7, never sleeps. A website isn't a business card — it's a machine that attracts organic traffic, greets customers, and automates the sales process."
+    }
+  },
+  "services": {
+    "path": "~/candemir/services/",
+    "title": "Services",
+    "headline": "What I do, how I do it.",
+    "web-development": {
+      "title": "Web Development",
+      "meta": "Corporate web development — Next.js, multilingual systems, online catalogs.",
+      "summary": "Fast, multilingual, SEO-ready websites.",
+      "problem": "Most companies treat their website as a digital business card. A properly built site can attract customers while you sleep.",
+      "what": "I build corporate web systems from scratch with Next.js. Multilingual structures, product catalogs, schema markup — technically solid sites that Google loves.",
+      "proof": "At Alya Blade, I built a 5-language industrial platform from scratch. Dual domain strategy, 400+ product catalog, 8 schema types. Solo, from field to screen."
+    },
+    "seo": {
+      "title": "SEO & Digital Visibility",
+      "meta": "SEO services — discoverability on Google, Bing, and AI search engines.",
+      "summary": "Making sure you're found on Google.",
+      "problem": "Your sales team calls prospects, they hang up and Google you. Without a digital presence backing you up, those field efforts are wasted.",
+      "what": "Technical SEO, schema markup, content strategy, GSC data analysis. I make sure you're discoverable on Google, Bing, and AI-powered search.",
+      "proof": "At Alya Blade, I discovered something interesting: the industry searched 'blade manufacturer' while the company called itself 'textile spare parts'. GSC data revealed the disconnect. Finding the right language means finding the right customer."
+    },
+    "photography": {
+      "title": "Industrial Photography",
+      "meta": "Industrial product photography — macro lens, studio and field shoots.",
+      "summary": "Your products, shot as they really are.",
+      "problem": "You can't build trust with stock photos. Buyers — especially industrial ones — want to see the real product.",
+      "what": "Product photography with Fujifilm X-H2S and macro lens. From the texture of steel to the fibers of fabric — real, not stock.",
+      "proof": "I shot 400+ industrial products for Alya Blade, one by one. The light reflection on steel, the geometry of a cutting edge — every product has a character, and I tried to capture it."
+    },
+    "ecommerce": {
+      "title": "E-Commerce & Marketplace",
+      "meta": "E-commerce consulting — marketplace integrations, catalog optimization.",
+      "summary": "Sales infrastructure on marketplaces and your own site.",
+      "problem": "You have products but if they're not displayed correctly on the right channels, sales won't come. Marketplaces play by their own rules.",
+      "what": "Integrations with major marketplaces and e-commerce platforms. Product page optimization, catalog structure, conversion strategy.",
+      "proof": "In foreign trade, you know where the trucks go — in e-commerce, you need to know where your product goes digitally. Field experience gave me that perspective."
+    }
+  },
+  "contact": {
+    "path": "~/candemir/signal/",
+    "title": "Contact",
+    "cta": "Let's build what's missing.",
+    "email": "demirhuseyinogulcan@gmail.com"
+  },
+  "footer": {
+    "location": "Istanbul, Turkey"
+  }
+}

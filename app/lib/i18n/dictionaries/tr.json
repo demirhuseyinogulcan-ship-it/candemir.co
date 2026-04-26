@@ -1,0 +1,102 @@
+{
+  "site": {
+    "name": "Can Demir",
+    "title": "Can Demir — Eksik olanı bulur, inşa ederim.",
+    "description": "Firmaların dijital varlığını büyüten, sahadan gelen stratejist. Web tasarım, SEO, e-ticaret ve marka fotoğrafçılığı."
+  },
+  "nav": {
+    "menu": "Menu",
+    "close": "Kapat",
+    "items": {
+      "about": { "label": "Can Demir", "description": "Hakkımda" },
+      "work": { "label": "Projeler", "description": "Seçili işler" },
+      "production": { "label": "Prodüksiyon", "description": "Video / Fotoğraf" },
+      "notes": { "label": "Notlar", "description": "Günlük / Blog" },
+      "contact": { "label": "İletişim", "description": "Birlikte çalışalım" }
+    }
+  },
+  "hero": {
+    "greeting": "Can Demir",
+    "manifesto": "Eksik olanı bulur, inşa ederim.",
+    "subtitle": "Strateji · Web · Fotoğrafçılık"
+  },
+  "process": {
+    "path": "~/candemir/process/",
+    "title": "Süreç"
+  },
+  "work": {
+    "path": "~/candemir/work/",
+    "title": "Seçili İşler"
+  },
+  "expertise": {
+    "path": "~/candemir/expertise/",
+    "title": "Uzmanlık"
+  },
+  "about": {
+    "path": "~/candemir/about/",
+    "title": "Hakkımda",
+    "headline": "Sahadan gelen sistem kurucu.",
+    "origin": {
+      "title": "Çıkış Noktası",
+      "body": "İzmir sokaklarından İstanbul lojistiğine, sahadan ekrana. Dış ticaret bölümünü birincilikle bitirdim. Avrupa'nın her noktasına yük taşıdım. Soğuk aramanın öldüğünü sahada gördüm — arkası olmayan satışın işe yaramadığını anladım."
+    },
+    "discovery": {
+      "title": "Keşif",
+      "body": "Satışta kullandığın argümanları dijital varlıkların desteklemesi lazım. Bu sistemi kendime kurdum, işe yaradı. Şimdi aynı sistemi firmalara kuruyorum."
+    },
+    "arsenal": {
+      "title": "Arsenal",
+      "body": "Kod + Lens + Lojistik bilgisi. Next.js ile teknik kusursuzluk, Fujifilm X-H2S ile sinematik gerçeklik, saha deneyimiyle operasyonel derinlik."
+    },
+    "vision": {
+      "title": "Vizyon",
+      "body": "Sizin fiziksel fabrikanız var. Ben size bunun 7/24 çalışan, uyumayan dijital versiyonunu kuruyorum. Web sitesi kartvizit değil — organik trafik çeken, müşteriyi karşılayan, satış sürecini otomatize eden makine."
+    }
+  },
+  "services": {
+    "path": "~/candemir/services/",
+    "title": "Hizmetler",
+    "headline": "Ne yapıyorum, nasıl yapıyorum.",
+    "web-development": {
+      "title": "Web Geliştirme",
+      "meta": "Kurumsal web sitesi geliştirme — Next.js, çok dilli yapılar, online kataloglar.",
+      "summary": "Hızlı, çok dilli, SEO uyumlu web siteleri.",
+      "problem": "Çoğu firma web sitesini dijital kartvizit olarak görüyor. Oysa doğru kurulmuş bir site, uyurken bile müşteri çekebilir.",
+      "what": "Next.js ile sıfırdan kurumsal web sistemleri geliştiriyorum. Çok dilli yapılar, ürün katalogları, schema markup — teknik altyapısı sağlam, Google'ın seveceği siteler.",
+      "proof": "Alya Bıçak'ta sıfırdan 5 dilli endüstriyel bir platform inşa ettim. Çift domain stratejisi, 400+ ürün kataloğu, 8 farklı schema tipi. Tek başıma, sahadan ekrana."
+    },
+    "seo": {
+      "title": "SEO & Dijital Görünürlük",
+      "meta": "SEO hizmeti — Google, Bing, yapay zeka aramalarında bulunabilirlik.",
+      "summary": "Google'da bulunabilir olmanızı sağlıyorum.",
+      "problem": "Satış ekibiniz sahada telefon açıyor, müşteri telefonu kapatıp Google'a bakıyor. Arkada dijital varlığınız yoksa, sahada atılan kurşunlar boşa gidiyor.",
+      "what": "Teknik SEO, schema markup, içerik stratejisi, GSC veri analizi. Google'da, Bing'de ve yapay zeka aramalarında bulunabilir olmanızı sağlıyorum.",
+      "proof": "Alya Bıçak'ta ilginç bir şey keşfettim: sektör firmayı 'bıçakçı' olarak arıyordu, firma kendine 'tekstil yedek parça' diyordu. GSC verisi bu kopukluğu gösterdi. Doğru dili bulmak, doğru müşteriyi bulmaktı."
+    },
+    "photography": {
+      "title": "Endüstriyel Fotoğrafçılık",
+      "meta": "Endüstriyel ürün fotoğraf çekimi — makro lens, stüdyo ve saha çekimleri.",
+      "summary": "Ürünlerinizi gerçek haliyle, profesyonel kalitede görüntülüyorum.",
+      "problem": "Stock fotoğrafla güven inşa edilmez. Müşteri ürünün gerçeğini görmek istiyor — özellikle endüstriyel alıcılar.",
+      "what": "Fujifilm X-H2S ve makro lens ile ürün çekimleri yapıyorum. Çeliğin dokusundan kumaşın liflerine kadar — gerçek, stock değil.",
+      "proof": "Alya Bıçak için 400+ endüstriyel ürünü tek tek çektim. Çeliğin üzerindeki ışık yansıması, kesici ucun geometrisi — her ürünün bir karakteri var, onu yakalamaya çalıştım."
+    },
+    "ecommerce": {
+      "title": "E-Ticaret & Marketplace",
+      "meta": "E-ticaret danışmanlığı — Hepsiburada, Trendyol, katalog optimizasyonu.",
+      "summary": "Marketplace'lerde ve kendi sitenizde satış altyapısı.",
+      "problem": "Ürünleriniz var ama doğru kanalda, doğru şekilde sergilenmiyorsa satış gelmiyor. Marketplace'ler kendi kurallarıyla çalışıyor.",
+      "what": "Hepsiburada, Trendyol, WooCommerce, İkas entegrasyonları. Ürün sayfası optimizasyonu, katalog düzeni, dönüşüm stratejisi.",
+      "proof": "Dış ticarette kamyonların nereye gittiğini biliyorsun — e-ticarette de ürünün dijitalde nereye gittiğini bilmen lazım. Saha deneyimi bana bu perspektifi verdi."
+    }
+  },
+  "contact": {
+    "path": "~/candemir/signal/",
+    "title": "İletişim",
+    "cta": "Birlikte bir şeyler inşa edelim.",
+    "email": "demirhuseyinogulcan@gmail.com"
+  },
+  "footer": {
+    "location": "Istanbul, Turkey"
+  }
+}

@@ -6,14 +6,25 @@
  */
 
 // ============================================
+// SECTION PATHS — Terminal Metaforu
+// ============================================
+export const SECTION_PATHS = {
+  process: "~/candemir/process/",
+  expertise: "~/candemir/expertise/",
+  work: "~/candemir/work/",
+  about: "~/candemir/about/",
+  services: "~/candemir/services/",
+  contact: "~/candemir/signal/",
+} as const;
+
+// ============================================
 // NAVIGATION
 // ============================================
 export const NAV_ITEMS = [
-  { label: "Can Demir", description: "Hakkımda", href: "/about" },
-  { label: "Projeler", description: "Seçili işler", href: "/work" },
-  { label: "Prodüksiyon", description: "Video / Fotoğraf", href: "/production" },
-  { label: "Notlar", description: "Günlük / Blog", href: "/notes" },
-  { label: "İletişim", description: "Birlikte çalışalım", href: "/contact" },
+  { label: "Hizmetler", description: "Web, SEO, Fotoğraf, E-Ticaret", href: "/#expertise" },
+  { label: "Süreç", description: "Çalışma metodolojisi", href: "/#process" },
+  { label: "Seçili İşler", description: "Proje showcase", href: "/#work" },
+  { label: "İletişim", description: "Birlikte çalışalım", href: "/#contact" },
 ] as const;
 
 // ============================================
@@ -55,99 +66,140 @@ export const GLITCH_PROCESS_WORDS = [
 // ============================================
 // PROCESS TREE — Metodoloji Dosya Sistemi
 // ============================================
+export interface ProcessTreeChild {
+  name: string;
+  comment?: string;
+  children?: ProcessTreeChild[];
+}
+
 export interface ProcessNode {
   name: string;
   label: string;
-  children: { name: string; type: "file" | "folder" }[];
+  summary: string;
+  children: ProcessTreeChild[];
 }
 
 export const PROCESS_TREE: ProcessNode[] = [
   {
     name: "discover",
     label: "Keşfet",
+    summary: "İşi, sektörü ve mevcut yapıyı tanı.",
     children: [
-      { name: "sektörü-tanı.md", type: "file" },
-      { name: "rakipleri-incele.md", type: "file" },
-      { name: "iş-modelini-anla.md", type: "file" },
-      { name: "mevcut-varlıkları-listele.md", type: "file" },
+      { name: "sektörü-tanı.md", comment: "Pazarın dili ne?" },
+      { name: "rakipleri-incele.md", comment: "Kim neyi doğru yapıyor?" },
+      { name: "iş-modelini-anla.md", comment: "Şirket nasıl para kazanıyor?" },
+      { name: "mevcut-varlıkları-listele.md", comment: "Site, katalog, içerik, ekip" },
     ],
   },
   {
     name: "observe",
     label: "Gözlemle",
+    summary: "Veriyi, müşteriyi ve tutarsızlıkları oku.",
     children: [
-      { name: "müşteri-ne-diyor/", type: "folder" },
-      { name: "search-console-verileri.md", type: "file" },
-      { name: "sorunları-tespit-et.md", type: "file" },
-      { name: "algı-tutarsızlığı.md", type: "file" },
-      { name: "sahadan-notlar.md", type: "file" },
+      {
+        name: "müşteri-ne-diyor/",
+        comment: "Gerçek dil burada çıkar",
+        children: [
+          { name: "arama-terimleri.md", comment: "Nasıl hitap ediyorlar?" },
+          { name: "satış-ekibi-notları.md", comment: "Sahada hangi sorular geliyor?" },
+          { name: "müşteri-cümleleri.md", comment: "Markayı nasıl tanımlıyorlar?" },
+        ],
+      },
+      { name: "search-console-verileri.md", comment: "Gerçek talep haritası" },
+      { name: "sorunları-tespit-et.md", comment: "Nerede kırılma var?" },
+      { name: "algı-tutarsızlığı.md", comment: "Kalite ile görünüm uyuşuyor mu?" },
+      { name: "sahadan-notlar.md", comment: "Zihin fotoğrafı" },
     ],
   },
   {
     name: "focus",
     label: "Odaklan",
+    summary: "Asıl problemi ayıkla, kapsamı daralt.",
     children: [
-      { name: "asıl-sorun-ne.md", type: "file" },
-      { name: "öncelik-sıralaması.md", type: "file" },
-      { name: "kapsam-belirle.md", type: "file" },
+      { name: "asıl-sorun-ne.md", comment: "Semptom değil, kök neden" },
+      { name: "öncelik-sıralaması.md", comment: "İlk hangi taş oynayacak?" },
+      { name: "kapsam-belirle.md", comment: "Neyi şimdi yapıyoruz?" },
     ],
   },
   {
     name: "think",
     label: "Düşün",
+    summary: "Stratejiyi, konumlamayı ve riskleri kur.",
     children: [
-      { name: "strateji-taslağı.md", type: "file" },
-      { name: "müşteri-algısı-haritası.md", type: "file" },
-      { name: "konumlandırma.md", type: "file" },
-      { name: "risk-analizi.md", type: "file" },
+      { name: "strateji-taslağı.md", comment: "Ne inşa edeceğiz?" },
+      { name: "müşteri-algısı-haritası.md", comment: "Zihindeki mevcut resim" },
+      { name: "konumlandırma.md", comment: "Nasıl görünmeliyiz?" },
+      { name: "risk-analizi.md", comment: "Ne ters gidebilir?" },
     ],
   },
   {
     name: "frame",
     label: "Çerçevele",
+    summary: "Mesajı ve görsel hiyerarşiyi netleştir.",
     children: [
-      { name: "marka-hikayesi.md", type: "file" },
-      { name: "mesaj-hiyerarşisi.md", type: "file" },
-      { name: "görsel-dil.md", type: "file" },
+      { name: "marka-hikayesi.md", comment: "Neyi anlatıyoruz?" },
+      { name: "mesaj-hiyerarşisi.md", comment: "İlk, ikinci, üçüncü mesaj" },
+      { name: "görsel-dil.md", comment: "Renk, ton, ritim" },
     ],
   },
   {
     name: "design",
     label: "Tasarla",
+    summary: "Arayüzü, akışı ve editoryal yapıyı kur.",
     children: [
-      { name: "wireframe/", type: "folder" },
-      { name: "renk-paleti.md", type: "file" },
-      { name: "tipografi.md", type: "file" },
-      { name: "kullanıcı-akışı.md", type: "file" },
+      {
+        name: "wireframe/",
+        comment: "İskelet yapı",
+        children: [
+          { name: "hero.tsx", comment: "İlk etki" },
+          { name: "sections.tsx", comment: "Akış" },
+          { name: "cta.tsx", comment: "Dönüşüm" },
+        ],
+      },
+      { name: "renk-paleti.md", comment: "Void + beyaz sistemi" },
+      { name: "tipografi.md", comment: "Hiyerarşi ve ritim" },
+      { name: "kullanıcı-akışı.md", comment: "Göz nereye gidiyor?" },
     ],
   },
   {
     name: "code",
     label: "İnşa Et",
+    summary: "Temiz mimari ile sistemi üret.",
     children: [
-      { name: "mimari-yapı/", type: "folder" },
-      { name: "seo-altyapısı.md", type: "file" },
-      { name: "i18n-sistemi.md", type: "file" },
-      { name: "performans.md", type: "file" },
+      {
+        name: "mimari-yapı/",
+        comment: "GitHub gibi okunur yapı",
+        children: [
+          { name: "components/", comment: "Tek sorumluluk" },
+          { name: "sections/", comment: "Sayfa blokları" },
+          { name: "layout/", comment: "Header / Footer" },
+          { name: "lib/", comment: "Token, sabit, helper" },
+        ],
+      },
+      { name: "seo-altyapısı.md", comment: "Schema, meta, robots" },
+      { name: "i18n-sistemi.md", comment: "İlk günden" },
+      { name: "performans.md", comment: "Hız + sadelik" },
     ],
   },
   {
     name: "launch",
     label: "Yayınla",
+    summary: "Kontrol et, yayınla, ilk sinyalleri izle.",
     children: [
-      { name: "test-kontrol.md", type: "file" },
-      { name: "analytics-kur.md", type: "file" },
-      { name: "ilk-ölçümler.md", type: "file" },
+      { name: "test-kontrol.md", comment: "Kırık yer kaldı mı?" },
+      { name: "analytics-kur.md", comment: "Ölçüm olmadan büyüme yok" },
+      { name: "ilk-ölçümler.md", comment: "Ne çalıştı, ne çalışmadı?" },
     ],
   },
   {
     name: "grow",
     label: "Büyüt",
+    summary: "Veriyle besle, otomatikleştir, ölçekle.",
     children: [
-      { name: "veri-takibi.md", type: "file" },
-      { name: "otomasyon.md", type: "file" },
-      { name: "yeni-kanallar.md", type: "file" },
-      { name: "ölçeklendir.md", type: "file" },
+      { name: "veri-takibi.md", comment: "Hangi sinyalleri izliyoruz?" },
+      { name: "otomasyon.md", comment: "İşi insandan sisteme taşı" },
+      { name: "yeni-kanallar.md", comment: "SEO, GEO, marketplace" },
+      { name: "ölçeklendir.md", comment: "Sistem tekrar çalışsın" },
     ],
   },
 ];
@@ -162,9 +214,18 @@ export const PROJECTS = [
     title: "Alya Bıçak / Alya Blade",
     category: "Strateji · Web · Fotoğrafçılık",
     year: "2024",
+    stack: ["Next.js", "i18n", "Schema", "SEO", "Fotoğrafçılık"],
     description:
-      "GSC verisinden müşteri algısını çözümledim: sektör bizi 'bıçakçı' olarak tanıyordu, firma kendine 'tekstil yedek parça' diyordu. Çift domain stratejisi, 5+ dil, i18n, schema, online katalog, orijinal ürün fotoğrafları — uçtan uca.",
-    image: "/images/projects/alya.jpg",
+      "Satış destekten yola çıkıp arama verisini okuyarak bıçak tarafı için ayrı bir dijital kimlik kurdum; çift domain, 5 dil, 400+ ürün ve özgün çekimlerle markayı görünür hale getirdim.",
+    story:
+      "Bu şirkete satış destek olarak başladım, kısa sürede bana Anadolu bölgesi verildi ve bölge satış sorumlusu oldum. Ambalaj, plastik, kağıt, tekstil, gıda, otomotiv gibi sektörlerdeki makinelerin kesici parçalarını yani endüstriyel bıçak ve sanayi jiletlerini satıyordum.\n\nSahada fark ettim ki müşteriye \"bu ürünler İngiltere'den geliyor, Sheffield çeliği, makine duruş sürelerinizi kısaltır\" dediğimde sözlü anlatım yetmiyordu çünkü elimde bunu görsel olarak destekleyecek bir materyal yoktu. Sektörün büyük firmaları numune çalışmalarıyla ürünleri test edip bizden alıyordu ama dışarıdan bakan ya da ihtiyacı olup ürün arayan biri bunu bilemezdi.\n\nGoogle Search Console verilerine baktığımda müşterilerin bizi \"alya bıçak\" olarak aradığını gördüm, fuarlarda da öyle tanınıyorduk ama böyle bir marka, böyle bir domain ya da böyle bir site yoktu. Bıçak tarafının kendi dijital kimliğe ihtiyacı vardı. Bir şey daha fark ettim, firma kendini \"endüstriyel kesici\" olarak konumlandırıyordu ama müşteriler Google'da \"endüstriyel bıçak\" diye arıyordu. Arama verisinden gelen bu farkı içerik diline yansıttığımda tıklamalar arttı.\n\nİlk adımda kamera aldım, Fujifilm X-H2S ile çeliğin dokusunu, jiletlerin keskinliğini ve endüstriyel ölçeği gerçek haliyle çektim. Bu görseller mail kampanyalarında, kataloglarda, fuar panellerinde ve tüm satış ekibinin elinde kullanıldı, artık elimde somut bir şey vardı.\n\nİkinci adımda Next.js ile sıfırdan bir site kurdum. Türkiye pazarı için alyabicak.com ve global pazar için alyablade.com olmak üzere iki ayrı domain aldım. Türkçe, İngilizce, Arapça, Rusça ve Fransızca olmak üzere 5 dilde çeviri altyapısı kurdum, 400'den fazla ürünü katalogladım ve Google'ın bu ürünleri zengin sonuç olarak gösterebilmesi için her birine özel SEO ayarları ile Schema.org işaretlemeleri yazdım. Sadece bugünün arama motorları için değil yapay zeka görünürlük standartlarını da entegre ettim ve e-ticaret eklenebilecek şekilde modüler tuttum.\n\nBıçak markası kendi adıyla kendi sitesiyle ve kendi diliyle ayağa kalktı. Müşteri artık Google'a \"alya bıçak\" yazıp profesyonel bir platformla karşılaşıyor, site 7/24 çalışan uyumayan bir satış altyapısı oldu. Sadece Türkiye'de değil Alya Blade ile global pazarda da erişilebilir oldu.",
+    image: "/images/projects/alya/hero.png",
+    gallery: [],
+    video: null,
+    mockupScreenshot: "/images/projects/alya/screenshot.png",
+    mockupVideos: ["/videos/alyabicak.mp4", "/videos/alyabicak-2.mp4"],
+    url: "https://alyabicak.com",
+    metrics: { languages: 5, products: 400, schemas: 8 },
   },
   {
     id: "airehber",
@@ -172,19 +233,34 @@ export const PROJECTS = [
     title: "AI Rehber",
     category: "Kişisel Platform · Next.js",
     year: "2025",
+    stack: ["Next.js", "Otomasyon", "RSS", "AI"],
     description:
       "Günlük haber otomasyonu, sektör analizleri, AI araştırmaları. Mobil öncelikli kompakt yapı — işe gidip gelirken kullanılabilecek kadar hızlı.",
-    image: "/images/projects/airehber.jpg",
+    image: "/images/projects/airehber/screenshot.png",
+    gallery: [],
+    video: null,
+    mockupScreenshot: null,
+    mockupVideos: [],
+    url: "https://airehber.com",
+    metrics: null,
   },
   {
     id: "gamzetango",
     number: "03",
     title: "Gamze Tango",
-    category: "Yerel SEO · Kişisel Marka",
+    category: "Web · SEO · Kişisel Marka",
     year: "2024",
+    stack: ["Next.js", "SEO", "Blog", "İçerik Stratejisi"],
     description:
-      "Tango eğitmeni için lokasyon bazlı SEO stratejisi. Silivri, Beyoğlu, İstanbul — Google Maps ve organik aramalarda görünürlük.",
-    image: "/images/projects/gamzetango.jpg",
+      "Tango eğitmeni için uçtan uca inşa ettiğim platform. Ders sayfaları, blog, lokasyon bazlı SEO, lead toplama — Next.js ile.",
+    image: "/images/projects/gamzetango/DSCF4605.JPG",
+    imagePosition: "top left",
+    gallery: [],
+    video: null,
+    mockupScreenshot: null,
+    mockupVideos: [],
+    url: "https://gamzetango.com",
+    metrics: null,
   },
   {
     id: "candemir",
@@ -192,19 +268,72 @@ export const PROJECTS = [
     title: "candemir.co",
     category: "Portfolyo · Tasarım Sistemi",
     year: "2025",
+    stack: ["Next.js", "Framer Motion", "Tasarım Sistemi"],
     description:
-      "Bu site. Altın oran mimarisi, sinematik geçişler, φ-cascade spacing, sıfırdan tasarım sistemi. Next.js, Framer Motion, zero-dependency.",
-    image: null,
+      "Bu site. Altın oran mimarisi, sinematik geçişler, φ-cascade spacing, sıfırdan tasarım sistemi — zero-dependency.",
+    image: "/images/projects/candemir.JPG",
+    gallery: [],
+    video: null,
+    mockupScreenshot: null,
+    mockupVideos: [],
+    url: "https://candemir.co",
+    metrics: null,
+  },
+  {
+    id: "kapsulotel",
+    number: "05",
+    title: "Kaps\u00fcl Otel Konsept",
+    category: "Giri\u015fimcilik \u00b7 Konsept \u00b7 Web",
+    year: "2025",
+    stack: ["Next.js", "Konsept Tasar\u0131m", "\u0130\u015f Plan\u0131"],
+    description:
+      "T\u00fcrkiye'nin ilk modüler kapsül otel konsepti. Teknik çizimlerden AI renderlarına, iş planından web sitesine — henüz gerçekleşmemiş ama hazır.",
+    image: "/images/projects/kapsulotel/hero.png",
+    gallery: [],
+    video: null,
+    mockupScreenshot: null,
+    mockupVideos: [],
+    url: null,
+    metrics: null,
   },
 ] as const;
+
+// ============================================
+// SERVICES — Hizmet Sayfaları (SEO Köprüleri)
+// ============================================
+export const SERVICES = [
+  {
+    slug: "web-development",
+    icon: "code",
+    proof: "Alya Bıçak — 5 dilli endüstriyel platform, 400+ ürün kataloğu",
+  },
+  {
+    slug: "seo",
+    icon: "search",
+    proof: "GSC verisinden müşteri algısını çözümledim — sektör 'bıçakçı' derken firma 'tekstil yedek parça' diyordu",
+  },
+  {
+    slug: "photography",
+    icon: "lens",
+    proof: "Fujifilm X-H2S ile 400+ endüstriyel ürün çekimi — stock değil, gerçek",
+  },
+  {
+    slug: "ecommerce",
+    icon: "cart",
+    proof: "Hepsiburada, Trendyol entegrasyonları — katalog optimizasyonu, dönüşüm stratejisi",
+  },
+] as const;
+
+export type ServiceSlug = (typeof SERVICES)[number]["slug"];
 
 // ============================================
 // SITE METADATA
 // ============================================
 export const SITE_META = {
   name: "Can Demir",
-  title: "Can Demir — I find what's missing and build it.",
+  title: "Can Demir — Eksik olanı bulur, inşa ederim.",
   description: "Firmaların dijital varlığını büyüten, sahadan gelen stratejist. Web tasarım, SEO, e-ticaret ve marka fotoğrafçılığı.",
   url: "https://candemir.co",
   locale: "tr_TR",
+  email: "demirhuseyinogulcan@gmail.com",
 } as const;

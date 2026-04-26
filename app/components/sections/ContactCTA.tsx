@@ -1,19 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { COLORS, TYPOGRAPHY, ANIMATION, SPACING, fadeUp } from "@/app/lib/design-tokens";
+import { COLORS, TYPOGRAPHY, SPACING, fadeUp } from "@/app/lib/design-tokens";
+import { SECTION_PATHS, SOCIAL_LINKS, SITE_META } from "@/app/lib/constants";
+import Container from "@/app/components/ui/Container";
+import PathHeader from "@/app/components/ui/PathHeader";
 
 /* ═══════════════════════════════════════════════════════════════
-   Sn. 05 — İLETİŞİM CTA (Contact)
+   ~/candemir/signal/ — İletişim CTA
    
    Manifestoya geri dönüş — son replik.
    Full viewport, merkeze hizalı.
-   H2 + ince çizgi + e-posta (lamp accent).
+   H2 + ince çizgi + e-posta + social row.
    ═══════════════════════════════════════════════════════════════ */
 
 export default function ContactCTA() {
   return (
     <section
+      id="contact"
       className="flex items-center justify-center"
       style={{
         backgroundColor: COLORS.void,
@@ -22,32 +26,11 @@ export default function ContactCTA() {
         paddingBottom: SPACING.section,
       }}
     >
-      <div className="flex flex-col items-center text-center">
-        {/* Overline */}
-        <motion.span
-          {...fadeUp}
-          className="block"
-          style={{
-            ...TYPOGRAPHY.overline,
-            color: COLORS.ash,
-            marginBottom: SPACING.heading,
-          }}
-        >
-          05
-        </motion.span>
-
-        {/* CTA Headline */}
-        <motion.h2
-          {...fadeUp}
-          transition={{ ...fadeUp.transition, delay: 0.1 }}
-          style={{
-            ...TYPOGRAPHY.h2,
-            color: COLORS.chalk,
-            margin: 0,
-          }}
-        >
-          Let{"\u2019"}s build what{"\u2019"}s missing.
-        </motion.h2>
+      <Container className="flex flex-col items-center text-center">
+        <PathHeader
+          path={SECTION_PATHS.contact}
+          title="İletişim"
+        />
 
         {/* Divider */}
         <motion.div
@@ -66,7 +49,8 @@ export default function ContactCTA() {
         <motion.a
           {...fadeUp}
           transition={{ ...fadeUp.transition, delay: 0.25 }}
-          href="mailto:hey@candemir.co"
+          href={`mailto:${SITE_META.email}`}
+          className="group"
           style={{
             ...TYPOGRAPHY.body,
             color: COLORS.chalk,
@@ -80,9 +64,43 @@ export default function ContactCTA() {
             (e.currentTarget as HTMLAnchorElement).style.color = COLORS.chalk;
           }}
         >
-          hey@candemir.co
+          {SITE_META.email}
         </motion.a>
-      </div>
+
+        {/* Social links */}
+        <motion.div
+          {...fadeUp}
+          transition={{ ...fadeUp.transition, delay: 0.35 }}
+          className="flex items-center"
+          style={{ gap: "24px", marginTop: SPACING.element }}
+        >
+          {SOCIAL_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+              className="transition-colors duration-300"
+              style={{ color: COLORS.ash }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.color = COLORS.snow;
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.color = COLORS.ash;
+              }}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                dangerouslySetInnerHTML={{ __html: link.svg }}
+              />
+            </a>
+          ))}
+        </motion.div>
+      </Container>
     </section>
   );
 }

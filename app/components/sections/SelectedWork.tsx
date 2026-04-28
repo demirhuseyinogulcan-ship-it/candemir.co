@@ -32,11 +32,10 @@ export default function SelectedWork() {
         />
 
         <div className="flex flex-col" style={{ gap: SPACING.block }}>
-          {PROJECTS.map((project, i) => (
+          {PROJECTS.map((project) => (
             <CinematicProjectCard
               key={project.id}
               project={project}
-              index={i}
             />
           ))}
         </div>

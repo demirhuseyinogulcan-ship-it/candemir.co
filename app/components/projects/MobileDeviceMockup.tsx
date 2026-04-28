@@ -107,8 +107,12 @@ export default function MobileDeviceMockup({
   return (
     <div
       ref={containerRef}
-      className="relative w-full"
-      style={{ aspectRatio: "421 / 850" }}
+      className="relative w-full overflow-hidden"
+      style={{
+        aspectRatio: "421 / 850",
+        transform: "translateZ(0)",
+        backfaceVisibility: "hidden",
+      }}
     >
       {/* iPhone çerçevesi */}
       <Image
@@ -121,7 +125,7 @@ export default function MobileDeviceMockup({
         quality={95}
       />
 
-      {/* Ekran içeriği — çerçevenin altında */}
+      {/* Ekran içeriği — çerçevenin üstünde, ekran alanına kilitli */}
       <div
         className="absolute overflow-hidden"
         style={{

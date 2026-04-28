@@ -113,7 +113,7 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
 
                     <div style={{ paddingLeft: "12px" }}>
                       <span
-                        className="inline-block transition-all duration-500 group-hover:translate-x-1 group-hover:!text-[#F0F0F0]"
+                        className="inline-block transition-all duration-500 group-hover:translate-x-1 group-hover:!text-snow"
                         style={{
                           fontSize: "clamp(1.25rem, 2.8vw, 2rem)",
                           fontWeight: 300,

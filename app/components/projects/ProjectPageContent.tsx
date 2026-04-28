@@ -398,7 +398,7 @@ export default function ProjectPageContent({
             </span>
             <div className="flex items-baseline justify-between">
               <h2
-                className="group-hover:!text-[#FAFAFA]"
+                className="group-hover:!text-chalk"
                 style={{
                   fontSize: "clamp(1.5rem, 3.5vw, 3rem)",
                   fontWeight: 300,
@@ -413,7 +413,7 @@ export default function ProjectPageContent({
                 {nextProject.title}
               </h2>
               <span
-                className="group-hover:translate-x-2 group-hover:!text-[#F0F0F0]"
+                className="group-hover:translate-x-2 group-hover:!text-snow"
                 style={{
                   fontSize: "clamp(1.25rem, 2vw, 1.75rem)",
                   color: COLORS.ash,

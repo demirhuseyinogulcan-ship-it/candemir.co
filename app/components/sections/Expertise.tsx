@@ -249,7 +249,7 @@ function ServiceCard({
             {String(index + 1).padStart(2, "0")} / {total}
           </span>
           <span
-            className="group-hover:!text-[#F0F0F0]"
+            className="group-hover:!text-snow"
             style={{ color: COLORS.concrete, transition: "color 0.4s", display: "block" }}
           >
             <Icon slug={slug} />
@@ -259,7 +259,7 @@ function ServiceCard({
         {/* Body: title + summary */}
         <div className="relative">
           <h3
-            className="group-hover:!text-[#FAFAFA]"
+            className="group-hover:!text-chalk"
             style={{
               fontSize: "clamp(1.05rem, 1.4vw, 1.25rem)",
               fontWeight: 500,
@@ -293,7 +293,7 @@ function ServiceCard({
           style={{ gap: SPACING.atom, marginTop: SPACING.element }}
         >
           <span
-            className="group-hover:!text-[#F0F0F0]"
+            className="group-hover:!text-snow"
             style={{
               fontSize: "12px",
               color: COLORS.ash,
@@ -304,7 +304,7 @@ function ServiceCard({
             {locale === "tr" ? "Detayları gör" : "View details"}
           </span>
           <span
-            className="group-hover:translate-x-1 group-hover:!text-[#F0F0F0]"
+            className="group-hover:translate-x-1 group-hover:!text-snow"
             style={{
               fontSize: "13px",
               color: COLORS.ash,

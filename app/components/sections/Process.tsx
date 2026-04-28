@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from "framer-motion";
 import { useState, useCallback, useRef } from "react";
 import { COLORS, TYPOGRAPHY, ANIMATION, SPACING } from "@/app/lib/design-tokens";
 import { PROCESS_TREE, SECTION_PATHS } from "@/app/lib/constants";
@@ -20,7 +20,10 @@ import PathHeader from "@/app/components/ui/PathHeader";
 
 export default function Process() {
   const [openFolders, setOpenFolders] = useState<string[]>(["observe"]);
+  const [hovered, setHovered] = useState(false);
   const folderRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
   const toggle = useCallback((name: string) => {
     setOpenFolders((prev) =>
@@ -29,6 +32,14 @@ export default function Process() {
         : [...prev, name]
     );
   }, []);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  }
+
+  const glow = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.05), transparent 65%)`;
 
   const handleTreeKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -77,19 +88,31 @@ export default function Process() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: ANIMATION.duration.slow, ease: ANIMATION.ease }}
-          className="overflow-hidden"
+          onMouseMove={handleMouseMove}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          className="relative overflow-hidden"
           style={{
             backgroundColor: COLORS.obsidian,
-            border: `1px solid ${COLORS.glassBorder}`,
+            boxShadow: `inset 0 0 0 1px ${hovered ? "rgba(255,255,255,0.12)" : COLORS.glassBorder}`,
             borderRadius: "16px",
             padding: "clamp(24px, 3vw, 44px)",
+            transition: "box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
+          {/* Mouse-tracked radial glow */}
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={{ background: glow, opacity: hovered ? 1 : 0, transition: "opacity 0.4s" }}
+          />
+
+
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <div
             role="tree"
             aria-label="Süreç ağacı"
-            className="flex flex-col"
+            className="relative flex flex-col"
             style={{ gap: "2px" }}
             onKeyDown={handleTreeKeyDown}
           >
@@ -184,7 +207,7 @@ const TreeFolder = forwardRef<
 
         {/* Folder name */}
         <span
-          className="group-hover:!text-[#F0F0F0]"
+          className="group-hover:!text-snow"
           style={{
             ...TYPOGRAPHY.mono,
             color: isOpen ? COLORS.snow : COLORS.concrete,

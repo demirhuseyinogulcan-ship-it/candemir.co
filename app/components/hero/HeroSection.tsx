@@ -161,7 +161,7 @@ export default function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="block transition-colors duration-500 hover:!text-[#F0F0F0]"
+              className="block transition-colors duration-500 hover:!text-snow"
               style={{ color: COLORS.ash }}
             >
               <svg

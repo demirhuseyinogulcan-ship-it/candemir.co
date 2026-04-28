@@ -80,7 +80,7 @@ export default function Header() {
           >
             <div className="relative" style={{ width: 20, height: 11 }}>
               <motion.span
-                className="absolute left-0 top-0 block w-full group-hover:!bg-[#F0F0F0]"
+                className="absolute left-0 top-0 block w-full group-hover:!bg-snow"
                 style={{ height: "1px", transition: "background-color 0.4s" }}
                 animate={{
                   y: isOpen ? 5 : 0,
@@ -90,7 +90,7 @@ export default function Header() {
                 transition={{ duration: 0.4, ease: ANIMATION.ease }}
               />
               <motion.span
-                className="absolute left-0 bottom-0 block w-full group-hover:!bg-[#F0F0F0]"
+                className="absolute left-0 bottom-0 block w-full group-hover:!bg-snow"
                 style={{ height: "1px", transition: "background-color 0.4s" }}
                 animate={{
                   y: isOpen ? -5 : 0,

@@ -1,88 +1,177 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+/*
+ * Theme tokens
+ *
+ * The existing component names (void, carbon, snow, etc.) remain as
+ * compatibility aliases. Components can therefore keep using the shared
+ * TypeScript token object while the actual values change with the theme.
+ *
+ * Neue Montreal is intentionally kept as an optional local font. The
+ * licensed webfont files are not present in this repository, so no missing
+ * remote font requests are emitted; the fallback stack remains reliable.
+ */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* Semantic surfaces and text */
+  --color-background: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f0f0ee;
+  --color-surface-hover: #e7e7e3;
+  --color-text-strong: #171717;
+  --color-text: #272727;
+  --color-text-soft: #4c4c4c;
+  --color-text-muted: #666666;
+  --color-text-subtle: #777777;
+  --color-border: rgba(17, 17, 17, 0.12);
+  --color-border-strong: rgba(17, 17, 17, 0.22);
+
+  /* Surfaces that sit on photography or the cinematic intro */
+  --color-on-media: #f7f7f5;
+  --color-on-media-muted: #deded8;
+  --intro-background: #050505;
+  --intro-text: #f0f0f0;
+
+  /* Theme-aware interaction effects */
+  --header-control: var(--color-on-media);
+  --header-control-muted: var(--color-on-media-muted);
+  --header-top-background: rgba(255, 255, 255, 0.58);
+  --header-top-blur: blur(12px);
+  --header-scrolled-background: rgba(255, 255, 255, 0.86);
+  --nav-backdrop: rgba(17, 17, 17, 0.24);
+  --interaction-glow: rgba(17, 17, 17, 0.07);
+  --interaction-border: rgba(17, 17, 17, 0.16);
+  --decorative-line: rgba(17, 17, 17, 0.28);
+  --neutral-glow: 0 0 60px rgba(17, 17, 17, 0.12);
+  --neutral-glow-border: rgba(17, 17, 17, 0.18);
+  --subtle-glow: 0 0 40px rgba(17, 17, 17, 0.06);
+  --subtle-glow-border: rgba(17, 17, 17, 0.12);
+
+  /* Compatibility aliases used by the TypeScript token object */
+  --void: var(--color-background);
+  --obsidian: var(--color-surface);
+  --carbon: var(--color-surface-elevated);
+  --slate: var(--color-surface-hover);
+  --chalk: var(--color-text-strong);
+  --snow: var(--color-text);
+  --mist: var(--color-text-soft);
+  --concrete: var(--color-text-muted);
+  --ash: var(--color-text-subtle);
+
+  /* Accent palette — darkened slightly for light-mode contrast */
+  --lamp-bright: #a56500;
+  --lamp-warm: #b36b00;
+  --lamp-glow: #b87500;
+  --lamp-dim: #8e5700;
+  --lamp-reflection: rgba(165, 101, 0, 0.14);
+  --neon-red: #c71f1f;
+  --dark-maroon: #3a0000;
+  --maroon-warm: #5c1a1a;
+  --maroon-shirt: #722f37;
+
+  /* Frosted glass */
+  --frost-light: rgba(17, 17, 17, 0.05);
+  --frost-medium: rgba(17, 17, 17, 0.08);
+  --frost-strong: rgba(17, 17, 17, 0.12);
+  --glass-border: var(--color-border);
+  --glass-bg: rgba(255, 255, 255, 0.72);
 }
 
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+:root[data-theme="dark"] {
+  color-scheme: dark;
 
-@font-face {
-  font-family: "Neue Montreal";
-  src: url("/fonts/NeueMontreal-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+  /* Semantic surfaces and text */
+  --color-background: #050505;
+  --color-surface: #0a0a0a;
+  --color-surface-elevated: #111111;
+  --color-surface-hover: #1a1a1a;
+  --color-text-strong: #fafafa;
+  --color-text: #f0f0f0;
+  --color-text-soft: #e0e0e0;
+  --color-text-muted: #777777;
+  --color-text-subtle: #444444;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
 
-:root {
-  /* ========== %60 — ZEMİN RENKLERİ ========== */
-  --void: #050505;
-  --obsidian: #0A0A0A;
-  --carbon: #111111;
-  --slate: #1A1A1A;
+  /* Surfaces that sit on photography or the cinematic intro */
+  --color-on-media: #fafafa;
+  --color-on-media-muted: #e0e0e0;
+  --intro-background: #050505;
+  --intro-text: #f0f0f0;
 
-  /* ========== %30 — METİN RENKLERİ ========== */
-  --snow: #F0F0F0;
-  --concrete: #777777;
-  --ash: #444444;
+  /* Theme-aware interaction effects */
+  --header-control: var(--color-on-media);
+  --header-control-muted: var(--color-on-media-muted);
+  --header-top-background: transparent;
+  --header-top-blur: none;
+  --header-scrolled-background: rgba(5, 5, 5, 0.86);
+  --nav-backdrop: rgba(5, 5, 5, 0.35);
+  --interaction-glow: rgba(255, 255, 255, 0.05);
+  --interaction-border: rgba(255, 255, 255, 0.12);
+  --decorative-line: rgba(255, 255, 255, 0.25);
+  --neutral-glow: 0 0 60px rgba(255, 255, 255, 0.15);
+  --neutral-glow-border: rgba(255, 255, 255, 0.2);
+  --subtle-glow: 0 0 40px rgba(255, 255, 255, 0.05);
+  --subtle-glow-border: rgba(255, 255, 255, 0.1);
 
-  /* ========== %10 — ACCENT: SOKAK LAMBASI ========== */
-  --lamp-bright: #FFB800;
-  --lamp-warm: #FF9F1C;
-  --lamp-glow: #FFAA00;
-  --lamp-dim: #CC9200;
+  /* Compatibility aliases used by the TypeScript token object */
+  --void: var(--color-background);
+  --obsidian: var(--color-surface);
+  --carbon: var(--color-surface-elevated);
+  --slate: var(--color-surface-hover);
+  --chalk: var(--color-text-strong);
+  --snow: var(--color-text);
+  --mist: var(--color-text-soft);
+  --concrete: var(--color-text-muted);
+  --ash: var(--color-text-subtle);
+
+  /* Accent palette */
+  --lamp-bright: #ffb800;
+  --lamp-warm: #ff9f1c;
+  --lamp-glow: #ffaa00;
+  --lamp-dim: #cc9200;
   --lamp-reflection: rgba(255, 184, 0, 0.15);
+  --neon-red: #ff2d2d;
+  --dark-maroon: #3a0000;
+  --maroon-warm: #5c1a1a;
+  --maroon-shirt: #722f37;
 
-  /* ========== %10 — ACCENT: KAN (İKİNCİL) ========== */
-  --neon-red: #FF2D2D;
-  --dark-maroon: #3A0000;
-  --maroon-warm: #5C1A1A;
-  --maroon-shirt: #722F37;
-
-  /* ========== BUZLU CAM / GLASS ========== */
+  /* Frosted glass */
   --frost-light: rgba(255, 255, 255, 0.08);
   --frost-medium: rgba(255, 255, 255, 0.12);
   --frost-strong: rgba(255, 255, 255, 0.18);
-  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border: var(--color-border);
   --glass-bg: rgba(255, 255, 255, 0.03);
 }
 
 @theme inline {
-  --font-sans: "Neue Montreal", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: "Neue Montreal", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
-  /* Colors — CSS variables ile Tailwind bağlantısı */
-  --color-void: #050505;
-  --color-obsidian: #0A0A0A;
-  --color-carbon: #111111;
-  --color-slate: #1A1A1A;
-  --color-chalk: #FAFAFA;
-  --color-snow: #F0F0F0;
-  --color-mist: #E0E0E0;
-  --color-concrete: #777777;
-  --color-ash: #444444;
-  --color-lamp-bright: #FFB800;
-  --color-lamp-warm: #FF9F1C;
-  --color-lamp-dim: #CC9200;
-  --color-neon-red: #FF2D2D;
-  --color-dark-maroon: #3A0000;
-  --color-maroon-warm: #5C1A1A;
-  --color-maroon-shirt: #722F37;
-  --color-glass-border: rgba(255, 255, 255, 0.06);
-  --color-glass-bg: rgba(255, 255, 255, 0.03);
-  --color-frost-light: rgba(255, 255, 255, 0.08);
-  --color-frost-medium: rgba(255, 255, 255, 0.12);
-  --color-frost-strong: rgba(255, 255, 255, 0.18);
+  /* Tailwind color utilities resolve through the active theme */
+  --color-void: var(--void);
+  --color-obsidian: var(--obsidian);
+  --color-carbon: var(--carbon);
+  --color-slate: var(--slate);
+  --color-chalk: var(--chalk);
+  --color-snow: var(--snow);
+  --color-mist: var(--mist);
+  --color-concrete: var(--concrete);
+  --color-ash: var(--ash);
+  --color-lamp-bright: var(--lamp-bright);
+  --color-lamp-warm: var(--lamp-warm);
+  --color-lamp-dim: var(--lamp-dim);
+  --color-neon-red: var(--neon-red);
+  --color-dark-maroon: var(--dark-maroon);
+  --color-maroon-warm: var(--maroon-warm);
+  --color-maroon-shirt: var(--maroon-shirt);
+  --color-glass-border: var(--glass-border);
+  --color-glass-bg: var(--glass-bg);
+  --color-frost-light: var(--frost-light);
+  --color-frost-medium: var(--frost-medium);
+  --color-frost-strong: var(--frost-strong);
 }
 
 * {
@@ -118,6 +207,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 ::selection {
@@ -139,6 +229,82 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--snow);
+}
+
+/* Header controls stay readable over the cinematic hero, then follow the
+   active page theme once the header becomes a glass surface. */
+.site-header {
+  --header-control: var(--color-text-strong);
+  --header-control-muted: var(--color-text-muted);
+}
+
+.site-header:not([data-scrolled="true"]) {
+  background-color: var(--header-top-background);
+  backdrop-filter: var(--header-top-blur);
+  -webkit-backdrop-filter: var(--header-top-blur);
+}
+
+:root[data-theme="dark"] .site-header:not([data-scrolled="true"]) {
+  --header-control: var(--color-on-media);
+  --header-control-muted: var(--color-on-media-muted);
+}
+
+.site-header[data-scrolled="true"] {
+  --header-control: var(--color-text-strong);
+  --header-control-muted: var(--color-text-muted);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--header-control);
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--header-control-muted);
+  background: var(--glass-bg);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--lamp-bright);
+  outline-offset: 3px;
+}
+
+.theme-toggle__moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle__sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle__moon {
+  display: block;
+}
+
+.hero-social:hover {
+  color: var(--color-on-media) !important;
+}
+
+/* View Transitions API reveal used by ThemeToggle. Unsupported browsers use
+   the immediate theme change fallback in the component. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html[data-theme-transition="active"]::view-transition-new(root) {
+  clip-path: var(--theme-toggle-clip-from);
 }
 
 /* CTA editorial line */
@@ -242,6 +408,20 @@ body {
 @media (max-width: 767px) {
   .section-divider {
     margin: 1.5rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

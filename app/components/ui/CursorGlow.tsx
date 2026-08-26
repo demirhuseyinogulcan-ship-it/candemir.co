@@ -51,7 +51,7 @@ export default function CursorGlow() {
       className="pointer-events-none fixed inset-0 z-30 hidden md:block transition-opacity duration-700"
       style={{
         background:
-          "radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 255, 255, 0.04), transparent 60%)",
+          "radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), var(--interaction-glow), transparent 60%)",
       }}
     />
   );

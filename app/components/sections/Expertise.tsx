@@ -200,7 +200,7 @@ function ServiceCard({
     mouseY.set(e.clientY - rect.top);
   }
 
-  const glow = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.05), transparent 65%)`;
+  const glow = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, var(--interaction-glow), transparent 65%)`;
 
   return (
     <motion.div
@@ -216,7 +216,7 @@ function ServiceCard({
         className="group relative block h-full overflow-hidden"
         style={{
           backgroundColor: COLORS.obsidian,
-          border: `1px solid ${hovered ? "rgba(255,255,255,0.12)" : COLORS.glassBorder}`,
+          border: `1px solid ${hovered ? "var(--interaction-border)" : COLORS.glassBorder}`,
           borderRadius: "8px",
           padding: "clamp(20px, 2vw, 32px)",
           textDecoration: "none",

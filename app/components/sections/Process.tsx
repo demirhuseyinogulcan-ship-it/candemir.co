@@ -39,7 +39,7 @@ export default function Process() {
     mouseY.set(e.clientY - rect.top);
   }
 
-  const glow = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0.05), transparent 65%)`;
+  const glow = useMotionTemplate`radial-gradient(420px circle at ${mouseX}px ${mouseY}px, var(--interaction-glow), transparent 65%)`;
 
   const handleTreeKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -94,7 +94,7 @@ export default function Process() {
           className="relative overflow-hidden"
           style={{
             backgroundColor: COLORS.obsidian,
-            boxShadow: `inset 0 0 0 1px ${hovered ? "rgba(255,255,255,0.12)" : COLORS.glassBorder}`,
+            boxShadow: `inset 0 0 0 1px ${hovered ? "var(--interaction-border)" : COLORS.glassBorder}`,
             borderRadius: "16px",
             padding: "clamp(24px, 3vw, 44px)",
             transition: "box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1)",

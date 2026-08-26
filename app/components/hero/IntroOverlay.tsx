@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { COLORS } from "@/app/lib/design-tokens";
 
 /* ═══════════════════════════════════════════════════════════════
    3-SECOND CINEMATIC INTRO
@@ -127,7 +126,7 @@ export default function IntroOverlay({
     position: "absolute",
     fontSize: "clamp(1.25rem, 3.5vw, 3rem)",
     lineHeight: 1,
-    color: COLORS.snow,
+    color: "var(--intro-text)",
     textAlign: "center",
     fontWeight: 300,
     letterSpacing: "-0.02em",
@@ -138,7 +137,7 @@ export default function IntroOverlay({
       {visible && (
         <motion.div
           className="fixed inset-0 z-[100] flex items-center justify-center"
-          style={{ backgroundColor: COLORS.void }}
+          style={{ backgroundColor: "var(--intro-background)" }}
           exit={{ y: "-100%" }}
           transition={{ duration: EXIT_MS / 1000, ease: [0.76, 0, 0.24, 1] }}
         >

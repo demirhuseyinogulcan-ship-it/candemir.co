@@ -8,7 +8,8 @@ import {
   ANIMATION, 
   COLORS, 
   TYPOGRAPHY,
-  fadeUp 
+  fadeUp,
+  withAlpha,
 } from "@/app/lib/design-tokens";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 
@@ -232,7 +233,7 @@ function CinematicFrame({ frame, index }: { frame: typeof CINEMA_FRAMES[number];
           style={{
             top: "12%",
             height: "1px",
-            background: `linear-gradient(90deg, transparent 0%, ${COLORS.lamp.dim}40 20%, ${COLORS.lamp.dim}40 80%, transparent 100%)`,
+            background: `linear-gradient(90deg, transparent 0%, ${withAlpha(COLORS.lamp.dim, 0.25)} 20%, ${withAlpha(COLORS.lamp.dim, 0.25)} 80%, transparent 100%)`,
           }}
           animate={{ opacity: barsActive ? 0.5 : 0 }}
           transition={{ duration: 0.8, delay: barsActive ? 0.6 : 0 }}
@@ -242,7 +243,7 @@ function CinematicFrame({ frame, index }: { frame: typeof CINEMA_FRAMES[number];
           style={{
             bottom: "12%",
             height: "1px",
-            background: `linear-gradient(90deg, transparent 0%, ${COLORS.lamp.dim}40 20%, ${COLORS.lamp.dim}40 80%, transparent 100%)`,
+            background: `linear-gradient(90deg, transparent 0%, ${withAlpha(COLORS.lamp.dim, 0.25)} 20%, ${withAlpha(COLORS.lamp.dim, 0.25)} 80%, transparent 100%)`,
           }}
           animate={{ opacity: barsActive ? 0.5 : 0 }}
           transition={{ duration: 0.8, delay: barsActive ? 0.6 : 0 }}

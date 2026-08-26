@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { COLORS } from "@/app/lib/design-tokens";
 import { BRAND, GLITCH_PROCESS_WORDS } from "@/app/lib/constants";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -127,7 +126,7 @@ export default function GlitchBrand({ href = "/" }: GlitchBrandProps) {
       className="tracking-[0.3em] lowercase cursor-pointer select-none relative inline-block"
       style={{
         fontSize: "clamp(10px, 1.2vw, 13px)",
-        color: chaosLevel > 0.3 ? COLORS.snow : COLORS.ash,
+        color: chaosLevel > 0.3 ? "var(--header-control)" : "var(--header-control-muted)",
         fontWeight: 400,
         textDecoration: "none",
         transition: "color 0.15s",

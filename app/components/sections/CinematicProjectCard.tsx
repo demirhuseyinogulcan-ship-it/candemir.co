@@ -185,7 +185,7 @@ export default function CinematicProjectCard({
             style={{
               top: `${BAR_HEIGHT}%`,
               height: "1px",
-              background: `linear-gradient(90deg, transparent 0%, ${COLORS.ash}40 20%, ${COLORS.ash}40 80%, transparent 100%)`,
+              background: "linear-gradient(90deg, transparent 0%, var(--decorative-line) 20%, var(--decorative-line) 80%, transparent 100%)",
             }}
             animate={{ opacity: barsActive ? 0.5 : 0 }}
             transition={{ duration: 0.8, delay: barsActive ? 0.6 : 0 }}
@@ -195,7 +195,7 @@ export default function CinematicProjectCard({
             style={{
               bottom: `${BAR_HEIGHT}%`,
               height: "1px",
-              background: `linear-gradient(90deg, transparent 0%, ${COLORS.ash}40 20%, ${COLORS.ash}40 80%, transparent 100%)`,
+              background: "linear-gradient(90deg, transparent 0%, var(--decorative-line) 20%, var(--decorative-line) 80%, transparent 100%)",
             }}
             animate={{ opacity: barsActive ? 0.5 : 0 }}
             transition={{ duration: 0.8, delay: barsActive ? 0.6 : 0 }}

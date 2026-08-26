@@ -8,6 +8,7 @@ import {
   COLORS,
   TYPOGRAPHY,
   fadeUp,
+  withAlpha,
 } from "@/app/lib/design-tokens";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 
@@ -941,7 +942,7 @@ function RecoverySequence() {
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               lineHeight: 1,
               color: COLORS.lamp.bright,
-              textShadow: `0 0 40px ${COLORS.lamp.glow}40`,
+              textShadow: `0 0 40px ${withAlpha(COLORS.lamp.glow, 0.25)}`,
             }}
           >
             Kontrol

@@ -8,6 +8,7 @@ import {
   COLORS,
   TYPOGRAPHY,
   fadeUp,
+  withAlpha,
 } from "@/app/lib/design-tokens";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 
@@ -71,7 +72,7 @@ function NeonFlicker() {
                 color: COLORS.lamp.bright,
                 opacity: flickers[i],
                 textShadow: flickers[i] > 0.5
-                  ? `0 0 20px ${COLORS.lamp.glow}, 0 0 60px ${COLORS.lamp.warm}80, 0 0 120px ${COLORS.lamp.bright}40`
+                  ? `0 0 20px ${COLORS.lamp.glow}, 0 0 60px ${withAlpha(COLORS.lamp.warm, 0.5)}, 0 0 120px ${withAlpha(COLORS.lamp.bright, 0.25)}`
                   : "none",
                 transition: "opacity 0.05s, text-shadow 0.05s",
               }}
@@ -170,7 +171,7 @@ function PuddleRipple() {
                 fontSize: "clamp(2.5rem, 6vw, 4rem)",
                 lineHeight: 1,
                 color: COLORS.lamp.bright,
-                textShadow: `0 0 40px ${COLORS.lamp.glow}60`,
+                textShadow: `0 0 40px ${withAlpha(COLORS.lamp.glow, 0.375)}`,
               }}
             >
               Yansima
@@ -249,7 +250,7 @@ function DepthOfField() {
                     backgroundColor: i === focusIndex ? COLORS.lamp.bright : COLORS.carbon,
                     border: `1px solid ${i === focusIndex ? COLORS.lamp.warm : COLORS.glassBorder}`,
                     boxShadow: i === focusIndex
-                      ? `0 0 40px ${COLORS.lamp.glow}50`
+                      ? `0 0 40px ${withAlpha(COLORS.lamp.glow, 0.3125)}`
                       : "none",
                   }}
                 />
@@ -619,7 +620,7 @@ function CinematicShutter() {
                 fontSize: "clamp(2rem, 5vw, 3.5rem)",
                 lineHeight: 1,
                 color: COLORS.lamp.bright,
-                textShadow: `0 0 60px ${COLORS.lamp.glow}40`,
+                textShadow: `0 0 60px ${withAlpha(COLORS.lamp.glow, 0.25)}`,
               }}
             >
               Perdede ne var?
@@ -704,7 +705,7 @@ function MagneticRepulsion() {
             style={{
               width: 80,
               height: 80,
-              border: `1px solid ${COLORS.lamp.bright}20`,
+              border: `1px solid ${withAlpha(COLORS.lamp.bright, 0.125)}`,
               background: `radial-gradient(circle, ${COLORS.lamp.reflection} 0%, transparent 70%)`,
             }}
             animate={{
@@ -814,7 +815,7 @@ function ElasticMorph() {
             }}
             transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              background: `radial-gradient(circle, ${COLORS.lamp.glow}30, transparent 70%)`,
+              background: `radial-gradient(circle, ${withAlpha(COLORS.lamp.glow, 0.1875)}, transparent 70%)`,
               filter: "blur(20px)",
             }}
           />

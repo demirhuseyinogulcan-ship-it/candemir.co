@@ -50,7 +50,7 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
           <motion.div
             className="fixed inset-0 z-[84]"
             style={{
-              backgroundColor: "rgba(5, 5, 5, 0.35)",
+              backgroundColor: "var(--nav-backdrop)",
               backdropFilter: "blur(2px)",
               WebkitBackdropFilter: "blur(2px)",
             }}
@@ -146,7 +146,7 @@ export default function Navigation({ isOpen, onClose, items }: NavigationProps) 
             <motion.div
               className="absolute right-0 top-0 bottom-0 w-px"
               style={{
-                background: `linear-gradient(to bottom, transparent 0%, ${COLORS.ash}40 20%, ${COLORS.ash}40 80%, transparent 100%)`,
+                background: "linear-gradient(to bottom, transparent 0%, var(--decorative-line) 20%, var(--decorative-line) 80%, transparent 100%)",
               }}
               initial={{ scaleY: 0 }}
               animate={{ scaleY: 1 }}

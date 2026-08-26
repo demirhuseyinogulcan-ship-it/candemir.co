@@ -113,7 +113,7 @@ export default function HeroSection() {
             fontSize: "clamp(1.5rem, 1.8vw, 2rem)",
             lineHeight: 1.1,
             letterSpacing: "-0.02em",
-            color: COLORS.chalk,
+            color: "var(--color-on-media)",
             fontWeight: 300,
             margin: 0,
             padding: 0,
@@ -123,7 +123,7 @@ export default function HeroSection() {
           transition={{ duration: 1.4, ease: ANIMATION.ease }}
         >
           Can{" "}
-          <span style={{ color: COLORS.concrete }}>Demir</span>
+          <span style={{ color: "var(--color-on-media-muted)" }}>Demir</span>
         </motion.h1>
 
         {/* Manifesto */}
@@ -131,7 +131,7 @@ export default function HeroSection() {
           style={{
             fontSize: "clamp(13px, 1.3vw, 19px)",
             lineHeight: 1.5,
-            color: COLORS.concrete,
+            color: "var(--color-on-media-muted)",
             fontWeight: 400,
             margin: 0,
             marginTop: "clamp(10px, 1.11vw, 18px)",
@@ -161,8 +161,8 @@ export default function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="block transition-colors duration-500 hover:!text-snow"
-              style={{ color: COLORS.ash }}
+              className="hero-social block transition-colors duration-500"
+              style={{ color: "var(--color-on-media-muted)" }}
             >
               <svg
                 width="clamp(13px, 0.97vw, 15px)"

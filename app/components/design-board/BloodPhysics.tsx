@@ -8,6 +8,7 @@ import {
   COLORS,
   TYPOGRAPHY,
   fadeUp,
+  withAlpha,
 } from "@/app/lib/design-tokens";
 import SectionHeader from "@/app/components/ui/SectionHeader";
 
@@ -41,7 +42,7 @@ function Pulse() {
           style={{
             width: 200,
             height: 200,
-            border: `1px solid ${COLORS.maroon.neon}15`,
+            border: `1px solid ${withAlpha(COLORS.maroon.neon, 0.0833)}`,
           }}
           animate={{
             scale: [1, 1.6, 1.6, 1],
@@ -61,7 +62,7 @@ function Pulse() {
           style={{
             width: 140,
             height: 140,
-            border: `1px solid ${COLORS.maroon.neon}30`,
+            border: `1px solid ${withAlpha(COLORS.maroon.neon, 0.1875)}`,
           }}
           animate={{
             scale: [1, 1.35, 1.35, 1],
@@ -87,10 +88,10 @@ function Pulse() {
           animate={{
             scale: [1, 1.12, 0.97, 1],
             boxShadow: [
-              `0 0 0px ${COLORS.maroon.neon}00`,
-              `0 0 50px ${COLORS.maroon.neon}60, 0 0 100px ${COLORS.maroon.dark}80`,
-              `0 0 20px ${COLORS.maroon.neon}20`,
-              `0 0 0px ${COLORS.maroon.neon}00`,
+              `0 0 0px transparent`,
+              `0 0 50px ${withAlpha(COLORS.maroon.neon, 0.375)}, 0 0 100px ${withAlpha(COLORS.maroon.dark, 0.5)}`,
+              `0 0 20px ${withAlpha(COLORS.maroon.neon, 0.125)}`,
+              `0 0 0px transparent`,
             ],
           }}
           transition={{
@@ -647,7 +648,7 @@ function WoundHeal() {
           <motion.div
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(90deg, transparent, ${COLORS.maroon.neon}80, ${COLORS.maroon.neon}, ${COLORS.maroon.neon}80, transparent)`,
+              background: `linear-gradient(90deg, transparent, ${withAlpha(COLORS.maroon.neon, 0.5)}, ${COLORS.maroon.neon}, ${withAlpha(COLORS.maroon.neon, 0.5)}, transparent)`,
               filter: "blur(4px)",
             }}
             animate={{
@@ -779,7 +780,7 @@ function SuspenseZoom() {
               lineHeight: 1,
               color: COLORS.maroon.neon,
               textShadow: zoomed
-                ? `0 0 40px ${COLORS.maroon.neon}80, 0 0 80px ${COLORS.maroon.dark}`
+                ? `0 0 40px ${withAlpha(COLORS.maroon.neon, 0.5)}, 0 0 80px ${COLORS.maroon.dark}`
                 : "none",
               transition: "text-shadow 0.5s",
             }}
@@ -862,7 +863,7 @@ function EmberTrail() {
                 left: `${ember.x}%`,
                 bottom: "15%",
                 backgroundColor: COLORS.maroon.neon,
-                boxShadow: `0 0 ${ember.size * 3}px ${COLORS.maroon.neon}80`,
+                boxShadow: `0 0 ${ember.size * 3}px ${withAlpha(COLORS.maroon.neon, 0.5)}`,
               }}
               initial={{ opacity: 0, y: 0, scale: 0 }}
               animate={{
@@ -889,8 +890,8 @@ function EmberTrail() {
           <div
             className="w-full h-full rounded-full"
             style={{
-              background: `linear-gradient(90deg, transparent, ${COLORS.maroon.neon}40, ${COLORS.maroon.warm}, ${COLORS.maroon.neon}40, transparent)`,
-              boxShadow: `0 0 30px ${COLORS.maroon.neon}30, 0 0 60px ${COLORS.maroon.dark}50`,
+              background: `linear-gradient(90deg, transparent, ${withAlpha(COLORS.maroon.neon, 0.25)}, ${COLORS.maroon.warm}, ${withAlpha(COLORS.maroon.neon, 0.25)}, transparent)`,
+              boxShadow: `0 0 30px ${withAlpha(COLORS.maroon.neon, 0.1875)}, 0 0 60px ${withAlpha(COLORS.maroon.dark, 0.3125)}`,
             }}
           />
         </div>
@@ -985,7 +986,7 @@ function BloodDrip() {
                 className="w-2.5 h-4 rounded-b-full"
                 style={{
                   background: `linear-gradient(180deg, ${COLORS.maroon.dark}, ${COLORS.maroon.neon})`,
-                  boxShadow: `0 4px 12px ${COLORS.maroon.neon}40`,
+                  boxShadow: `0 4px 12px ${withAlpha(COLORS.maroon.neon, 0.25)}`,
                 }}
               />
             </motion.div>
@@ -1006,7 +1007,7 @@ function BloodDrip() {
                 <div
                   className="w-8 h-1 rounded-full"
                   style={{
-                    background: `radial-gradient(ellipse, ${COLORS.maroon.neon}60, transparent)`,
+                    background: `radial-gradient(ellipse, ${withAlpha(COLORS.maroon.neon, 0.375)}, transparent)`,
                   }}
                 />
               </motion.div>
@@ -1018,7 +1019,7 @@ function BloodDrip() {
         <div
           className="absolute bottom-0 left-0 right-0 h-10"
           style={{
-            background: `linear-gradient(0deg, ${COLORS.maroon.dark}60, transparent)`,
+            background: `linear-gradient(0deg, ${withAlpha(COLORS.maroon.dark, 0.375)}, transparent)`,
           }}
         />
       </div>
@@ -1193,7 +1194,7 @@ function CrimsonFog() {
               lineHeight: 1,
               color: COLORS.maroon.neon,
               opacity: 0.7,
-              textShadow: `0 0 60px ${COLORS.maroon.neon}40`,
+              textShadow: `0 0 60px ${withAlpha(COLORS.maroon.neon, 0.25)}`,
             }}
           >
             SIS
@@ -1207,7 +1208,7 @@ function CrimsonFog() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            boxShadow: `inset 0 0 80px ${COLORS.void}, inset 0 0 160px ${COLORS.void}80`,
+            boxShadow: `inset 0 0 80px ${COLORS.void}, inset 0 0 160px ${withAlpha(COLORS.void, 0.5)}`,
           }}
         />
       </div>

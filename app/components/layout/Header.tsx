@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { COLORS, ANIMATION } from "@/app/lib/design-tokens";
+import { ANIMATION } from "@/app/lib/design-tokens";
 import { NAV_ITEMS } from "@/app/lib/constants";
 import GlitchBrand from "@/app/components/brand/GlitchBrand";
+import ThemeToggle from "@/app/components/ui/ThemeToggle";
 import Navigation from "./Navigation";
 
 /*
@@ -47,14 +48,17 @@ export default function Header() {
   return (
     <>
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-[90] flex items-center justify-between"
+        className="site-header fixed top-0 left-0 right-0 z-[90] flex items-center justify-between"
+        data-scrolled={scrolled ? "true" : "false"}
         style={{
           padding: "clamp(20px, 3vh, 36px) clamp(24px, 5vw, 96px)",
-          backgroundColor: scrolled && !isOpen ? "rgba(5,5,5,0.85)" : "transparent",
-          backdropFilter: scrolled && !isOpen ? "blur(16px)" : "none",
-          WebkitBackdropFilter: scrolled && !isOpen ? "blur(16px)" : "none",
+          backgroundColor: scrolled && !isOpen
+            ? "var(--header-scrolled-background)"
+            : "var(--header-top-background)",
+          backdropFilter: scrolled && !isOpen ? "blur(16px)" : "var(--header-top-blur)",
+          WebkitBackdropFilter: scrolled && !isOpen ? "blur(16px)" : "var(--header-top-blur)",
           borderBottom: scrolled && !isOpen
-            ? `1px solid ${COLORS.glassBorder}`
+            ? "1px solid var(--glass-border)"
             : "1px solid transparent",
           transition: "background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.6s, border-color 0.6s",
         }}
@@ -85,7 +89,7 @@ export default function Header() {
                 animate={{
                   y: isOpen ? 5 : 0,
                   rotate: isOpen ? 45 : 0,
-                  backgroundColor: isOpen ? COLORS.snow : COLORS.ash,
+                  backgroundColor: isOpen ? "var(--header-control)" : "var(--header-control-muted)",
                 }}
                 transition={{ duration: 0.4, ease: ANIMATION.ease }}
               />
@@ -95,7 +99,7 @@ export default function Header() {
                 animate={{
                   y: isOpen ? -5 : 0,
                   rotate: isOpen ? -45 : 0,
-                  backgroundColor: isOpen ? COLORS.snow : COLORS.ash,
+                  backgroundColor: isOpen ? "var(--header-control)" : "var(--header-control-muted)",
                 }}
                 transition={{ duration: 0.4, ease: ANIMATION.ease }}
               />
@@ -106,11 +110,12 @@ export default function Header() {
         </div>
 
         <div className="flex items-center" style={{ gap: "clamp(10px, 1.4vw, 18px)" }}>
+          <ThemeToggle label={locale === "en" ? "Toggle theme" : "Temayı değiştir"} />
           <Link
             href={localizedPath}
             className="font-mono uppercase"
             style={{
-              color: COLORS.concrete,
+              color: "var(--header-control-muted)",
               fontSize: "clamp(10px, 1.2vw, 13px)",
               letterSpacing: "0.18em",
               textDecoration: "none",

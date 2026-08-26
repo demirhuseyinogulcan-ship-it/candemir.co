@@ -64,54 +64,58 @@ export const CONTAINER = {
 } as const;
 
 // ============================================
-// COLORS — Samurai Jack + Gece Sokak Fotoğrafçılığı
-// %60 Zemin (Derin Karanlık) | %30 Yüzey (Buzlu Cam) | %10 Accent (Sokak Lambası + Kan)
+// COLORS — Semantic roles backed by the active CSS theme
+// %60 Zemin | %30 Yüzey/metin | %10 Accent (Sokak Lambası + Kan)
 // ============================================
 export const COLORS = {
-  // ========== %60 — ZEMİN RENKLERİ (Samurai Jack Geceleri) ==========
-  void: "#050505",      // En derin siyah — ana zemin
-  obsidian: "#0A0A0A",  // Section arka planları
-  carbon: "#111111",    // Kart / surface
-  slate: "#1A1A1A",     // Hover state, yükseltilmiş yüzey
+  // ========== %60 — ZEMİN ROLLERİ ==========
+  void: "var(--void)",
+  obsidian: "var(--obsidian)",
+  carbon: "var(--carbon)",
+  slate: "var(--slate)",
   
-  // ========== %30 — METİN & BUZLU CAM (Frosted Glass) ==========
-  // Beyaz Sistemi — Tam beyaz (#FFF) asla kullanılmaz, göz yorar
-  chalk: "#FAFAFA",     // En parlak — başlıklar, hero text (kontrast: 19.3:1)
-  snow: "#F0F0F0",      // Ana metin — body text (kontrast: 17.4:1)
-  mist: "#E0E0E0",      // Pasif metin — placeholder, disabled (kontrast: 14.0:1)
-  concrete: "#777777",  // İkincil metin — orta gri
-  ash: "#444444",       // Tersiyer metin — koyu gri
+  // ========== %30 — METİN & BUZLU CAM ==========
+  chalk: "var(--chalk)",
+  snow: "var(--snow)",
+  mist: "var(--mist)",
+  concrete: "var(--concrete)",
+  ash: "var(--ash)",
   
   // Buzlu cam efektleri
   frost: {
-    light: "rgba(255, 255, 255, 0.08)",   // Hafif buzlu yüzey
-    medium: "rgba(255, 255, 255, 0.12)",  // Orta buzlu yüzey
-    strong: "rgba(255, 255, 255, 0.18)",  // Güçlü buzlu yüzey
+    light: "var(--frost-light)",
+    medium: "var(--frost-medium)",
+    strong: "var(--frost-strong)",
   },
   
   // Glass & Border
-  glassBorder: "rgba(255, 255, 255, 0.06)",
-  glassLight: "rgba(255, 255, 255, 0.03)",
+  glassBorder: "var(--glass-border)",
+  glassLight: "var(--glass-bg)",
   
-  // ========== %10 — ACCENT: SOKAK LAMBASI (Birincil) ==========
-  // Gece sokak fotoğrafçılığı — ıslak asfalta yansıyan sodyum buharlı lamba
+  // ========== %10 — ACCENT: SOKAK LAMBASI ==========
   lamp: {
-    bright: "#FFB800",   // Parlak amber — ana CTA, kritik vurgular
-    warm: "#FF9F1C",     // Sıcak turuncu — hover states
-    glow: "#FFAA00",     // Sodyum buharı — glow efektleri
-    dim: "#CC9200",      // Karartılmış — subtle vurgular
-    reflection: "rgba(255, 184, 0, 0.15)", // Asfalt yansıması
+    bright: "var(--lamp-bright)",
+    warm: "var(--lamp-warm)",
+    glow: "var(--lamp-glow)",
+    dim: "var(--lamp-dim)",
+    reflection: "var(--lamp-reflection)",
   },
   
-  // ========== %10 — ACCENT: KAN (İkincil — Samurai Jack) ==========
-  // Tehlike, derinlik, dramatik anlar için
+  // ========== %10 — ACCENT: KAN ==========
   maroon: {
-    neon: "#FF2D2D",     // Elektrikli kırmızı — danger, error states
-    dark: "#3A0000",     // Derin kırmızı — gradient base, gölgeler
-    warm: "#5C1A1A",     // Glassmorphism overlay, card tint
-    shirt: "#722F37",    // Sofistike — ikincil butonlar, subtle hover
+    neon: "var(--neon-red)",
+    dark: "var(--dark-maroon)",
+    warm: "var(--maroon-warm)",
+    shirt: "var(--maroon-shirt)",
   },
 } as const;
+
+/**
+ * Apply transparency to a theme-aware color value without concatenating a
+ * hexadecimal alpha suffix onto a CSS custom property.
+ */
+export const withAlpha = (color: string, opacity: number) =>
+  `color-mix(in srgb, ${color} ${opacity * 100}%, transparent)`;
 
 // ============================================
 // TYPOGRAPHY — Scale & Hierarchy
@@ -277,12 +281,12 @@ export const GLOW = {
   
   // Nötr Glow'lar
   white: {
-    boxShadow: "0 0 60px rgba(255, 255, 255, 0.15)",
-    borderColor: "rgba(255, 255, 255, 0.2)",
+    boxShadow: "var(--neutral-glow)",
+    borderColor: "var(--neutral-glow-border)",
   },
   subtle: {
-    boxShadow: "0 0 40px rgba(255, 255, 255, 0.05)",
-    borderColor: "rgba(255, 255, 255, 0.1)",
+    boxShadow: "var(--subtle-glow)",
+    borderColor: "var(--subtle-glow-border)",
   },
   
   // Danger/Error — Neon Red

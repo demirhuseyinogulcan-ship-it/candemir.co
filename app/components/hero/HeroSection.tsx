@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { ANIMATION, COLORS } from "@/app/lib/design-tokens";
+import { ANIMATION } from "@/app/lib/design-tokens";
 import { SOCIAL_LINKS } from "@/app/lib/constants";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -61,7 +61,7 @@ export default function HeroSection() {
     <header
       className="relative overflow-hidden"
       style={{
-        backgroundColor: COLORS.void,
+        backgroundColor: "var(--hero-background)",
         height: "100vh",
         minHeight: "600px",
       }}

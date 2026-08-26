@@ -29,6 +29,7 @@
   --color-border-strong: rgba(17, 17, 17, 0.22);
 
   /* Surfaces that sit on photography or the cinematic intro */
+  --hero-background: #050505;
   --color-on-media: #f7f7f5;
   --color-on-media-muted: #deded8;
   --intro-background: #050505;
@@ -37,8 +38,8 @@
   /* Theme-aware interaction effects */
   --header-control: var(--color-on-media);
   --header-control-muted: var(--color-on-media-muted);
-  --header-top-background: rgba(255, 255, 255, 0.58);
-  --header-top-blur: blur(12px);
+  --header-top-background: transparent;
+  --header-top-blur: none;
   --header-scrolled-background: rgba(255, 255, 255, 0.86);
   --nav-backdrop: rgba(17, 17, 17, 0.24);
   --interaction-glow: rgba(17, 17, 17, 0.07);
@@ -96,6 +97,7 @@
   --color-border-strong: rgba(255, 255, 255, 0.14);
 
   /* Surfaces that sit on photography or the cinematic intro */
+  --hero-background: #050505;
   --color-on-media: #fafafa;
   --color-on-media-muted: #e0e0e0;
   --intro-background: #050505;
@@ -147,7 +149,7 @@
 }
 
 @theme inline {
-  --font-sans: "Neue Montreal", "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Neue Montreal", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   /* Tailwind color utilities resolve through the active theme */
@@ -239,14 +241,11 @@ body {
 }
 
 .site-header:not([data-scrolled="true"]) {
+  --header-control: var(--color-on-media);
+  --header-control-muted: var(--color-on-media-muted);
   background-color: var(--header-top-background);
   backdrop-filter: var(--header-top-blur);
   -webkit-backdrop-filter: var(--header-top-blur);
-}
-
-:root[data-theme="dark"] .site-header:not([data-scrolled="true"]) {
-  --header-control: var(--color-on-media);
-  --header-control-muted: var(--color-on-media-muted);
 }
 
 .site-header[data-scrolled="true"] {

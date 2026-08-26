@@ -66,6 +66,13 @@ function toggleTheme(button: HTMLButtonElement) {
   const clipPath = getRevealClipPath(button);
   root.dataset.themeTransition = "active";
   root.style.setProperty("--theme-toggle-clip-from", clipPath[0]);
+  root.style.setProperty("--theme-toggle-clip-to", clipPath[1]);
+  root.style.setProperty(
+    "--theme-transition-scrim",
+    nextTheme === "light"
+      ? "rgba(247, 247, 245, 0.18)"
+      : "rgba(5, 5, 5, 0.28)",
+  );
 
   const transition = transitionDocument.startViewTransition(() => {
     applyTheme(nextTheme);
@@ -74,7 +81,11 @@ function toggleTheme(button: HTMLButtonElement) {
   const cleanup = () => {
     delete root.dataset.themeTransition;
     root.style.removeProperty("--theme-toggle-clip-from");
+    root.style.removeProperty("--theme-toggle-clip-to");
+    root.style.removeProperty("--theme-transition-scrim");
   };
+
+  const cleanupTimer = window.setTimeout(cleanup, TRANSITION_DURATION);
 
   transition.ready.then(() => {
     root.animate(
@@ -88,7 +99,13 @@ function toggleTheme(button: HTMLButtonElement) {
     );
   });
 
-  transition.finished.then(cleanup, cleanup);
+  transition.finished.then(
+    () => undefined,
+    () => {
+      window.clearTimeout(cleanupTimer);
+      cleanup();
+    },
+  );
 }
 
 export default function ThemeToggle({ label }: { label: string }) {

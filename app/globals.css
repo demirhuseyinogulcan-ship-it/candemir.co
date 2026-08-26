@@ -240,6 +240,11 @@ body {
   --header-control-muted: var(--color-text-muted);
 }
 
+.site-footer {
+  --header-control: var(--color-text-strong);
+  --header-control-muted: var(--color-text-muted);
+}
+
 .site-header:not([data-scrolled="true"]) {
   --header-control: var(--color-on-media);
   --header-control-muted: var(--color-on-media-muted);
@@ -304,6 +309,29 @@ body {
 
 html[data-theme-transition="active"]::view-transition-new(root) {
   clip-path: var(--theme-toggle-clip-from);
+}
+
+/* The hero intentionally keeps its cinematic dark surface in both themes.
+   This short-lived overlay makes a theme change visible even when the user
+   is at the very top of the page, where the rest of the viewport is the hero. */
+@keyframes theme-toggle-reveal {
+  from {
+    clip-path: var(--theme-toggle-clip-from);
+  }
+  to {
+    clip-path: var(--theme-toggle-clip-to);
+  }
+}
+
+html[data-theme-transition="active"]::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 89;
+  pointer-events: none;
+  background: var(--theme-transition-scrim);
+  clip-path: var(--theme-toggle-clip-from);
+  animation: theme-toggle-reveal 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* CTA editorial line */

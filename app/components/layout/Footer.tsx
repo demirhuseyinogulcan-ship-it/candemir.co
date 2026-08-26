@@ -17,6 +17,7 @@ export default function Footer() {
 
   return (
     <footer
+      className="site-footer"
       style={{
         backgroundColor: COLORS.void,
         borderTop: `1px solid ${COLORS.glassBorder}`,

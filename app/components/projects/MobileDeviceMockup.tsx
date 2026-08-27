@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { COLORS } from "@/app/lib/design-tokens";
+import { MOCKUP_MEDIA_CONFIG } from "@/app/lib/mockup-config";
 
 /* ═══════════════════════════════════════════════════════════════
    MobileDeviceMockup — iPhone Çerçevesi
@@ -147,7 +148,7 @@ export default function MobileDeviceMockup({
             preload="auto"
             className="absolute inset-0 w-full h-full"
             style={{
-              objectFit: "cover",
+              objectFit: MOCKUP_MEDIA_CONFIG.mobile.objectFit,
               opacity: showA ? 1 : 0,
               transition: "opacity 0.4s ease",
             }}
@@ -165,7 +166,7 @@ export default function MobileDeviceMockup({
             preload="auto"
             className="absolute inset-0 w-full h-full"
             style={{
-              objectFit: "cover",
+              objectFit: MOCKUP_MEDIA_CONFIG.mobile.objectFit,
               opacity: showA ? 0 : 1,
               transition: "opacity 0.4s ease",
             }}
@@ -188,7 +189,7 @@ export default function MobileDeviceMockup({
           borderBottomRightRadius: "18px",
           borderTopLeftRadius: "4px",
           borderTopRightRadius: "4px",
-          backgroundColor: COLORS.void,
+          backgroundColor: MOCKUP_MEDIA_CONFIG.mobile.notchColor,
           zIndex: 3,
         }}
       />

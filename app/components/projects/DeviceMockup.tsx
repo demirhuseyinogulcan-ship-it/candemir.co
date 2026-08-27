@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { COLORS } from "@/app/lib/design-tokens";
+import { MOCKUP_MEDIA_CONFIG } from "@/app/lib/mockup-config";
 
 /* ═══════════════════════════════════════════════════════════════
    DeviceMockup — MacBook Pro Laptop Mockup
@@ -150,15 +151,15 @@ export default function DeviceMockup({
       >
         {/* Screenshot fallback */}
         {screenshot && (
-          <Image
-            src={screenshot}
-            alt={alt}
-            fill
-            className="object-contain"
-            sizes="(max-width: 768px) 100vw, 80vw"
-            quality={95}
-            style={{
-              objectFit: "contain",
+        <Image
+          src={screenshot}
+          alt={alt}
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, 80vw"
+          quality={95}
+          style={{
+              objectFit: MOCKUP_MEDIA_CONFIG.laptop.objectFit,
               opacity: videoReady ? 0 : 1,
               transition: "opacity 0.4s ease",
             }}
@@ -174,7 +175,7 @@ export default function DeviceMockup({
             preload="auto"
             className="absolute inset-0 w-full h-full"
             style={{
-              objectFit: "contain",
+              objectFit: MOCKUP_MEDIA_CONFIG.laptop.objectFit,
               opacity: showA ? 1 : 0,
               transition: "opacity 0.3s ease",
             }}
@@ -192,7 +193,7 @@ export default function DeviceMockup({
             preload="auto"
             className="absolute inset-0 w-full h-full"
             style={{
-              objectFit: "contain",
+              objectFit: MOCKUP_MEDIA_CONFIG.laptop.objectFit,
               opacity: showA ? 0 : 1,
               transition: "opacity 0.3s ease",
             }}

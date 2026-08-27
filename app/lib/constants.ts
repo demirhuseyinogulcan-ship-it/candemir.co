@@ -81,6 +81,8 @@ export interface ProcessNode {
   name: string;
   label: string;
   summary: string;
+  description: string;
+  phrases: readonly string[];
   children: ProcessTreeChild[];
 }
 
@@ -89,6 +91,9 @@ export const PROCESS_TREE: ProcessNode[] = [
     name: "discover",
     label: "Keşfet",
     summary: "İşi, sektörü ve mevcut yapıyı tanı.",
+    description:
+      "İş modelini, sektörün dilini ve mevcut dijital varlıkları anlamadan tasarıma başlamıyorum.",
+    phrases: ["bağlamı aç", "işi çöz", "fırsatı gör"],
     children: [
       { name: "sektörü-tanı.md", comment: "Pazarın dili ne?" },
       { name: "rakipleri-incele.md", comment: "Kim neyi doğru yapıyor?" },
@@ -100,6 +105,9 @@ export const PROCESS_TREE: ProcessNode[] = [
     name: "observe",
     label: "Gözlemle",
     summary: "Veriyi, müşteriyi ve tutarsızlıkları oku.",
+    description:
+      "Müşterinin söylediğini, aradığını ve satış ekibinin sahada duyduğunu aynı tabloda buluşturuyorum.",
+    phrases: ["söyleneni dinle", "arananı ölç", "çelişkiyi yakala"],
     children: [
       {
         name: "müşteri-ne-diyor/",
@@ -120,6 +128,9 @@ export const PROCESS_TREE: ProcessNode[] = [
     name: "focus",
     label: "Odaklan",
     summary: "Asıl problemi ayıkla, kapsamı daralt.",
+    description:
+      "Dağınık talepleri tek bir çözülebilir probleme indiriyor, önceliği görünür kılıyorum.",
+    phrases: ["gürültüyü ayıkla", "kök nedeni bul", "tek probleme in"],
     children: [
       { name: "asıl-sorun-ne.md", comment: "Semptom değil, kök neden" },
       { name: "öncelik-sıralaması.md", comment: "İlk hangi taş oynayacak?" },
@@ -130,6 +141,9 @@ export const PROCESS_TREE: ProcessNode[] = [
     name: "think",
     label: "Düşün",
     summary: "Stratejiyi, konumlamayı ve riskleri kur.",
+    description:
+      "Konumlamayı, vaadi ve riskleri aynı strateji içinde tartıyorum.",
+    phrases: ["olasılıkları tart", "konumu seç", "yönü kur"],
     children: [
       { name: "strateji-taslağı.md", comment: "Ne inşa edeceğiz?" },
       { name: "müşteri-algısı-haritası.md", comment: "Zihindeki mevcut resim" },
@@ -141,6 +155,9 @@ export const PROCESS_TREE: ProcessNode[] = [
     name: "frame",
     label: "Çerçevele",
     summary: "Mesajı ve görsel hiyerarşiyi netleştir.",
+    description:
+      "Mesajı, tonu ve görsel hiyerarşiyi ilk bakışta anlaşılacak şekilde kuruyorum.",
+    phrases: ["mesajı sırala", "tonu belirle", "bakışı yönlendir"],
     children: [
       { name: "marka-hikayesi.md", comment: "Neyi anlatıyoruz?" },
       { name: "mesaj-hiyerarşisi.md", comment: "İlk, ikinci, üçüncü mesaj" },
@@ -151,6 +168,9 @@ export const PROCESS_TREE: ProcessNode[] = [
     name: "design",
     label: "Tasarla",
     summary: "Arayüzü, akışı ve editoryal yapıyı kur.",
+    description:
+      "İçeriği, kullanıcı akışını ve arayüzü tek bir deneyim olarak örüyorum.",
+    phrases: ["iskeleti kur", "akışı sadeleştir", "deneyimi ör"],
     children: [
       {
         name: "wireframe/",
@@ -170,6 +190,9 @@ export const PROCESS_TREE: ProcessNode[] = [
     name: "code",
     label: "İnşa Et",
     summary: "Temiz mimari ile sistemi üret.",
+    description:
+      "Kararı hızlı, erişilebilir, SEO uyumlu ve sürdürülebilir bir dijital sisteme çeviriyorum.",
+    phrases: ["bileşeni kur", "sistemi bağla", "ürünü çalıştır"],
     children: [
       {
         name: "mimari-yapı/",
@@ -190,6 +213,9 @@ export const PROCESS_TREE: ProcessNode[] = [
     name: "launch",
     label: "Yayınla",
     summary: "Kontrol et, yayınla, ilk sinyalleri izle.",
+    description:
+      "Yayın öncesi kırıkları, hızı ve görünürlüğü test ediyor; ilk gerçek sinyalleri takip ediyorum.",
+    phrases: ["kırığı tara", "hızı ölç", "sinyali oku"],
     children: [
       { name: "test-kontrol.md", comment: "Kırık yer kaldı mı?" },
       { name: "analytics-kur.md", comment: "Ölçüm olmadan büyüme yok" },
@@ -200,6 +226,9 @@ export const PROCESS_TREE: ProcessNode[] = [
     name: "grow",
     label: "Büyüt",
     summary: "Veriyle besle, otomatikleştir, ölçekle.",
+    description:
+      "İşe yarayanı veriden okuyup içeriğe, otomasyona ve yeni kanallara taşıyorum.",
+    phrases: ["işe yarayanı çoğalt", "otomasyonu bağla", "menzili büyüt"],
     children: [
       { name: "veri-takibi.md", comment: "Hangi sinyalleri izliyoruz?" },
       { name: "otomasyon.md", comment: "İşi insandan sisteme taşı" },
@@ -299,17 +328,17 @@ export const PROJECTS = [
     title: "Kaps\u00fcl Otel Konsept",
     category: "Giri\u015fimcilik \u00b7 Konsept \u00b7 Web",
     year: "2025",
-    stack: ["Next.js", "Konsept Tasar\u0131m", "\u0130\u015f Plan\u0131"],
+    stack: ["Next.js", "Konsept Tasarım", "Ürün Stratejisi", "İş Planı"],
     description:
-      "T\u00fcrkiye'nin ilk modüler kapsül otel konsepti. Teknik çizimlerden AI renderlarına, iş planından web sitesine — henüz gerçekleşmemiş ama hazır.",
-    // TODO: gerçek hikaye geldiğinde değiştir — şu an placeholder.
+      "Hostel, yurt ve kısa süreli konaklama işletmeleri için mevcut alanı daha verimli kullanmayı hedefleyen modüler kapsül konaklama konsepti. Ürün ailesi, teknik gereksinimler, iş modeli ve dijital sunum birlikte kurgulandı.",
     story:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kapsül Otel Konsept projesi, şehir içi konaklamaya daha kompakt, erişilebilir ve modüler bir alternatif üretme fikriyle başladı. Proje henüz gerçekleşmemiş olsa da, fikir aşamasında bile mekansal deneyim, operasyon ve dijital sunum birlikte düşünüldü.\n\nVivamus lacinia odio vitae vestibulum. İlk aşamada kapsül birimlerinin ölçekleri, kullanıcı akışı ve ortak alan senaryoları üzerine çalışıldı. Amaç yalnızca küçük odalar tasarlamak değil, gecelik konaklamayı daha yalın ve sistemli bir hizmet modeline çevirmekti.\n\nDuis aute irure dolor in reprehenderit. Görsel tarafta konsept renderlar, teknik eskizler ve marka hissi birlikte ele alındı. Web sitesi ise yatırımcıya, kullanıcıya ve iş ortaklarına aynı anda fikri anlatabilecek bir sunum zemini olarak kurgulandı.\n\nExcepteur sint occaecat cupidatat non proident. Bu metin şimdilik yer tutucu. Gerçek fizibilite, lokasyon ve operasyon detayları netleştikçe proje hikayesi burada tamamlanacak.",
+      "Şehirlerde konaklama talebi artarken sorun her zaman yeni bir bina yapmak değil; mevcut alanı daha verimli, düzenli ve işletilebilir hale getirmek. Kapsül Otel Konsept projesi bu sorudan doğdu. Hostel, öğrenci yurdu, kamp alanı ve kısa süreli konaklama işletmelerine uyarlanabilecek modüler bir konaklama sistemi tasarlamak istedim.\n\nÇalışmayı yalnızca bir yatak ünitesi olarak ele almadım. Mahremiyet, günlük konfor ve işletme operasyonunu aynı çerçevede düşündüm: çelik iskelet, dayanıklı kaplama, LED aydınlatma, kişisel havalandırma, USB/priz bağlantıları, depolama, okuma lambası ve çalışma alanı.\n\nKonseptin ikinci katmanı ürün ailesiydi. Nova, Flex, Eco ve Dublex modelleri farklı kapasite, bütçe ve yerleşim senaryolarına göre ayrışıyor. Sipariş akışı da mekânı ve ölçüleri anlamak, yerleşim planı oluşturmak, model seçmek, teklif vermek ve üretim/kurulum sürecini yönetmek üzerine kuruldu.\n\nBu proje henüz tamamlanmış bir otel kurulumu değil; ürün, operasyon ve marka fikrinin prototip öncesi konsept çalışması. Next.js ile hazırlanan site; ürün modellerini, kullanım alanlarını, teknik özellikleri, sık sorulan soruları ve teklif akışını tek bir anlatıda birleştiriyor.",
     image: "/images/projects/kapsulotel/hero.png",
     gallery: [],
     video: null,
-    mockupScreenshot: null,
-    mockupVideos: [],
+    mockupScreenshot: "/images/projects/kapsulotel/kapsulkent-poster.jpg",
+    mockupVideos: ["/videos/kapsulkent-desktop.mp4"],
+    mobileMockupVideos: ["/videos/kapsulkent-mobile.mp4"],
     url: null,
     metrics: null,
   },

@@ -1,12 +1,14 @@
 "use client";
 
 import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from "framer-motion";
-import { useState, useCallback, useRef } from "react";
+import { forwardRef, useState, useCallback, useEffect, useRef } from "react";
 import { COLORS, TYPOGRAPHY, ANIMATION, SPACING } from "@/app/lib/design-tokens";
 import { PROCESS_TREE, SECTION_PATHS } from "@/app/lib/constants";
 import type { ProcessNode, ProcessTreeChild } from "@/app/lib/constants";
 import Container from "@/app/components/ui/Container";
 import PathHeader from "@/app/components/ui/PathHeader";
+
+const PROCESS_PHRASE_INTERVAL = 5200;
 
 /* ═══════════════════════════════════════════════════════════════
    Sn. 01 — SÜREÇ (Process Tree)
@@ -21,9 +23,29 @@ import PathHeader from "@/app/components/ui/PathHeader";
 export default function Process() {
   const [openFolders, setOpenFolders] = useState<string[]>(["observe"]);
   const [hovered, setHovered] = useState(false);
+  const [isProcessVisible, setIsProcessVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const folderRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setIsProcessVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsProcessVisible(entry.isIntersecting),
+      { rootMargin: "0px 0px -20% 0px" },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const toggle = useCallback((name: string) => {
     setOpenFolders((prev) =>
@@ -69,6 +91,7 @@ export default function Process() {
 
   return (
     <section
+      ref={sectionRef}
       id="process"
       aria-label="Süreç"
       style={{
@@ -108,7 +131,6 @@ export default function Process() {
           />
 
 
-          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <div
             role="tree"
             aria-label="Süreç ağacı"
@@ -122,6 +144,7 @@ export default function Process() {
               node={node}
               index={i}
               isOpen={openFolders.includes(node.name)}
+              isProcessVisible={isProcessVisible}
               onToggle={() => toggle(node.name)}
               isLast={i === PROCESS_TREE.length - 1}
               ref={(el) => { folderRefs.current[i] = el; }}
@@ -136,20 +159,41 @@ export default function Process() {
 
 /* ─── Tree Folder ─── */
 
-import { forwardRef } from "react";
-
 const TreeFolder = forwardRef<
   HTMLButtonElement,
   {
     node: ProcessNode;
     index: number;
     isOpen: boolean;
+    isProcessVisible: boolean;
     onToggle: () => void;
     isLast: boolean;
   }
->(function TreeFolder({ node, index, isOpen, onToggle, isLast }, ref) {
+>(function TreeFolder({ node, index, isOpen, isProcessVisible, onToggle, isLast }, ref) {
   const prefix = isLast ? "└──" : "├──";
   const childPrefix = isLast ? "    " : "│   ";
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    if (!isProcessVisible || node.phrases.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let intervalId: number | undefined;
+    const advance = () => {
+      setPhraseIndex((current) => (current + 1) % node.phrases.length);
+    };
+    const timeoutId = window.setTimeout(() => {
+      advance();
+      intervalId = window.setInterval(advance, PROCESS_PHRASE_INTERVAL);
+    }, index * 320);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (intervalId !== undefined) window.clearInterval(intervalId);
+    };
+  }, [index, isProcessVisible, node.phrases]);
+
+  const activePhrase = node.phrases[phraseIndex] ?? node.phrases[0];
 
   return (
     <motion.div
@@ -165,14 +209,15 @@ const TreeFolder = forwardRef<
       }}
     >
       {/* Folder row — min 44px touch target */}
-      <button
-        ref={ref}
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        aria-label={`${node.label} — ${node.summary}`}
-        className="cursor-pointer flex items-baseline w-full text-left bg-transparent border-none outline-none group"
-        style={{ padding: "7px 0", minHeight: "44px" }}
-      >
+      <h3 style={{ margin: 0, fontSize: "inherit", fontWeight: "inherit" }}>
+        <button
+          ref={ref}
+          onClick={onToggle}
+          aria-expanded={isOpen}
+          aria-label={`${node.label} — ${node.summary}`}
+          className="cursor-pointer flex items-baseline w-full text-left bg-transparent border-none outline-none group"
+          style={{ padding: "7px 0", minHeight: "44px" }}
+        >
         {/* Tree connector */}
         <span
           aria-hidden="true"
@@ -242,7 +287,55 @@ const TreeFolder = forwardRef<
         >
           ← {node.summary}
         </span>
-      </button>
+        </button>
+      </h3>
+
+      <div
+        style={{
+          marginLeft: "clamp(40px, 4vw, 68px)",
+          maxWidth: "78ch",
+          padding: "0 0 12px",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontSize: "clamp(0.84rem, 1vw, 0.98rem)",
+            lineHeight: 1.55,
+            color: COLORS.mist,
+            margin: 0,
+          }}
+        >
+          {node.description}
+        </p>
+        <div
+          data-process-phrase={node.name}
+          aria-hidden="true"
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            gap: "8px",
+            minHeight: "1.5em",
+            marginTop: "5px",
+            ...TYPOGRAPHY.mono,
+            color: COLORS.ash,
+          }}
+        >
+          <span>↳</span>
+          <AnimatePresence initial={false} mode="wait">
+            <motion.span
+              key={activePhrase}
+              initial={{ opacity: 0, y: 7, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -7, filter: "blur(4px)" }}
+              transition={{ duration: 0.45, ease: ANIMATION.ease }}
+              style={{ display: "inline-block", color: COLORS.concrete }}
+            >
+              {activePhrase}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+      </div>
 
       {/* Children — expand/collapse */}
       <AnimatePresence>

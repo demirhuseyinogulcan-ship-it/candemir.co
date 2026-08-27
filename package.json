@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --experimental-strip-types --test test/process.test.ts test/projects.test.ts test/mockup-contract.test.ts"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",

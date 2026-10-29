@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# candemir.co
 
-## Getting Started
+My earlier studio site, before [commitius](https://commitius.com). A dark, cinematic portfolio in Turkish and English: an intro animation, a process timeline that draws itself on scroll, selected work shown inside laptop and phone mockups with screen recordings, and a design board that documents the visual system.
 
-First, run the development server:
+The site is no longer live. The code is kept as a reference for the motion and layout work.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+- [Next.js 16](https://nextjs.org) (App Router, static generation)
+- React 19 and TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- Node's built-in test runner
+
+## What is in it
+
+- Turkish and English routes under `app/[locale]`, with locale detection in `proxy.ts` (the Next.js 16 replacement for middleware).
+- Home sections: hero with an intro overlay, process, expertise, selected work and a contact call to action.
+- Project pages (`/work/[id]`) with device mockups that play desktop and mobile screen recordings.
+- A design board (`/design-board`) with the colour palette, typography, buttons, animation showcase and architecture notes.
+- Light and dark themes with a smooth transition.
+- Small tests for the process data, the project list and the mockup layout contract.
+
+## Project structure
+
+```
+app/
+  [locale]/
+    page.tsx              home
+    work/[id]/            project pages
+    design-board/         visual system
+  components/
+    hero/, sections/      home page
+    projects/             device mockups and project page
+    design-board/         design board sections
+    layout/, ui/, scroll/, brand/
+  lib/
+    constants.ts          projects, process steps, contact
+    i18n/                 locale config and dictionaries
+    design-tokens.ts      colours, spacing, motion
+    mockup-config.ts      mockup sizes and screen insets
+    seo/                  metadata helpers
+proxy.ts                  locale redirect
+public/images, public/videos   project media
+scripts/compress-videos.mjs    shrinks screen recordings with ffmpeg
+test/                     node:test suites
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Requires Node.js 22 or newer.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open http://localhost:3000.
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | development server |
+| `npm run build` | production build |
+| `npm test` | tests with Node's test runner |
+| `node scripts/compress-videos.mjs --all` | compress new screen recordings in `public/videos` (needs ffmpeg) |
